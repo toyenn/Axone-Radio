@@ -16,6 +16,12 @@ public class AxoneRadio {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        System.out.println("Hello worlds");
+        int a=0;
+        int b=2;
+        int c;
+        c= a+b;
+        String lo="";
     }
     
 }
