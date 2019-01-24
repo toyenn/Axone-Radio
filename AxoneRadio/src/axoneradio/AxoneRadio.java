@@ -24,6 +24,7 @@ public class AxoneRadio {
         String lo="";
         
         System.out.println("ceci est un test");
+        a++;
     }
     
 }
