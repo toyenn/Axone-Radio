@@ -11,5 +11,6 @@ package axoneradio;
  */
 public class Uneclasse {
     int a;
+    int b;
     
 }
