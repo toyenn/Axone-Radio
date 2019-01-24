@@ -22,6 +22,8 @@ public class AxoneRadio {
         int c;
         c= a+b;
         String lo="";
+        
+        System.out.println("ceci est un test");
     }
     
 }
