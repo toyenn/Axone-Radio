@@ -16,18 +16,26 @@ public class TestImage {
      */
     public static void main(String[] args) throws FileNotFoundException {
 
-        // int [][]picture = null;
+       
         
-        String url="‪";
-        LectureImagePGM LECTEUR = new LectureImagePGM();
-        //int [][]picture = LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm");
-        
-        LECTEUR.createFile(LECTEUR.inversionCouleurs(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm")), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat.pgm");
-        System.out.println("FINI");
-        
-        LECTEUR.createFile(LECTEUR.augmenterContraste(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm"),30), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat2.pgm");
-        System.out.println("FINI2");
-    
+//        String url="‪";
+//        LectureImagePGM LECTEUR = new LectureImagePGM();
+//        
+//        
+//        LECTEUR.createFile(LECTEUR.inversionCouleurs(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm")), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat.pgm");
+//        System.out.println("FINI");
+//        
+//        LECTEUR.createFile(LECTEUR.augmenterContraste(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm"),30), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat2.pgm");
+//        System.out.println("FINI2");
+//    
+//        LECTEUR.createFile(LECTEUR.augmenterLuminosité(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm"),30), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat3.pgm");
+//        System.out.println("FINI3");
+//        
+//        LECTEUR.createFile(LECTEUR.inclinerImage(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm")), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat4.pgm");
+//        System.out.println("FINI4");
+//        
+//         LECTEUR.createFile(LECTEUR.inclinerImage2(LECTEUR.lirefichierPGM("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm")), "C:\\Users\\Nathan\\Pictures\\SIR\\resultat5.pgm");
+//        System.out.println("FINI5");
     
     }  
     
