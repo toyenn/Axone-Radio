@@ -53,8 +53,11 @@ public class LectureImagePGM {
         Scanner scanner = new Scanner(filename);
         scanner.next(); // magic number
         this.width = scanner.nextInt();
+          //System.out.println("width :"+this.width);
         this.height = scanner.nextInt();
+        //System.out.println("height :"+this.height);
         this.max = scanner.nextInt();
+        //System.out.println("max :"+this.max);
 
         this.image = new int[height][width];
         this.image1D = new int[height*width];
@@ -71,6 +74,7 @@ public class LectureImagePGM {
 for (int i = 0; i < height*width; ++i) {
             
                 // normalize to 255
+                //System.out.println("Lecture n°"+i);
                 int value = scanner.nextInt();
                 value = (int) Math.round(((double) value) / max * MAXVAL);
                 image1D[i] = value;

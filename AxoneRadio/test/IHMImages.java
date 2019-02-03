@@ -39,6 +39,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class IHMImages extends JPanel {
@@ -47,13 +48,14 @@ public class IHMImages extends JPanel {
     BufferedImage monImage = null;
     private int Modifierlumi;
     private int Modifiercontraste;
-    LectureImagePGM imDeBase = null; // image qu'on a ouvert et qu'on va jamais modifier
+    LectureImagePGM imDeBase = null; // image qu'on a ouvert et qu'on va jamais modifier (bon d'accord on la modifier a un moment
     
+    File fichier;
     //int[] pgm = null;
    // int[][] pgm2 = null;
 
     public IHMImages() {
-        super();
+        super();       
         Modifierlumi = 0;
         Modifiercontraste = 0;
 
@@ -241,7 +243,7 @@ public class IHMImages extends JPanel {
 
         
         im.augmenterContrasteEtlumi(imDeBase, lumino, cont);
-        
+       // imDeBase.augmenterContrasteEtlumi(imDeBase, lumino, cont);
         
         final WritableRaster raster = imageRot.getRaster();
         raster.setPixels(0, 0, monImage.getWidth(), monImage.getHeight(), im.getImage1D());
@@ -268,11 +270,13 @@ public class IHMImages extends JPanel {
     }
 
     protected void ajouterImage(File fichierImage) {   // dessiner une image à l'ecran	
+        this.fichier=fichierImage;
         if (this.getExtension(fichierImage).contentEquals("pgm")) {
             try {
 
                 im = new LectureImagePGM(fichierImage);
                 imDeBase = new LectureImagePGM(fichierImage); 
+                
                 
                 //pgm = im.getImage1D();
                // pgm2 = im.getImage();
@@ -387,6 +391,10 @@ public class IHMImages extends JPanel {
         }
         return max;
 
+    }
+
+    void Reset() {
+        this.ajouterImage(fichier);
     }
 
    
