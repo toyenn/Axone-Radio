@@ -41,7 +41,7 @@ import javax.swing.event.ChangeEvent;
 
 public class AfficheImage extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
     
-      Point P = new Point();
+      Point P = new Point(); // le point qui stock l'endroit ou on a cliqué
 
     private final JMenuBar menuBar = new JMenuBar();
     private final JMenu fichierMenu = new JMenu();
@@ -110,6 +110,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         fichierMenu.add(ouvrirMenu);
         ouvrirMenu.addActionListener((ActionListener) this);
         ouvrirMenu.setText("ouvrir");
+       
 
         fichierMenu.add(enregistrerMenu);
         enregistrerMenu.addActionListener((ActionListener) this);
@@ -150,27 +151,32 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         BoutonInverserColors.setText(null);
         BoutonInverserColors.setPreferredSize(new Dimension(50,50));
         BoutonInverserColors.addActionListener((ActionListener) this);
+        BoutonInverserColors.addMouseListener((MouseListener) this);
         //BoutonModifierLum.setText("Lumino");
        // BoutonModifierLum.setPreferredSize(new Dimension(48,48));
         BoutonRotationDroite.setText(null);
 
         BoutonRotationDroite.setPreferredSize(new Dimension(50,50));
         BoutonRotationDroite.addActionListener((ActionListener) this);
+        BoutonRotationDroite.addMouseListener((MouseListener) this);
         
         BoutonRotationGauche.setText(null);
         BoutonRotationGauche.setPreferredSize(new Dimension(50,50));     
         BoutonRotationGauche.addActionListener((ActionListener) this);
-        
+        BoutonRotationGauche.addMouseListener((MouseListener) this);
         
         ActiveSouris.setText(null);
         ActiveSouris.setPreferredSize(new Dimension(50,50));
         ActiveSouris.addActionListener((ActionListener) this);
+        ActiveSouris.addMouseListener((MouseListener) this);
         
         Reset.setText(null);
         Reset.setPreferredSize(new Dimension(50,50));
         Reset.addActionListener((ActionListener) this);
+        Reset.addMouseListener((MouseListener) this);
          
         SlideLumi.setPreferredSize(new Dimension(100,20));
+        
         SlideLumi.addChangeListener(new javax.swing.event.ChangeListener() {
         @Override
         public void stateChanged(ChangeEvent ce) {
@@ -205,6 +211,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
               
                barredoutils.add(ActiveSouris);
                barredoutils.add(BoutonInverserColors);
+               
                barredoutils.add(Reset);
                
         getContentPane().add(barredoutils, BorderLayout.EAST);
@@ -212,6 +219,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         barredoutils.setBorder(new BevelBorder(BevelBorder.RAISED));
         //barredoutils.setBorder(new BevelBorder(BevelBorder.));
          barredoutils.setVisible(false);
+         
          
          
         panneau.addMouseListener((MouseListener) this);
@@ -312,7 +320,36 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
 
     @Override
     public void mouseEntered(MouseEvent e) {
-       
+       if(e.getSource().equals(BoutonInverserColors)){
+           //System.out.println("DANS LE MILE EMILE");
+           BoutonInverserColors.setToolTipText("Inverser les couleurs");
+           this.validate();
+           this.repaint();
+       }
+       else if(e.getSource().equals(ActiveSouris)){
+           //System.out.println("DANS LE MILE EMILE");
+           ActiveSouris.setToolTipText("Modifier contraste et la lminosité avec la souris");
+           this.validate();
+           this.repaint();
+       }
+       else if(e.getSource().equals(this.BoutonRotationDroite)){
+           //System.out.println("DANS LE MILE EMILE");
+           BoutonRotationDroite.setToolTipText("Rotation à gauche");
+           this.validate();
+           this.repaint();
+       }
+       else if(e.getSource().equals(this.BoutonRotationGauche)){
+           //System.out.println("DANS LE MILE EMILE");
+           BoutonRotationGauche.setToolTipText("Rotation à droite");
+           this.validate();
+           this.repaint();
+       }
+       else if(e.getSource().equals(Reset)){
+           //System.out.println("DANS LE MILE EMILE");
+           Reset.setToolTipText("Réinitialiser l'image");
+           this.validate();
+           this.repaint();
+       }
     }
 
     @Override

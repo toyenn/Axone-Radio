@@ -46,8 +46,7 @@ public class IHMImages extends JPanel {
     LectureImagePGM im = null;
     
     BufferedImage monImage = null;
-    private int Modifierlumi;
-    private int Modifiercontraste;
+   
     LectureImagePGM imDeBase = null; // image qu'on a ouvert et qu'on va jamais modifier (bon d'accord on la modifier a un moment
     
     File fichier;
@@ -56,8 +55,7 @@ public class IHMImages extends JPanel {
 
     public IHMImages() {
         super();       
-        Modifierlumi = 0;
-        Modifiercontraste = 0;
+        
 
     }
 
@@ -67,8 +65,8 @@ public class IHMImages extends JPanel {
         super.paintComponent(g);
         if (monImage != null) {
             g.drawImage(monImage, 0, 0, null);
-            //g.drawImage(monImage, 0, 0,monImage.getWidth(),monImage.getHeight(), null);
-            // si image affiché 2 fois plus grande :
+            //g.translate(this.getSize().width/2,this.getSize().height/2);
+            // si image affiché 2 fois plus grande : // rajouter un parametre qui fait fois 1 ou 2 ou... et qui redimenssione 
              //g.drawImage(monImage, 0, 0,monImage.getWidth()*2,monImage.getHeight()*2, null);
         }
     }
@@ -208,13 +206,13 @@ public class IHMImages extends JPanel {
     }
     
     
-    protected void ModifierLuminosite(int puissance){ // rajouter un parametre = val de la luminosité
+    protected void ModifierLuminosite(int puissance){ // méthode non utilisée
         System.out.println("On modifie la luminosité de limage ");
         BufferedImage imageRot = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
 
-        im.augmenterLuminosité(puissance-Modifierlumi);
-        this.Modifierlumi = puissance;
-        System.out.println(Modifierlumi);
+        //im.augmenterLuminosité(puissance-Modifierlumi);
+        //this.Modifierlumi = puissance;
+        //System.out.println(Modifierlumi);
         final WritableRaster raster = imageRot.getRaster();
         raster.setPixels(0, 0, monImage.getWidth(), monImage.getHeight(), im.getImage1D());
         monImage = imageRot;
@@ -222,14 +220,14 @@ public class IHMImages extends JPanel {
         repaint();
     }
     
-    protected void ModifierContraste(int puissance){ // rajouter un parametre = val de la luminosité
+    protected void ModifierContraste(int puissance){ // méthode non utilisée
         System.out.println("On modifie le contraste de limage ");
         BufferedImage imageRot = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
 
-        im.augmenterContraste(puissance-Modifiercontraste);
-        //im.augmenterContrasteEtlumi(imDeBase, puissance, puissance);
-        this.Modifiercontraste = puissance;
-        System.out.println(Modifiercontraste);
+        //im.augmenterContraste(puissance-Modifiercontraste);
+       
+        //this.Modifiercontraste = puissance;
+        //System.out.println(Modifiercontraste);
         final WritableRaster raster = imageRot.getRaster();
         raster.setPixels(0, 0, monImage.getWidth(), monImage.getHeight(), im.getImage1D());
         monImage = imageRot;
