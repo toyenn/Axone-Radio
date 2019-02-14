@@ -16,6 +16,9 @@ public class Patient {
     private DateNaissance date;
     private Genre genre;
     boolean hospitalise;
+    
+    public String Service;
+    public String Aile;
 
     public Patient(int id, String nom, String prénom, DateNaissance date, Genre genre, boolean hospitalise) {
         this.id = id;

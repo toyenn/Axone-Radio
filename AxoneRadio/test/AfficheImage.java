@@ -334,13 +334,13 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
        }
        else if(e.getSource().equals(this.BoutonRotationDroite)){
            //System.out.println("DANS LE MILE EMILE");
-           BoutonRotationDroite.setToolTipText("Rotation à gauche");
+           BoutonRotationDroite.setToolTipText("Rotation à droite");
            this.validate();
            this.repaint();
        }
        else if(e.getSource().equals(this.BoutonRotationGauche)){
            //System.out.println("DANS LE MILE EMILE");
-           BoutonRotationGauche.setToolTipText("Rotation à droite");
+           BoutonRotationGauche.setToolTipText("Rotation à gauche");
            this.validate();
            this.repaint();
        }
