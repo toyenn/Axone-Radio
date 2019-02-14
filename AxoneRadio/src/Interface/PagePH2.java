@@ -192,7 +192,7 @@ public class PagePH2 extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 204));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Image radio.jpeg"))); // NOI18N
-        jButton2.setText("Ajouter Image au compte rendu");
+        jButton2.setText("Ajouter Image à l'examen");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
