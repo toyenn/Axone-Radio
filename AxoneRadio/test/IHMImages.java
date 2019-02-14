@@ -64,7 +64,8 @@ public class IHMImages extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (monImage != null) {
-            g.drawImage(monImage, 0, 0, null);
+            //g.drawImage(monImage, this.getSize().width/2, this.getSize().height/2, null);
+            g.drawImage(monImage, 0, 0,this.getWidth(),this.getHeight(), null);
             //g.translate(this.getSize().width/2,this.getSize().height/2);
             // si image affiché 2 fois plus grande : // rajouter un parametre qui fait fois 1 ou 2 ou... et qui redimenssione 
              //g.drawImage(monImage, 0, 0,monImage.getWidth()*2,monImage.getHeight()*2, null);
