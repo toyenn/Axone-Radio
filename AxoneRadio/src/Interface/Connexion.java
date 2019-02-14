@@ -35,7 +35,7 @@ public class Connexion extends javax.swing.JFrame implements MouseListener {
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
         
        
-
+      
 //    public ImageJpanel() {
 //        iconeImage = new Image("icone.png");
 //        jPanel3.add(new JLabel(iconeImage));
