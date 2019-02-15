@@ -14,13 +14,13 @@ import java.util.Vector;
 public class DossierMedicalRadiologique { // pour un patient
     
     
-    Patient patient;
+   
     private Vector<Examen> listeExamens;
 
     
     // création d'un DMR vide avec les infos du patients
-    public DossierMedicalRadiologique(Patient patient) { 
-        this.patient = patient;
+    public DossierMedicalRadiologique() { 
+        
         
         this.listeExamens = new Vector<Examen>();
     }

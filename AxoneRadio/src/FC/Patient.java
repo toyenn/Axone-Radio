@@ -19,6 +19,8 @@ public class Patient {
     
     public String Service;
     public String Aile;
+    
+    public DossierMedicalRadiologique DMR;
 
     public Patient(int id, String nom, String prénom, DateNaissance date, Genre genre, boolean hospitalise) {
         this.id = id;
@@ -27,6 +29,8 @@ public class Patient {
         this.date = date;
         this.genre = genre;
         this.hospitalise = false;
+        
+        DMR = new DossierMedicalRadiologique();
     }
     
     // setteurs et getteurs :
