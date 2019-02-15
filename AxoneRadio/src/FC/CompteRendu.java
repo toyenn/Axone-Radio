@@ -14,5 +14,7 @@ public class CompteRendu {
     private String prénom;
     private Professionnel Createur;
     // creer une variable pour dire qui a validé le compte rendu ? (si ph -> c'est lui meme)
+    
+    private EtatCr etat;
     private String texte;
 }
