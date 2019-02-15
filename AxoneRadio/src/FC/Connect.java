@@ -27,7 +27,7 @@ public class Connect {
 
             String url = "jdbc:mysql://localhost:3306/connexion";
             String user = "root";
-            String passwd = "ok";
+            String passwd = "";
 
         Connection conn = DriverManager.getConnection(url, user, passwd);
 //        state.executeUpdate("INSERT INTO connexion (idpersonnel,nom,prenom,motdepasse) VALUES('1234009','Toyen', 'Nathan','ok')");
