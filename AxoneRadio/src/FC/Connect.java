@@ -25,7 +25,7 @@ public class Connect {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://127.0.0.1/connexion";
+            String url = "jdbc:mysql://localhost:3306/connexion";
             String user = "root";
             String passwd = "ok";
 
