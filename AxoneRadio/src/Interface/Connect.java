@@ -31,7 +31,7 @@ public class Connect extends javax.swing.JFrame {
 //        this.setSize(c);
         this.setResizable(false);
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
-        jTextField1.addFocusListener(new FocusListener(){
+        jTextField1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 jTextField1.setText("");
@@ -39,12 +39,12 @@ public class Connect extends javax.swing.JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
-                
+
             }
-            
+
         });
-        
-        mdp.addFocusListener(new FocusListener(){
+
+        mdp.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 mdp.setText("");
@@ -52,12 +52,11 @@ public class Connect extends javax.swing.JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
-                
+
             }
-            
+
         });
-        
-        
+
     }
 
     /**
@@ -172,4 +171,7 @@ public class Connect extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField mdp;
     // End of variables declaration//GEN-END:variables
+    public javax.swing.JButton getButton() {
+        return jButton1;
+    }
 }
