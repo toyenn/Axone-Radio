@@ -1,9 +1,12 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+
 
 /**
  *
@@ -14,10 +17,11 @@ public class PH_Examen extends javax.swing.JFrame {
     /**
      * Creates new form PagePH
      */
+    AfficheImage IMAGE;
     public PH_Examen() {
         initComponents();
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
+//        IMAGE = new AfficheImage();
+//        jPanel5.add(IMAGE);
         
        // on rajoutra ici une partie du code pour afficher une image à un endroit dans le jpanel5 quand on clic sur la jlist
     }
@@ -63,22 +67,18 @@ public class PH_Examen extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Compte rendu : (nom, prenom, date num archivage, type exam,...)");
         jScrollPane3.setViewportView(jLabel3);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel5.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Ajouter");
 
@@ -153,7 +153,6 @@ public class PH_Examen extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icone.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
@@ -232,6 +231,38 @@ public class PH_Examen extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        
+        if(jList1.getSelectedIndex()!=-1){
+            System.out.println("il y a 1 case coche");
+           // jLabel1.setText(jList1.getSelectedValue());
+           IMAGE = new AfficheImage();
+           IMAGE.setVisible(true);
+           
+            repaint();
+        }
+//        if (jList1.getSelectedRowCount() > 0) {
+//           
+//                
+//                
+//                jTextArea1.setText(ficheAAfficher.afficher2());
+//                
+//                
+//            }
+//        
+//        if (evt.getClickCount() == 2) {
+//            
+//            if (jTable2.getSelectedRowCount() > 0) {
+//           
+////                FicheDeSoins ficheAAfficher = this.TableauRecherche.get(jTable2.getSelectedRow());
+////                
+////                new AfficherFiche(ficheAAfficher,user).setVisible(true);
+//            }
+// 
+//        }
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments

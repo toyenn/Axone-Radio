@@ -508,6 +508,17 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
             }
         });
     }
+    public javax.swing.JButton getButtonInfos() { // bouton recherche par infos
+        return jButton2; // recuperer infos d'avant et le mettre dans le constructeur ?
+    }
+    
+    public javax.swing.JButton getButtonService() { // bouton recherche par service
+        return jButton3;
+    }
+    
+    public javax.swing.JButton getButtonDeco() { // bouton recherche par service
+        return jButton4;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Service;

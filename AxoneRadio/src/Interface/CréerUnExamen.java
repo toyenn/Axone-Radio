@@ -16,6 +16,8 @@ public class CréerUnExamen extends javax.swing.JFrame {
      */
     public CréerUnExamen() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
     }
 
     /**
@@ -382,6 +384,8 @@ public class CréerUnExamen extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

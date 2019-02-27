@@ -16,6 +16,8 @@ public class PageManipulateur1 extends javax.swing.JFrame {
      */
     public PageManipulateur1() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
     }
 
     /**

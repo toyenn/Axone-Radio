@@ -16,6 +16,8 @@ public class CréerUnDMR extends javax.swing.JFrame {
      */
     public CréerUnDMR() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
     }
 
     /**

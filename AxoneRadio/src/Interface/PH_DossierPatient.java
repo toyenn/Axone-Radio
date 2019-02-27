@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// A FAIRE ici : 
+
+// rajouter un bouton modifier pour les infos administratives ? et du coup une interface pour ca
+
+// rajouter un bouton modifier pour les examens selectionnées
+
+//creer une méthode qui permet de mettre a jour l'affichage du tableau des examens comme ca a chaque fois quil y a une modif comme un ajout dexam on apelle cete méthode ou encore quand on clic sur le bouton "examssans compte rendu"
+
+// ajouter des boutons retour la et dans les autres pages
 package Interface;
 
 /**
@@ -16,6 +20,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
      */
     public PH_DossierPatient() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
     }
 
     /**
@@ -443,7 +449,14 @@ public class PH_DossierPatient extends javax.swing.JFrame {
             }
         });
     }
+    
+   public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
+        return jButton1;
+    }
 
+   public javax.swing.JTable getTableExamens() { // bouton recherche par service
+        return tableExamens;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox2;
