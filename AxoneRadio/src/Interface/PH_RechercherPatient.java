@@ -66,7 +66,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        buttonRechInfo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         Service = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -74,7 +74,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        buttonRechServ = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -82,8 +82,8 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        buttonPara = new javax.swing.JButton();
+        buttonDeco = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,12 +158,12 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
 
         jRadioButton2.setText("Homme");
 
-        jButton2.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/valider.png"))); // NOI18N
-        jButton2.setText("Chercher");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonRechInfo.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        buttonRechInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/valider.png"))); // NOI18N
+        buttonRechInfo.setText("Chercher");
+        buttonRechInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonRechInfoActionPerformed(evt);
             }
         });
 
@@ -172,7 +172,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -194,7 +194,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton2))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonRechInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)))
                 .addGap(189, 189, 189))
         );
@@ -225,7 +225,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonRechInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,12 +257,12 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Patient :");
 
-        jButton3.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/valider.png"))); // NOI18N
-        jButton3.setText("VALIDER");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonRechServ.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        buttonRechServ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/valider.png"))); // NOI18N
+        buttonRechServ.setText("VALIDER");
+        buttonRechServ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                buttonRechServActionPerformed(evt);
             }
         });
 
@@ -279,7 +279,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Service, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,7 +304,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(29, 29, 29)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -324,9 +324,9 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
 
         jLabel16.setText("jLabel16");
 
-        jButton1.setText("Parametres");
+        buttonPara.setText("Parametres");
 
-        jButton4.setText("Déconnection");
+        buttonDeco.setText("Déconnection");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -336,9 +336,9 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(buttonPara)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton4))
+                        .addComponent(buttonDeco))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -378,8 +378,8 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                     .addComponent(jLabel16))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(buttonPara)
+                    .addComponent(buttonDeco))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -394,7 +394,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(316, 316, 316))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
@@ -451,14 +451,14 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonRechInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRechInfoActionPerformed
         // TODO add your handling code here:
         System.out.println("blabla");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonRechInfoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void buttonRechServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRechServActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_buttonRechServActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -522,10 +522,10 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Service;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton buttonDeco;
+    private javax.swing.JButton buttonPara;
+    private javax.swing.JButton buttonRechInfo;
+    private javax.swing.JButton buttonRechServ;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -558,4 +558,32 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the buttonDeco
+     */
+    public javax.swing.JButton getButtonDeco() {
+        return buttonDeco;
+    }
+
+    /**
+     * @return the buttonPara
+     */
+    public javax.swing.JButton getButtonPara() {
+        return buttonPara;
+    }
+
+    /**
+     * @return the buttonRechInfo
+     */
+    public javax.swing.JButton getButtonRechInfo() {
+        return buttonRechInfo;
+    }
+
+    /**
+     * @return the buttonRechServ
+     */
+    public javax.swing.JButton getButtonRechServ() {
+        return buttonRechServ;
+    }
 }

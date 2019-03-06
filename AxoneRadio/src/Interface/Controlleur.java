@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 public class Controlleur {
 
-    private Connect co;
+    private VueConnect co;
     private CréerUnDMR crDMR;
     private CréerUnExamen crExam;
     private PageManipulateur1 pageManip;
@@ -29,25 +29,22 @@ public class Controlleur {
     private PageSecretaire pageSecr;
     private VuePrincipale vuePrin;
     private Parametres para;
+    private JFrame vueAvant;
 
     public Controlleur() { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
         System.out.println("test");
         co = new Connect();
         System.out.println("test 2");
         crDMR = new CréerUnDMR();
-        System.out.println("test 3");
         crExam = new CréerUnExamen();
-        System.out.println("test 4");
         pageManip = new PageManipulateur1();
-        System.out.println("test 5");
         phDossPat = new PH_DossierPatient();
-        System.out.println("test 6");
         phExam = new PH_Examen();
         System.out.println("test 7");
         ph2 = new CréerUnExamen2();
         System.out.println("test 8");
         phRechPat = new PH_RechercherPatient();
-        System.out.println("test 9");
+        para = new Parametres();
         vuePrin = new VuePrincipale();
         System.out.println("test 10");
         para = new Parametres();
@@ -55,10 +52,12 @@ public class Controlleur {
 
         vuePrin.newFrame(co);
 
+        //Bouton page de connexion
         co.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(co, phRechPat);
+                
+                changerMenu(phRechPat);
             }
         });
         
@@ -127,7 +126,8 @@ public class Controlleur {
 
     }
 
-    public void changerMenu(JFrame vueAvant, JFrame vueApres) {
+    public void changerMenu(JFrame vueApres) {
+        vueAvant = vuePrin.getFrame();
         vuePrin.newFrame(vueApres);
 
     }

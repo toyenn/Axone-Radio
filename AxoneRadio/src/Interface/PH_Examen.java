@@ -86,7 +86,7 @@ public class PH_Examen extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(0, 102, 204));
         jButton3.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 51, 204));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Editer Compte Rendu");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public class PH_Examen extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(0, 102, 204));
         jButton4.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 51, 204));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Enregistrer au dossier");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

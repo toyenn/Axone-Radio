@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,32 +15,40 @@ import javax.swing.JPanel;
  */
 public class VuePrincipale {
     
-    JFrame frame;
+    private JFrame frame;
+    private JButton retour;
 
     public VuePrincipale() {
+       // retour = new JButton();
+       // retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
         this.frame = new JFrame();
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
     
     public void setMenuOn() {
-        this.frame.pack();
-        this.frame.setVisible(true);
-        this.frame.repaint();
-        this.frame.revalidate();
+        this.getFrame().pack();
+        this.getFrame().setVisible(true);
+        retour = new JButton();
+        retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
+        this.getFrame().repaint();
+        this.getFrame().revalidate();
     }
 
     public void setMenuOff() {
-        this.frame.setVisible(false);
-    }
-    
-    public void setPanel(JPanel panel){
-        this.frame.add(panel);
+        this.getFrame().setVisible(false);
     }
     
     public void newFrame(JFrame frame){
         this.setMenuOff();
         this.frame=frame;
         this.setMenuOn();        
+    }
+
+    /**
+     * @return the frame
+     */
+    public JFrame getFrame() {
+        return frame;
     }
 }

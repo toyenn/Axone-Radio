@@ -60,7 +60,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonCreerExam = new javax.swing.JButton();
+        buttonDMR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -261,12 +262,12 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         });
         tableExamens.setGridColor(new java.awt.Color(234, 239, 249));
         tableExamens.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tableExamensAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         tableExamens.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -292,7 +293,9 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("Dossier médical radiologique");
 
-        jButton1.setText("Créer Examen");
+        buttonCreerExam.setText("Créer Examen");
+
+        buttonDMR.setText("Valider ?");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -304,17 +307,22 @@ public class PH_DossierPatient extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addGap(95, 95, 95)
-                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonCreerExam)
+                        .addGap(39, 39, 39)
+                        .addComponent(buttonDMR)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox2)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(440, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(327, 327, 327))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonCreerExam, buttonDMR});
+
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -323,11 +331,14 @@ public class PH_DossierPatient extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonCreerExam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDMR))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCreerExam, buttonDMR});
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -458,7 +469,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         return tableExamens;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonCreerExam;
+    private javax.swing.JButton buttonDMR;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -487,4 +499,18 @@ public class PH_DossierPatient extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tableExamens;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the buttonCreerExam
+     */
+    public javax.swing.JButton getButtonCreerExam() {
+        return buttonCreerExam;
+    }
+
+    /**
+     * @return the buttonDMR
+     */
+    public javax.swing.JButton getButtonDMR() {
+        return buttonDMR;
+    }
 }

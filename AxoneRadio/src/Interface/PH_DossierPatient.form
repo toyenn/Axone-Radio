@@ -421,8 +421,10 @@
                           <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="buttonCreerExam" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="buttonDMR" linkSize="1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -431,7 +433,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="440" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="404" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
                   </Group>
@@ -445,7 +447,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="buttonCreerExam" linkSize="2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="buttonDMR" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="158" max="-2" attributes="0"/>
@@ -572,9 +575,14 @@
                 <Property name="text" type="java.lang.String" value="Dossier m&#xe9;dical radiologique"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="buttonCreerExam">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cr&#xe9;er Examen"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonDMR">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valider ?"/>
               </Properties>
             </Component>
           </SubComponents>

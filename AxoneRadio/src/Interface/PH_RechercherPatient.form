@@ -58,7 +58,7 @@
               <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" pref="0" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="316" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -148,7 +148,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel9" alignment="0" min="-2" pref="241" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -175,7 +175,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton2" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Component id="buttonRechInfo" min="-2" pref="133" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -215,7 +215,7 @@
                               <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="buttonRechInfo" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -332,7 +332,7 @@
                     <Property name="text" type="java.lang.String" value="Homme"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="buttonRechInfo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Lucida Sans Typewriter" size="14" style="1"/>
@@ -343,7 +343,7 @@
                     <Property name="text" type="java.lang.String" value="Chercher"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRechInfoActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -384,7 +384,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton3" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="buttonRechServ" min="-2" pref="133" max="-2" attributes="0"/>
                               <Component id="jComboBox2" linkSize="1" min="-2" pref="247" max="-2" attributes="0"/>
                               <Component id="jComboBox3" linkSize="1" min="-2" pref="167" max="-2" attributes="0"/>
                               <Component id="Service" linkSize="1" min="-2" pref="166" max="-2" attributes="0"/>
@@ -412,7 +412,7 @@
                               <Component id="jLabel6" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="buttonRechServ" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace pref="32" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -500,7 +500,7 @@
                     <Property name="text" type="java.lang.String" value="Patient :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="buttonRechServ">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Lucida Sans Typewriter" size="14" style="1"/>
@@ -511,7 +511,7 @@
                     <Property name="text" type="java.lang.String" value="VALIDER"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRechServActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -527,9 +527,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonPara" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonDeco" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -576,8 +576,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonPara" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonDeco" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="18" max="32767" attributes="0"/>
                   </Group>
@@ -615,12 +615,12 @@
                 <Property name="text" type="java.lang.String" value="jLabel16"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="buttonPara">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Parametres"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="buttonDeco">
               <Properties>
                 <Property name="text" type="java.lang.String" value="D&#xe9;connection"/>
               </Properties>
