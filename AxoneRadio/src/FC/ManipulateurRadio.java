@@ -10,5 +10,9 @@ package FC;
  * @author Nathan
  */
 public class ManipulateurRadio extends Professionnel {
+
+    public ManipulateurRadio(int id, String nom, String prénom, String login, String motDePasse, String service) {
+        super(id, nom, prénom, login, motDePasse, service);
+    }
     
 }

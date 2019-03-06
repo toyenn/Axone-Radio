@@ -10,5 +10,9 @@ package FC;
  * @author Nathan
  */
 public class PH extends Professionnel {
+
+    public PH(int id, String nom, String prénom, String login, String motDePasse, String service) {
+        super(id, nom, prénom, login, motDePasse, service);
+    }
     
 }
