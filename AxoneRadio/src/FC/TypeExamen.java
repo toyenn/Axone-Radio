@@ -10,5 +10,7 @@ package FC;
  * @author Nathan
  */
 public enum TypeExamen {
-    Scanner,IRM
+    Scanner,
+    IRM;
+    
 }

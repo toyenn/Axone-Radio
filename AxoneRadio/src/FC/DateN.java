@@ -56,7 +56,7 @@ public class DateN {
 
     }
 
-    public String toString() {
+    public String toString() { // format AAAA-MM-JJ HH:MN:00
         String s = "";
         s += getAnnee() + "-";
         if (getMois() < 10) {
@@ -65,19 +65,19 @@ public class DateN {
             s += getMois() + "-";
         }
         if (getJour() < 10) {
-            s += "0" + getJour() + "-";
+            s += "0" + getJour() + " ";
         } else {
-            s += getJour() + "-";
+            s += getJour() + " ";
         }
         if (heure < 10) {
-            s += "0" + heure + "-";
+            s += "0" + heure + ":";
         } else {
-            s += heure + "-";
+            s += heure + ":";
         }
         if (minute < 10) {
-            s += "0" + minute;
+            s += "0" + minute+":00";
         } else {
-            s += minute;
+            s += minute+":00";
         }
         return s;
     }

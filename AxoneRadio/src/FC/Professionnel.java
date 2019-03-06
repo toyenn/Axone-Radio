@@ -46,5 +46,12 @@ public class Professionnel { // classe abstraite ou interface ?
         return login;
     }
     
+    public String getNom(){
+        return nom;
+    }
+    public String getPrenom(){
+        return prénom;
+    }
+    
     
 }

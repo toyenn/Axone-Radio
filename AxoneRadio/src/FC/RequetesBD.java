@@ -244,7 +244,36 @@ public class RequetesBD {
     // GESTION DES EXAMENS
     
     // ajout d'un examen
-    
+    public void AjoutExamen(Examen exam){
+       
+      
+
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            String url = "jdbc:mysql://localhost:3306/connexion";
+//            url+= "?serverTimezone=UTC";
+//            String user = "root";
+//            String passwd = "";
+//
+//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+           String Querry="INSERT INTO `examens` (`idPH`, `idPatient`, `dateExam`, `typeExam`, `CR`, `idService`) VALUES ("+exam.getPHresponsable().getId()+", "+exam.getPatient().getid()+", '"+exam.getDate().toString()+"', '"+exam.getType().toString()+"', '"+exam.getCr().toString()+"', '"+exam.getService()+"')";
+           state.executeUpdate(Querry);
+
+            System.out.println("L'examen a bien été ajouté à la BD");
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+  
+       
+        
+    }
     // GESTION DES IMAGES
     
     // ajout dune image a un examen

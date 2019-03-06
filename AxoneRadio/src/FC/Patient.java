@@ -75,6 +75,10 @@ public class Patient {
         this.genre = genre;
     }
 
+    public int getService() {
+        return Service;
+    }
+
     void InformationsPatients() {
         System.out.println("----------------------");
         System.out.println("INFORMATIONS PATIENT :");
