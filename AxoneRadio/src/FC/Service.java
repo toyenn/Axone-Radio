@@ -9,6 +9,10 @@ package FC;
  *
  * @author Nathan
  */
-public enum Service { // traitement spécial pour les urgences ???  //Modifier et en faire une base de données ?
-    Cardiologie,Urgences,Gériatrie,Néphrologie,Rhumatologie,Réanimation, Radiologie
+public class Service { // traitement spécial pour les urgences ???  //Modifier et en faire une base de données ?
+    private int  idService;
+    private String ServicePrincipal;
+    private String Aile;
+    private int nbPatients;
+    
 }

@@ -10,32 +10,32 @@ package FC;
  * @author Nathan
  */
 public class Patient {
-     private int id;
+
+    private int id;
     private String nom;
     private String prénom;
-    private DateNaissance date;
-    private Genre genre;
+    private DateN date;
+    private String genre;
     boolean hospitalise;
-    
-    public String Service;
-    public String Aile;
-    
+
+    public int Service;
+    //public String Aile;
+
     public DossierMedicalRadiologique DMR;
 
-    public Patient(int id, String nom, String prénom, DateNaissance date, Genre genre, boolean hospitalise) {
+    public Patient(int id, String nom, String prénom, DateN date, String genre, boolean hospitalise, int Service) {
         this.id = id;
         this.nom = nom;
         this.prénom = prénom;
         this.date = date;
         this.genre = genre;
-        this.hospitalise = false;
-        
+        this.hospitalise = hospitalise;
+        this.Service = Service;
         DMR = new DossierMedicalRadiologique();
     }
-    
+
     // setteurs et getteurs :
-    
-    public int getid(){
+    public int getid() {
         return this.id;
     }
 
@@ -47,15 +47,15 @@ public class Patient {
         return this.prénom;
     }
 
-    public DateNaissance getDate() {
+    public DateN getDate() {
         return this.date;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return this.genre;
     }
-    
-     public void setid(int id){
+
+    public void setid(int id) {
         this.id = id;
     }
 
@@ -67,13 +67,27 @@ public class Patient {
         this.prénom = prénom;
     }
 
-    public void setDate(DateNaissance date) {
+    public void setDate(DateN date) {
         this.date = date;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
-    
-    
+
+    void InformationsPatients() {
+        System.out.println("----------------------");
+        System.out.println("INFORMATIONS PATIENT :");
+        System.out.println("----------------------");
+        System.out.println("ID : " + this.id);
+        System.out.println("NOM : " + this.nom);
+        System.out.println("PRENOM : " + this.prénom);
+        System.out.println("DATEN : "+this.date.toString_DateNaissance());
+        System.out.println("GENRE : " + this.genre);
+        System.out.println("HOSPITALISE : " + this.hospitalise);
+        System.out.println("SERVICE ID : " + this.Service);
+        System.out.println("----------------------");
+
+    }
+
 }

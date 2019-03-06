@@ -13,9 +13,9 @@ import java.util.Vector;
  */
 public class Examen {
     private int idExamen;
-    
+    //private Patient Patient ?
     private PH PHresponsable;
-    private Date date;
+    private DateN date;
     private TypeExamen type;
     private CompteRendu cr;
     private Service service; // service qui a demandé l'examen (sert pour leur envoyer un message une fois l'examen fait

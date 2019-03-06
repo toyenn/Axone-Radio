@@ -11,28 +11,38 @@ import java.util.Calendar;
  *
  * @author Nathan
  */
-public class Date {
+public class DateN {
      private int jour;
     private int mois;
     private int annee;
     private int heure;
     private int minute;
 
-    public Date(int jour, int mois, int annee) { 
+    public DateN(int jour, int mois, int annee) { 
         this.jour = jour;
         this.mois = mois;
         this.annee = annee;
     }
 
-    public Date(int jour, int mois, int annee, int heure, int minute) {
+    public DateN(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
         this.mois = mois;
         this.annee = annee;
         this.heure = heure;
         this.minute = minute;
     }
+    
+    public DateN(String DateBD){ // récupère la date au format de la base de données pour un patient
+      
+        this.annee = Integer.parseInt(DateBD.substring(0, 4));
+       
+        this.mois = Integer.parseInt(DateBD.substring(5, 7));
+        
+        this.jour = Integer.parseInt(DateBD.substring(8, 10));
+      
+    }
 
-    public Date() {// recupere la date actuelle
+    public DateN() {// recupere la date actuelle
 
 
         java.util.Date date = new java.util.Date();
@@ -141,8 +151,8 @@ public class Date {
     }
 
     public boolean equals(Object o) {
-        if (o instanceof Date) {
-            Date d = (Date) o;
+        if (o instanceof DateN) {
+            DateN d = (DateN) o;
             return (annee == d.annee) && (mois == d.mois) && (jour == d.jour);
         } else {
             return false;
@@ -163,7 +173,7 @@ public class Date {
 
    
     public int compareTo(Object o) {
-        Date d = (Date) o;
+        DateN d = (DateN) o;
         if (annee != d.annee) {
             return annee - d.annee;
         }
