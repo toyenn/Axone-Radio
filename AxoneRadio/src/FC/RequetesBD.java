@@ -87,7 +87,18 @@ public class RequetesBD {
             ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login='" + login + "' AND motdepasse='" + mdp + "'");
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
-
+            
+            // récupération du nombre de résultats
+            result.last();
+            int nb = result.getRow(); // nbre de résultats
+            result.beforeFirst();
+            
+            if(nb==0){
+                System.out.println("MDP incorrect");
+                return null;
+            }
+            else{
+                
             while (result.next()) {
                 id = result.getInt("idpersonnel");
                 nom = result.getString("nom");
@@ -101,7 +112,8 @@ public class RequetesBD {
             }
 
             result.close();
-            state.close();
+            state.close();}
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,6 +121,7 @@ public class RequetesBD {
         Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service);
         pro.InformationsProfessionnel();
         return pro;
+        
     }
     
     
@@ -318,7 +331,7 @@ public class RequetesBD {
   
        
         
-    }
+    } 
     
     public DossierMedicalRadiologique GetDMRPatient(Patient pat){ 
         DossierMedicalRadiologique DMR = new DossierMedicalRadiologique();
@@ -376,8 +389,51 @@ public class RequetesBD {
         
     } // ou selon idPatient ? 
     // GESTION DES IMAGES
+    public Images getImagesExamen(int idexam){// affiche la liste des images d'un examen
+       Images LISTEIMAGES = new Images();
+        int idImage;
+     int idPatient;
+     int idExamen;
+     String nom;
+   
+        try {
+//           
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT * FROM pacs WHERE idExam=" + idexam);
+            //On récupère les MetaData
+            ResultSetMetaData resultMeta = result.getMetaData();
+
+            while (result.next()) {
+               idImage = result.getInt("idImage");
+               idExamen = result.getInt("idExam");
+               idPatient = result.getInt("idPatient");
+               nom = result.getString("nomImage");
+               
+               Imagepacs img = new Imagepacs(idImage,idPatient,idExamen,nom);
+               
+               
+               
+               
+               //exam.AfficherInformationsExamen();
+               LISTEIMAGES.AjouterImage(img);
+                
+            }
+            LISTEIMAGES.AfficherInformationsImages();
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return LISTEIMAGES;
+    }
     
-    // ajout dune image a un examen cf travail Awa
+
+// ajout dune image a un examen cf travail Awa
     
     
     

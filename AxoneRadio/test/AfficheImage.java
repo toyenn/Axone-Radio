@@ -45,13 +45,14 @@ import javax.swing.event.ChangeEvent;
 public class AfficheImage extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
     
       Point P = new Point(); // le point qui stock l'endroit ou on a cliqué
+      private Imagepacs img;
 
     private final JMenuBar menuBar = new JMenuBar();
     private final JMenu fichierMenu = new JMenu();
     private final JMenuItem ouvrirMenu = new JMenuItem();
-
+    private final IHMImages panneau;
     
-    private final IHMImages panneau = new IHMImages();
+    
     private final JMenuItem enregistrerMenu = new JMenuItem();
 
     private final JMenuItem inversionMenu = new JMenuItem();
@@ -81,8 +82,10 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         private final JLabel texteSlideContraste = new javax.swing.JLabel("Contraste");
     
 
-    public AfficheImage() { // constructeur avec comme parametre lurl de limage
+    public AfficheImage(Imagepacs img) { // constructeur avec comme parametre lid de limage
         super();
+        this.img = img;
+        panneau = new IHMImages(this.img);
         //this.setLocationRelativeTo(null);
         //setBounds(100, 100, 500, 375);
         
@@ -93,7 +96,11 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         try {
             creerMenu();
-            panneau.ajouterImage(new File("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm"));
+            // au lieu de cette adresse, essayer de lire la bd et d'afficher l'image
+            //panneau.ajouterImage(new File("C:\\Users\\Nathan\\Pictures\\SIR\\essai.pgm"));
+            
+            panneau.RecupererPACS(img); 
+            
             setBounds(100, 100,  panneau.im.getWidth()+140, panneau.im.getHeight()+80);
             this.setLocationRelativeTo(null); // PERMET DE CENTRER LA FENETRE
             //panneau.im.getHeight()
@@ -222,7 +229,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         
         barredoutils.setBorder(new BevelBorder(BevelBorder.RAISED));
         //barredoutils.setBorder(new BevelBorder(BevelBorder.));
-         barredoutils.setVisible(false);
+         barredoutils.setVisible(false); // visible d'entrée ??
          
          
          
@@ -309,7 +316,8 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
     public static void main(String args[]){
         
         try {
-            AfficheImage frame = new AfficheImage();
+            Imagepacs I = new Imagepacs(21,1,4,"nom");
+            AfficheImage frame = new AfficheImage(I); // id de limage en parametre puis idpatient puis idexam
             frame.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();

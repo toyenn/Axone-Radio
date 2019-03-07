@@ -20,7 +20,7 @@ public class Examen {
     private CompteRendu cr;
     private int IDservice; // service qui a demandé l'examen (sert pour leur envoyer un message une fois l'examen fait
     
-    private Vector<String> listeImages;  // type string car nom des images mais peut changer
+    private Images LISTEIMAGES;
 
     // examen sans id dans constructeur ?
     public Examen(int idExam,Patient Patient, Professionnel PHresponsable, DateN date, TypeExamen type, CompteRendu cr, int IDservice) {
@@ -31,7 +31,7 @@ public class Examen {
         this.type = type;
         this.cr = cr;
         this.IDservice = IDservice;
-        this.listeImages = new Vector<String>();;
+        this.LISTEIMAGES = new Images();
     }
 
     public int getIdExamen() {
@@ -62,9 +62,15 @@ public class Examen {
         return IDservice;
     }
 
-    public Vector<String> getListeImages() {
-        return listeImages;
+    public int getIDservice() {
+        return IDservice;
     }
+
+    public Images getLISTEIMAGES() {
+        return LISTEIMAGES;
+    }
+
+    
     
     public void AfficherInformationsExamen(){
         System.out.println("***************************");

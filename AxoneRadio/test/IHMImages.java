@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// charger le patient et lid de lexam pour pouvoir lecrire dans la bd après (dans le constructeur on apelle les 2 et on aura 2 attributs
 import FC.*;
 
 //import LectureImagePGM;
@@ -34,6 +30,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
@@ -47,6 +44,12 @@ import javax.swing.JOptionPane;
 public class IHMImages extends JPanel {
     LectureImagePGM im = null;
     
+    // infos de l'image :
+   
+    private Imagepacs img;
+    
+    
+    
     BufferedImage monImage = null;
    
     LectureImagePGM imDeBase = null; // image qu'on a ouvert et qu'on va jamais modifier (bon d'accord on la modifier a un moment
@@ -55,8 +58,9 @@ public class IHMImages extends JPanel {
     //int[] pgm = null;
    // int[][] pgm2 = null;
 
-    public IHMImages() {
+    public IHMImages(Imagepacs img) {
         super();       
+       this.img = img;
         
 
     }
@@ -98,22 +102,7 @@ public class IHMImages extends JPanel {
         repaint();
     }
 
-//    protected void imageConvolue() { // Appliquer une convolution sur l'image
-//        BufferedImage imageConvolue = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
-//        float[] masqueFlou
-//                = {
-//                    1f, 2f, 1f,
-//                    0f, 0f, 0f,
-//                    -1f, -2f, -1f
-//                };
-//
-//        Kernel masque = new Kernel(3, 3, masqueFlou);
-//        ConvolveOp opération = new ConvolveOp(masque);
-//        opération.filter(monImage, imageConvolue);
-//        monImage = imageConvolue;
-//        repaint();
-//
-//    }
+
 
     protected void imageEclaircie() { // Eclaircir l'image
         /*
@@ -403,6 +392,7 @@ public class IHMImages extends JPanel {
         this.ajouterImage(fichier);
     }
 
+    // y déplacer dna requetesBD
     void ecrirePACS() {
         try {
                 // enregistrement en local :
@@ -410,15 +400,16 @@ public class IHMImages extends JPanel {
                 
                 RequetesBD req = new RequetesBD();
                 
-               PreparedStatement ps = req.getConn().prepareStatement("insert into pacs(idImage,nomImage,idExam,idPatient,image) values(?,?,?,?,?)");
+               PreparedStatement ps = req.getConn().prepareStatement("insert into pacs(nomImage,idExam,idPatient,image) values(?,?,?,?)");
                // enregistrer en local :
                 
                InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
-               ps.setInt(1,20);// autoincrement après
-               ps.setString(2,"Nom de limage");
-               ps.setInt(3,4);
-                ps.setInt(4,1);
-               ps.setBlob(5,is);
+               
+               ps.setString(1,"Nom de limage");
+               ps.setInt(2,4);
+                ps.setInt(3,1);
+               ps.setBlob(4,is);
+               
               
                ps.executeUpdate();
                JOptionPane.showMessageDialog(null,"Data Inserted");
@@ -430,6 +421,47 @@ public class IHMImages extends JPanel {
                 Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    
+    public void RecupererPACS(Imagepacs image) throws IOException{
+        try{
+        //this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
+                
+                RequetesBD req = new RequetesBD();
+                Statement state = req.getConn().createStatement();
+                ResultSet result = state.executeQuery("SELECT * FROM pacs WHERE idImage=" +image.getIdImage());
+                
+           
+                
+               // lecture et ecriture dans fichier
+               while(result.next()){
+                  this.img.setIdImage(result.getInt("idImage"));
+                  this.img.setIdExamen(result.getInt("idExam"));
+                  this.img.setIdPatient(result.getInt("idPatient"));
+                  this.img.setNom(result.getString("nomImage"));
+                  
+                  
+                int b;
+                InputStream bis = result.getBinaryStream("image");
+                FileOutputStream f = new FileOutputStream("C:\\Users\\Nathan\\Pictures\\SIR\\wtf2.pgm");
+                while ((b = bis.read()) >= 0) {
+                  f.write(b);
+                }
+                f.close();
+                bis.close();}
+              this.ajouterImage(new File("C:\\Users\\Nathan\\Pictures\\SIR\\wtf2.pgm"));
+//               
+//              
+//               ps.executeUpdate();
+//               JOptionPane.showMessageDialog(null,"Data Inserted");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
 
    
 

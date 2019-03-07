@@ -16,8 +16,8 @@ import java.util.Vector;
  */
 public class Connect {
 
-    static Statement state;
-    private ResultSet result;
+//    static Statement state;
+//    private ResultSet result;
 
     
 
@@ -29,7 +29,7 @@ public class Connect {
         RequetesBD req= new RequetesBD();
         ////////////////////////////// TEST NUMERO 1 : CONNEXION DUNE PERSONNE//////////////////////////////
         
-//       req.Identification("Ginal", "mdp2");
+       req.Identification("Ginal", "mdp3");
 
         ////////////////////////////// TEST NUMERO 2 : MODIFICATION DU MOT DE PASSE//////////////////////////////
 //        
@@ -46,12 +46,12 @@ public class Connect {
     ///////////////////////////// ATTENTION ON NE PEUT PAS AJOUTER 2X lE MEME EXAM DANS LA BD//////////////////////////
     
 //            req.AfficherPatientsDansService(1);
-//            PH pro = new PH(123456 , "Gina", "Laurent", "Ginal", "mdp2", "Cardiologie");
+//            Professionnel pro = new Professionnel(123456 , "Gina", "Laurent", "Ginal", "mdp2", "Cardiologie");
 //            Patient pat = req.RecherchePatient(1);
 //            DateN d = new DateN();
 //            CompteRendu cr = new CompteRendu(pat,pro);
 //            cr.AjouterTexte("ceci est un texte pour le cr");
-//            Examen ex = new Examen(pat, pro, d, TypeExamen.IRM, cr, pat.getService());
+//            Examen ex = new Examen(10,pat, pro, d, TypeExamen.IRM, cr, pat.getService());
 //            ex.AfficherInformationsExamen();
 //            
 //            req.AjoutExamen(ex);
@@ -88,8 +88,22 @@ public class Connect {
 //            }
 //           // Affichage des informations :
 //            LISTEPATIENTS.AfficherInformationsPatients();
-            
 
+
+////////////////////////////// TEST NUMERO 9 : AFFICHAGE DE LISTE DES IMAGES DUN EXAMEN //////////////////////////////
+
+                req.getImagesExamen(4);
+
+////////////////////////////// TEST NUMERO 10 : AFFICHAGE D'UNE FENETRE IMAGE ET ESSAI DE SAUVEGARDER MODIF //////////////////////////////
+//try {
+//            Imagepacs I = new Imagepacs(21,1,4,"nom");
+//            AfficheImage frame = new AfficheImage(I); // id de limage en parametre puis idpatient puis idexam
+//            frame.setVisible(true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//            
+//
     }
     
     
