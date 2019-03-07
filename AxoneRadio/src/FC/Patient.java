@@ -79,7 +79,15 @@ public class Patient {
         return Service;
     }
 
-    void InformationsPatients() {
+    public DossierMedicalRadiologique getDMR() {
+        return DMR;
+    }
+
+    public void setDMR(DossierMedicalRadiologique DMR) {
+        this.DMR = DMR;
+    }
+
+    void InformationsPatient() {
         System.out.println("----------------------");
         System.out.println("INFORMATIONS PATIENT :");
         System.out.println("----------------------");
@@ -91,6 +99,11 @@ public class Patient {
         System.out.println("HOSPITALISE : " + this.hospitalise);
         System.out.println("SERVICE ID : " + this.Service);
         System.out.println("----------------------");
+        
+        System.out.println("LISTE DES EXAMENS : ");
+        DMR.AfficherInformationsExamens();
+        System.out.println("----------------------");
+        
 
     }
 

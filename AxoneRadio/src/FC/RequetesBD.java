@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 /**
  *
@@ -106,6 +107,56 @@ public class RequetesBD {
     }
     
     
+    public Professionnel getProfessionnel(int idP){
+         int id = 0;
+        String nom = null;
+        String prenom = null;
+        String log = null;
+        String motdepasse = null;
+        String service = null;
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            String url = "jdbc:mysql://localhost:3306/connexion";
+//            url+= "?serverTimezone=UTC";
+//            String user = "root";
+//            String passwd = "";
+//
+//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE idpersonnel=" + idP);
+            //On récupère les MetaData
+            ResultSetMetaData resultMeta = result.getMetaData();
+
+            while (result.next()) {
+                id = result.getInt("idpersonnel");
+                nom = result.getString("nom");
+                prenom = result.getString("prenom");
+
+                log = result.getString("login");
+                motdepasse = result.getString("motdepasse");
+                service = result.getString("service");
+
+                
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service);
+        //pro.InformationsProfessionnel();
+        return pro;
+    }
+    
+    
     // GESTION DES PATIENTS
     public Patient RecherchePatient(int idPatient) { // ou chercher par nom et prenom ?
 
@@ -117,23 +168,10 @@ public class RequetesBD {
      boolean hospitalise = false;
     
      int Service = 0;
-//        
-//        int id = 0;
-//        String nom = null;
-//        String prenom = null;
-//        String log = null;
-//        String motdepasse = null;
-//        String service = null;
+
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
@@ -167,14 +205,15 @@ public class RequetesBD {
         }
   
         Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
-        pat.InformationsPatients();
+       // pat.InformationsPatient();
         return pat;
     } 
     
     
     // affiche tout les personnes qui sont dans le service X le stocker dans une liste de patients ??
-    public void AfficherPatientsDansService(int IDService) { // ou chercher par nom et prenom ?
-
+    public Vector<Patient> AfficherPatientsDansService(int IDService) { // ou chercher par nom et prenom ?
+        Vector<Patient> LISTE;
+        LISTE = new Vector<Patient>();
          int id =0;
      String nom = null;
      String prenom = null;
@@ -224,7 +263,10 @@ public class RequetesBD {
                 
                 Service = result.getInt("idService");
                 Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
-                pat.InformationsPatients();
+                pat.InformationsPatient();
+                if(!LISTE.contains(pat)){
+                            LISTE.add(pat);
+                        }
 
                 //System.out.print("\t" + result.getObject(i).toString() + "\t |");
             }
@@ -235,8 +277,8 @@ public class RequetesBD {
         } catch (Exception e) {
             e.printStackTrace();
         }
-  
-        
+        System.out.println("Taille :"+LISTE.size());
+        return LISTE;
         
     }  
     
@@ -274,6 +316,62 @@ public class RequetesBD {
        
         
     }
+    
+    public DossierMedicalRadiologique AfficherExamensPatient(Patient pat){ 
+        DossierMedicalRadiologique DMR = new DossierMedicalRadiologique();
+        int id = pat.getid();
+        
+         int idExamen;
+
+    Professionnel PHresponsable;
+    int idPH;
+    DateN date;
+    TypeExamen type;
+    CompteRendu cr;
+    int IDservice; 
+        try {
+//           
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT * FROM examens WHERE idPatient=" + id);
+            //On récupère les MetaData
+            ResultSetMetaData resultMeta = result.getMetaData();
+
+            while (result.next()) {
+               idExamen = result.getInt("idExamen");
+               
+               idPH = result.getInt("idPH");
+               
+               
+               
+               
+               // NOT SURE ABOUT THAT
+               PHresponsable = this.getProfessionnel(idPH);
+               
+               
+               date = new DateN(result.getString("dateExam"));
+               type = TypeExamen.valueOf(result.getString("typeExam"));
+               cr = new CompteRendu(pat,PHresponsable);
+               cr.AjouterTexte(result.getString("CR"));
+               IDservice = result.getInt("idService");
+               Examen exam = new Examen(idExamen,pat,PHresponsable,date,type,cr,IDservice);
+               //exam.AfficherInformationsExamen();
+               DMR.AjouterExamen(exam);
+                
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return DMR;
+        
+    } // ou selon idPatient ? // rajouter sortie liste dexamens
     // GESTION DES IMAGES
     
     // ajout dune image a un examen

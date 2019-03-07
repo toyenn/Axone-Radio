@@ -28,6 +28,7 @@ public class CompteRendu {
     
     public void AjouterTexte(String Texte){
         this.texte = Texte;
+        
     }
     
     public String toString(){ // A AMELIORER
@@ -36,6 +37,7 @@ public class CompteRendu {
         s+=texte;
         return s;
     }
+    
 
     public void setEtat(EtatCr etat) {
         this.etat = etat;

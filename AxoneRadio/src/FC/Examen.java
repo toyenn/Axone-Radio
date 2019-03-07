@@ -14,7 +14,7 @@ import java.util.Vector;
 public class Examen {
     private int idExamen;
     private Patient Patient;
-    private PH PHresponsable;
+    private Professionnel PHresponsable;
     private DateN date;
     private TypeExamen type;
     private CompteRendu cr;
@@ -23,8 +23,8 @@ public class Examen {
     private Vector<String> listeImages;  // type string car nom des images mais peut changer
 
     // examen sans id dans constructeur ?
-    public Examen(Patient Patient, PH PHresponsable, DateN date, TypeExamen type, CompteRendu cr, int IDservice) {
-        this.idExamen = 0;
+    public Examen(int idExam,Patient Patient, Professionnel PHresponsable, DateN date, TypeExamen type, CompteRendu cr, int IDservice) {
+        this.idExamen = idExam;
         this.Patient = Patient;
         this.PHresponsable = PHresponsable;
         this.date = date;
@@ -42,7 +42,7 @@ public class Examen {
         return Patient;
     }
 
-    public PH getPHresponsable() {
+    public Professionnel getPHresponsable() {
         return PHresponsable;
     }
 

@@ -10,7 +10,19 @@ package FC;
  * @author Nathan
  */
 public enum TypeExamen {
-    Scanner,
-    IRM;
+    Scanner("Scanner"),
+    IRM("IRM");
+    
+    private String name="";
+    
+    TypeExamen(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+   
+    
     
 }
