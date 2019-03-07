@@ -27,16 +27,24 @@ public class Connect {
         
         
         RequetesBD req= new RequetesBD();
-//        req.Identification("Ginal", "mdp");
-//        
-//        System.out.println("ON VA MODIF LE MDP");
-//        Professionnel pro = new Professionnel(123456,"Gina","Laurent","Ginal","mdp","Cardiologie");
-//        
-//        req.ChangerMotDePasse(pro, "mdp2");
+        ////////////////////////////// TEST NUMERO 1 : CONNEXION DUNE PERSONNE//////////////////////////////
+        
+//       req.Identification("Ginal", "mdp2");
 
+        ////////////////////////////// TEST NUMERO 2 : MODIFICATION DU MOT DE PASSE//////////////////////////////
+//        
+//        System.out.println("MODIFICATION DU MOT DE PASSE");
+//        //Professionnel pro = new Professionnel(123456,"Gina","Laurent","Ginal","mdp","Cardiologie");
+//        
+//        req.ChangerMotDePasse(123456, "mdp3");
+
+
+          ////////////////////////////// TEST NUMERO 3 : RECHERCHE D'UN PATIENT QUI A UN ID 5//////////////////////////////
             //req.RecherchePatient(5);
             
-                ///////    // TEST DE L'AJOUT DUN EXAMEN
+    ////////////////////////////// TEST NUMERO 4 : AJOUT D'UN EXAMEN POUR UN PATIENT DONNE//////////////////////////////
+    ///////////////////////////// ATTENTION ON NE PEUT PAS AJOUTER 2X lE MEME EXAM DANS LA BD//////////////////////////
+    
 //            req.AfficherPatientsDansService(1);
 //            PH pro = new PH(123456 , "Gina", "Laurent", "Ginal", "mdp2", "Cardiologie");
 //            Patient pat = req.RecherchePatient(1);
@@ -49,19 +57,39 @@ public class Connect {
 //            req.AjoutExamen(ex);
 
 
-                ///////    // TEST DE L'AFFICHAGE DES EXAMENS D'UN PATIENT
+  ////////////////////////////// TEST NUMERO 5 : CHARGEMENT ET AFFICHAGE DU DMR DUN PATIENT EN PARTICULIER//////////////////////////////
 //        Patient pat = req.RecherchePatient(1);
-//        req.AfficherExamensPatient(pat);
+//        req.GetDMRPatient(pat);
         
         
-        //////////////// TEST DE LA RECUPERATION DE PATIENTS DUN SERVICE DANS UNE LISTE
-        //Vector<Patient> Vect = req.AfficherPatientsDansService(1);
+ ////////////////////////////// TEST NUMERO 6 : TEST DE LA RECUPERATION DE PATIENTS DUNE AILE//////////////////////////////
+        
+        //Patients LISTEPATIENTS = req.AfficherPatientsDansService(1);
         
         
-        ///////////////// Test de recherche de patient et d'affichage de ses données et de ses examens
-            Patient pat = req.RecherchePatient(1);
-            pat.setDMR(req.AfficherExamensPatient(pat));
-            pat.InformationsPatient();
+ ////////////////////////////// TEST NUMERO 7 : TEST DE LA RECHERCHE D'UN PATIENT ET DE L'AFFICHAGE DE SES DONNEES ET+++ DE SES EXAMS//////////////////////////////
+        
+//            Patient pat = req.RecherchePatient(1);
+//            pat.setDMR(req.GetDMRPatient(pat));
+//            pat.InformationsPatient();
+
+
+////////////////////////////// TEST NUMERO 8 : TEST DE LA RECHERCHE DE TOUT LES PATIENTS DUNE AILE, DU CHARGEMENT DES INFOS DES PATIENTS ET DES DMR PUIS AFFICHAGE COMPLET //////////////////////////////
+
+//            // création de la liste de tous les services du CHU :
+//            Services CHU = req.CreerListeServices();
+//            // Récupération du de la première aile du premier service
+//            int idAile = CHU.getListeServices().get(0).getListeAiles().get(0).getIdAile();
+//            // récupération de tous les patients de cette aile
+//            Patients LISTEPATIENTS = req.AfficherPatientsDansService(idAile);
+//            // ajout du DMR de chaque patient de cette aile
+//            for(int i=0;i<LISTEPATIENTS.getListePatients().size();i++){
+//                LISTEPATIENTS.getListePatients().get(i).setDMR(req.GetDMRPatient(LISTEPATIENTS.getListePatients().get(i)));
+//            }
+//           // Affichage des informations :
+//            LISTEPATIENTS.AfficherInformationsPatients();
+            
+
     }
     
     

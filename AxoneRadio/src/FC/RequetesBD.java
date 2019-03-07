@@ -35,15 +35,20 @@ public class RequetesBD {
         conn = DriverManager.getConnection(url, user, passwd);
     }
 
+    public Connection getConn() {
+        return conn;
+    }
+    
+
     // GESTION DE LUTILISATEUR
     
-    public void ChangerMotDePasse(Professionnel pro, String newmdp) {
+    public void ChangerMotDePasse(int id, String newmdp) {
         try {
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
 
-            String query = "UPDATE connexion\n" + "SET motdepasse='" + newmdp + "'\nWHERE idpersonnel='" + pro.getId() + "'";
+            String query = "UPDATE connexion\n" + "SET motdepasse='" + newmdp + "'\nWHERE idpersonnel='" + id + "'";
             state.executeUpdate(query);
 
             state.close();
@@ -211,9 +216,9 @@ public class RequetesBD {
     
     
     // affiche tout les personnes qui sont dans le service X le stocker dans une liste de patients ??
-    public Vector<Patient> AfficherPatientsDansService(int IDService) { // ou chercher par nom et prenom ?
-        Vector<Patient> LISTE;
-        LISTE = new Vector<Patient>();
+    // Créer une classe Patients ? pour stocker tous les patients là
+    public Patients AfficherPatientsDansService(int IDService) { // ou chercher par nom et prenom ?
+        Patients LISTEPATIENTS = new Patients();
          int id =0;
      String nom = null;
      String prenom = null;
@@ -264,9 +269,7 @@ public class RequetesBD {
                 Service = result.getInt("idService");
                 Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
                 pat.InformationsPatient();
-                if(!LISTE.contains(pat)){
-                            LISTE.add(pat);
-                        }
+                LISTEPATIENTS.AjouterPatient(pat);
 
                 //System.out.print("\t" + result.getObject(i).toString() + "\t |");
             }
@@ -277,8 +280,8 @@ public class RequetesBD {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Taille :"+LISTE.size());
-        return LISTE;
+        
+        return LISTEPATIENTS;
         
     }  
     
@@ -317,7 +320,7 @@ public class RequetesBD {
         
     }
     
-    public DossierMedicalRadiologique AfficherExamensPatient(Patient pat){ 
+    public DossierMedicalRadiologique GetDMRPatient(Patient pat){ 
         DossierMedicalRadiologique DMR = new DossierMedicalRadiologique();
         int id = pat.getid();
         
@@ -371,11 +374,69 @@ public class RequetesBD {
         }
         return DMR;
         
-    } // ou selon idPatient ? // rajouter sortie liste dexamens
+    } // ou selon idPatient ? 
     // GESTION DES IMAGES
     
-    // ajout dune image a un examen
+    // ajout dune image a un examen cf travail Awa
     
+    
+    
+    // GESTION DES SERVICES
+    // créer méthode qui remplit les Services
+    public Services CreerListeServices() { 
+        Services LISTESERVICES = new Services();
+        
+         
+        int idAile;
+        String NomService;
+        String NomAile;
+        int nbPersonnes;
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            String url = "jdbc:mysql://localhost:3306/connexion";
+//            url+= "?serverTimezone=UTC";
+//            String user = "root";
+//            String passwd = "";
+//
+//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT * FROM service");
+            //On récupère les MetaData
+            ResultSetMetaData resultMeta = result.getMetaData();
+
+            
+            while (result.next()) {
+                 idAile = result.getInt("idService");
+                  NomService = result.getString("ServicePrincipal");
+                  NomAile = result.getString("Aile");
+                  nbPersonnes = result.getInt("nbPatients");
+                
+                  Aile NouvelleAile = new Aile(idAile,NomAile,nbPersonnes);
+                  LISTESERVICES.AjouterService(NomService);
+                  LISTESERVICES.AjouterAileDansService(NomService, NouvelleAile);
+                
+                
+
+                //System.out.print("\t" + result.getObject(i).toString() + "\t |");
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //System.out.println("FIN DE LA RECHERCHE");
+        //LISTESERVICES.AfficherInformationServices();
+        return LISTESERVICES;
+        
+    }  
     
     
 }

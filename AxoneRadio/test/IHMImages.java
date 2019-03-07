@@ -20,6 +20,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -31,6 +32,7 @@ import java.sql.Blob;
 import javax.swing.JPanel;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,6 +59,10 @@ public class IHMImages extends JPanel {
         super();       
         
 
+    }
+
+    public LectureImagePGM getIm() {
+        return im;
     }
 
    
@@ -344,12 +350,13 @@ public class IHMImages extends JPanel {
     }
 
     protected void enregistrerImage(File fichierImage) throws FileNotFoundException { //Enregistrer une image en local
-        String format = "JPG";
+        String format = "PGM";
         BufferedImage image = monImage;
         if (monImage == null) {
             JOptionPane.showMessageDialog(this, "Pas d'image à enregistrer", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
+                System.out.println("ecriture dans le fichier");
 
                 ImageIO.write(image, format, fichierImage);
             } catch (IOException e) {
@@ -394,6 +401,34 @@ public class IHMImages extends JPanel {
 
     void Reset() {
         this.ajouterImage(fichier);
+    }
+
+    void ecrirePACS() {
+        try {
+                // enregistrement en local :
+                this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
+                
+                RequetesBD req = new RequetesBD();
+                
+               PreparedStatement ps = req.getConn().prepareStatement("insert into pacs(idImage,nomImage,idExam,idPatient,image) values(?,?,?,?,?)");
+               // enregistrer en local :
+                
+               InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
+               ps.setInt(1,20);// autoincrement après
+               ps.setString(2,"Nom de limage");
+               ps.setInt(3,4);
+                ps.setInt(4,1);
+               ps.setBlob(5,is);
+              
+               ps.executeUpdate();
+               JOptionPane.showMessageDialog(null,"Data Inserted");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
    

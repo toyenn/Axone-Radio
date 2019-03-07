@@ -14,11 +14,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,6 +122,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         fichierMenu.add(writeInPacs);
         writeInPacs.addActionListener((ActionListener) this);
         writeInPacs.setText("ajouter au PACS");
+        
 
         
 
@@ -233,6 +237,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
     public void actionPerformed(ActionEvent cliqueMenu) {
         if (cliqueMenu.getSource().equals(ouvrirMenu)) {
             JFileChooser fileOuvrirImage = new JFileChooser();
+           
             if (fileOuvrirImage.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 panneau.ajouterImage(new File(fileOuvrirImage.getSelectedFile()
                         .getAbsolutePath()));
@@ -247,6 +252,26 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         }
         else if (cliqueMenu.getSource().equals(BoutonRotationGauche)) {
            panneau.rotationGauche();
+        }
+        else if (cliqueMenu.getSource().equals(enregistrerMenu)) {
+            try {
+                panneau.getIm().createFile(panneau.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(cliqueMenu.getSource().equals(writeInPacs)){
+            System.out.println("Ecriture dans le PACS");
+            
+            panneau.ecrirePACS();    
+                
+                
+                
+           
+            
+            
+            
+             
         }
         else if (cliqueMenu.getSource().equals(Reset)) {
            panneau.Reset();

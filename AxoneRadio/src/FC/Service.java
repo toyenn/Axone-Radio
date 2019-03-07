@@ -5,14 +5,61 @@
  */
 package FC;
 
+import java.util.Vector;
+
 /**
  *
  * @author Nathan
  */
-public class Service { // traitement spécial pour les urgences ???  //Modifier et en faire une base de données ?
-    private int  idService;
-    private String ServicePrincipal;
-    private String Aile;
-    private int nbPatients;
+public class Service { 
+    
+    
+    private String nomService;
+    private Vector<Aile> ListeAiles;
+
+    public Service(String nomService) {
+        this.nomService = nomService;
+        this.ListeAiles = new Vector<Aile>();
+    }
+
+    public String getNomService() {
+        return nomService;
+    }
+
+    public Vector<Aile> getListeAiles() {
+        return ListeAiles;
+    }
+
+    public void setNomService(String nomService) {
+        this.nomService = nomService;
+    }
+
+    public void setListeAiles(Vector<Aile> ListeAiles) {
+        this.ListeAiles = ListeAiles;
+    }
+    
+    public void AjouterAile(Aile a){
+        String nom = a.getNomAile();
+        int i = 0;
+        boolean trouve = false;
+        while (!trouve && i < this.getListeAiles().size()) {
+            if(this.getListeAiles().get(i).getNomAile().equals(nom)){
+                trouve=true;
+        }
+            i++;
+    }
+    if(!trouve){
+        this.getListeAiles().add(a);
+    }
+    }
+    public void AfficherInformationsService(){
+        System.out.println("--------------------------------");
+        System.out.println("SERVICE de : "+this.nomService);
+        for(int i=0;i<this.ListeAiles.size();i++){
+            this.ListeAiles.get(i).AfficherInformationsAile();
+        }
+        System.out.println("--------------------------------");
+    }
+    
     
 }
