@@ -462,7 +462,7 @@ public class PH_DossierPatient extends javax.swing.JFrame {
     }
     
    public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
-        return jButton1;
+        return buttonCreerExam;
     }
 
    public javax.swing.JTable getTableExamens() { // bouton recherche par service

@@ -32,23 +32,18 @@ public class Controlleur {
     private JFrame vueAvant;
 
     public Controlleur() { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
-        System.out.println("test");
-        co = new Connect();
-        System.out.println("test 2");
+        
+        co = new VueConnect();
         crDMR = new CréerUnDMR();
         crExam = new CréerUnExamen();
         pageManip = new PageManipulateur1();
         phDossPat = new PH_DossierPatient();
         phExam = new PH_Examen();
-        System.out.println("test 7");
         ph2 = new CréerUnExamen2();
-        System.out.println("test 8");
         phRechPat = new PH_RechercherPatient();
         para = new Parametres();
         vuePrin = new VuePrincipale();
-        System.out.println("test 10");
         para = new Parametres();
-        System.out.println("test 11");
 
         vuePrin.newFrame(co);
 
@@ -56,7 +51,6 @@ public class Controlleur {
         co.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 changerMenu(phRechPat);
             }
         });
@@ -64,20 +58,28 @@ public class Controlleur {
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(phRechPat, phDossPat);
+                changerMenu(phDossPat);
             }
         });
+        
         phRechPat.getButtonService().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(phRechPat, phDossPat);
+                changerMenu(phDossPat);
             }
         });
         
         phRechPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(phDossPat, co);
+                changerMenu(co);
+            }
+        });
+        
+        phRechPat.getButtonPara().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.newWindow(para);
             }
         });
         
@@ -85,8 +87,7 @@ public class Controlleur {
         phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(phDossPat, crExam);
-                //vuePrin.newFrame(crExam);
+                vuePrin.newWindow(crExam);
             }
         });
         
@@ -97,7 +98,7 @@ public class Controlleur {
                 int numcol = phDossPat.getTableExamens().getSelectedRow();
                 System.out.println(numcol);
                 // on change les menus avec les infos de l'examen en parametre
-                changerMenu(phDossPat, phExam);
+                changerMenu(phExam);
                 }
             }
 
@@ -127,7 +128,6 @@ public class Controlleur {
     }
 
     public void changerMenu(JFrame vueApres) {
-        vueAvant = vuePrin.getFrame();
         vuePrin.newFrame(vueApres);
 
     }

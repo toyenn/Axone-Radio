@@ -283,7 +283,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Service, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Service, jComboBox2, jComboBox3});
@@ -395,11 +395,11 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(316, 316, 316))
+                .addGap(366, 366, 366))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 451, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -509,15 +509,11 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         });
     }
     public javax.swing.JButton getButtonInfos() { // bouton recherche par infos
-        return jButton2; // recuperer infos d'avant et le mettre dans le constructeur ?
+        return buttonRechInfo; // recuperer infos d'avant et le mettre dans le constructeur ?
     }
     
     public javax.swing.JButton getButtonService() { // bouton recherche par service
-        return jButton3;
-    }
-    
-    public javax.swing.JButton getButtonDeco() { // bouton recherche par service
-        return jButton4;
+        return buttonRechServ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
