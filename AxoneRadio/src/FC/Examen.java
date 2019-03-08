@@ -70,6 +70,11 @@ public class Examen {
         return LISTEIMAGES;
     }
 
+    public void setLISTEIMAGES(Images LISTEIMAGES) {
+        this.LISTEIMAGES = LISTEIMAGES;
+    }
+    
+
     
     
     public void AfficherInformationsExamen(){
@@ -84,6 +89,8 @@ public class Examen {
         System.out.println("CR : "+this.getCr().getTexte());
         System.out.println("SERVICE QUI A DEMANDE : "+this.getService());
         System.out.println("***************************");
+        
+       this.LISTEIMAGES.AfficherInformationsImages();
     }
     
 }

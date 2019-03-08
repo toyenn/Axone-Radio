@@ -50,6 +50,7 @@ public class DossierMedicalRadiologique { // pour un patient
     public void AfficherInformationsExamens(){
         for(int i=0;i<this.listeExamens.size();i++){
             this.getListeExamens().get(i).AfficherInformationsExamen();
+            
         }
     }
     

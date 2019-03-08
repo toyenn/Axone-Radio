@@ -36,16 +36,16 @@ public class Connect {
 //        System.out.println("MODIFICATION DU MOT DE PASSE");
 //        //Professionnel pro = new Professionnel(123456,"Gina","Laurent","Ginal","mdp","Cardiologie");
 //        
-//        req.ChangerMotDePasse(123456, "mdp3");
+     //   req.ChangerMotDePasse(123456, "mdp2");
 
 
           ////////////////////////////// TEST NUMERO 3 : RECHERCHE D'UN PATIENT QUI A UN ID 5//////////////////////////////
-            //req.RecherchePatient(5);
+       //     req.RecherchePatient(5);
             
     ////////////////////////////// TEST NUMERO 4 : AJOUT D'UN EXAMEN POUR UN PATIENT DONNE//////////////////////////////
     ///////////////////////////// ATTENTION ON NE PEUT PAS AJOUTER 2X lE MEME EXAM DANS LA BD//////////////////////////
     
-//            req.AfficherPatientsDansService(1);
+ //           req.AfficherPatientsDansService(1);
 //            Professionnel pro = new Professionnel(123456 , "Gina", "Laurent", "Ginal", "mdp2", "Cardiologie");
 //            Patient pat = req.RecherchePatient(1);
 //            DateN d = new DateN();
@@ -104,6 +104,31 @@ public class Connect {
 //        }
 //            
 //
+
+/////////////////////////////// TEST 11 : CREATION PATIENTS AILE PUIS + DMR + IMAGES POUR LE PREMIER PATIENT
+            // création de la liste de tous les services du CHU :
+            Services CHU = req.CreerListeServices();
+            // Récupération du de la première aile du premier service
+            int idAile = CHU.getListeServices().get(0).getListeAiles().get(0).getIdAile();
+            // récupération de tous les patients de cette aile
+            Patients LISTEPATIENTS = req.AfficherPatientsDansService(idAile);
+            // ajout du DMR de chaque patient de cette aile
+            for(int i=0;i<LISTEPATIENTS.getListePatients().size();i++){
+                LISTEPATIENTS.getListePatients().get(i).setDMR(req.GetDMRPatient(LISTEPATIENTS.getListePatients().get(i)));
+            }
+           // Affichage des informations :
+            LISTEPATIENTS.AfficherInformationsPatients();
+            Patient p = LISTEPATIENTS.getListePatients().get(0);
+            for(int i=0;i<LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().size();i++){
+                Examen ex = LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().get(i);
+                ex.setLISTEIMAGES(req.getImagesExamen(ex.getIdExamen()));
+                
+            }
+            System.out.println("/////////////////////////////////////////////////////////////////////////////");
+            LISTEPATIENTS.getListePatients().get(0).InformationsPatient();
+            
+           
+
     }
     
     

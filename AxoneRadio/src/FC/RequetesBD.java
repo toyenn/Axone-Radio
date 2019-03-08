@@ -223,7 +223,7 @@ public class RequetesBD {
         }
   
         Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
-       // pat.InformationsPatient();
+        pat.InformationsPatient();
         return pat;
     } 
     
@@ -493,6 +493,10 @@ public class RequetesBD {
         return LISTESERVICES;
         
     }  
+
+//    void ChargerListeImages(Patient p) {
+//        
+//    }
     
     
 }
