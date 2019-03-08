@@ -1,4 +1,5 @@
 // charger le patient et lid de lexam pour pouvoir lecrire dans la bd après (dans le constructeur on apelle les 2 et on aura 2 attributs
+//import FC.LectureImagePGM;
 import FC.*;
 
 //import LectureImagePGM;

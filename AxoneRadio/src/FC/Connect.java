@@ -29,7 +29,7 @@ public class Connect {
         RequetesBD req= new RequetesBD();
         ////////////////////////////// TEST NUMERO 1 : CONNEXION DUNE PERSONNE//////////////////////////////
         
-       req.Identification("Ginal", "mdp3");
+      // req.Identification("Ginal", "mdp3");
 
         ////////////////////////////// TEST NUMERO 2 : MODIFICATION DU MOT DE PASSE//////////////////////////////
 //        
@@ -92,7 +92,7 @@ public class Connect {
 
 ////////////////////////////// TEST NUMERO 9 : AFFICHAGE DE LISTE DES IMAGES DUN EXAMEN //////////////////////////////
 
-                req.getImagesExamen(4);
+               // req.getImagesExamen(4);
 
 ////////////////////////////// TEST NUMERO 10 : AFFICHAGE D'UNE FENETRE IMAGE ET ESSAI DE SAUVEGARDER MODIF //////////////////////////////
 //try {
