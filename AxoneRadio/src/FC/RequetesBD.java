@@ -95,7 +95,8 @@ public class RequetesBD {
             
             if(nb==0){
                 System.out.println("MDP incorrect");
-                return null;
+                Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service);
+                return pro;
             }
             else{
                 

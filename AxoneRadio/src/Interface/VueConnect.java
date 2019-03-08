@@ -30,16 +30,21 @@ public class VueConnect extends javax.swing.JFrame {
 //        Dimension c = new Dimension(((int) a), ((int) b));
 //        this.setSize(c);
         this.setResizable(false);
+        jPanel1.requestFocusInWindow();
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
         jTextField1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
+                if(jTextField1.getText().equals("Identifiant")){
                 jTextField1.setText("");
+                }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-
+                    if(jTextField1.getText().equals("")){
+                        jTextField1.setText("Identifiant");
+                    }
             }
 
         });
@@ -47,16 +52,20 @@ public class VueConnect extends javax.swing.JFrame {
         mdp.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
+                if(mdp.getText().equals("mdp")){
                 mdp.setText("");
+                }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-
+                    if(mdp.getText().equals("")){
+                        mdp.setText("mdp");
+                    }
             }
 
         });
-
+        
     }
 
     /**
@@ -87,11 +96,16 @@ public class VueConnect extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(510, 380, 160, 50);
 
-        jTextField1.setText("identifiant");
+        jTextField1.setText("Identifiant");
         jPanel1.add(jTextField1);
         jTextField1.setBounds(550, 250, 140, 30);
 
-        mdp.setText("motdepasse");
+        mdp.setText("mdp");
+        mdp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mdpActionPerformed(evt);
+            }
+        });
         jPanel1.add(mdp);
         mdp.setBounds(550, 310, 140, 30);
 
@@ -125,6 +139,10 @@ public class VueConnect extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mdpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,5 +192,20 @@ public class VueConnect extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public javax.swing.JButton getButton() {
         return jButton1;
+    }
+    
+    public String getTextIdentifiant(){
+        return jTextField1.getText();
+    }
+    public String getTextMDP(){
+        return mdp.getText();
+    }
+    
+     public void setTextMDP(String t){
+        mdp.setText(t);
+    }
+     
+      public void setTextIdentifiant(String t){
+        jTextField1.setText(t);
     }
 }

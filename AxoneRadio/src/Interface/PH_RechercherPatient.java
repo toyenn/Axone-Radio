@@ -320,7 +320,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
 
         jLabel14.setText("jLabel14");
 
-        jLabel15.setText("Fonction :");
+        jLabel15.setText("Spécialité");
 
         jLabel16.setText("jLabel16");
 
@@ -576,4 +576,9 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     public javax.swing.JButton getButtonRechServ() {
         return buttonRechServ;
     }
+    
+    
+//    public void ActualiserInfos(Professionnel p){
+//        jLabel7.setText(p.);
+//    }
 }

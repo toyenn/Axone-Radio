@@ -12,6 +12,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import FC.*;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,8 +33,16 @@ public class Controlleur {
     private VuePrincipale vuePrin;
     private Parametres para;
     private JFrame vueAvant;
-
-    public Controlleur() { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
+    
+    
+    public RequetesBD req;
+    Professionnel pro;
+    
+    
+    public Controlleur() throws ClassNotFoundException, SQLException { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
+        System.out.println("Connexion BD");
+        req= new RequetesBD();
+        
         System.out.println("test");
         co = new VueConnect();
         System.out.println("test 2");
@@ -57,8 +67,16 @@ public class Controlleur {
         co.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                changerMenu(phRechPat);
+                pro = req.Identification(co.getTextIdentifiant(), co.getTextMDP());
+                if(pro.getId()==0){
+                    JOptionPane.showMessageDialog(co, "Identifiants incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Mauvais mdp");
+                }
+                else{
+                    System.out.println("YOUPI");
+                     changerMenu(phRechPat);
+                }
+               
             }
         });
         
@@ -81,6 +99,8 @@ public class Controlleur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //changerMenu(phDossPat, co);
+                co.setTextIdentifiant("Identidiant");
+                co.setTextMDP("mdp");
                 changerMenu(co);
             }
         });
