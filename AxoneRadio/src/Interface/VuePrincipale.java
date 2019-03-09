@@ -51,6 +51,12 @@ public class VuePrincipale {
         this.setMenuOn();        
     }
     
+    public void changerWindow(JFrame frame){
+        frame2.setVisible(false);
+        frame2=frame;
+        frame2.setVisible(true);
+    }
+    
     public void newWindow(JFrame frame){
         frame2 = frame;
         frame2.setVisible(true);
