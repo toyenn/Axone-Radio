@@ -73,6 +73,32 @@ public class Services {
         return null;
     }
     
+    public String getNomService(int id){
+        String s="";
+        int i=0;
+        int j=0;
+        //System.out.println("service a trouver : "+nom);
+        boolean trouve = false;
+        while(!trouve && i<this.listeServices.size()){
+            while(!trouve && j<this.listeServices.get(i).getListeAiles().size()){
+                if(this.listeServices.get(i).getListeAiles().get(j).getIdAile()==id){
+                    s=this.listeServices.get(i).getNomService()+", "+this.listeServices.get(i).getListeAiles().get(j).getNomAile();
+                    
+                    trouve = true;
+                 
+                //System.out.println("ON A TROUVE LE SERVICE");
+                
+                
+            }
+                j++;
+            }
+            
+            i++;
+        }
+        return s;
+    }
+    
+    
     public void AfficherInformationServices(){
         System.out.println("**********************************************************************************************************");
         System.out.println("INFORMATIONS DES SERVICES DU CHU :");

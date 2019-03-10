@@ -5,19 +5,21 @@
  */
 package Interface;
 
-/**
- *
- * @author ndeyeawagaye
- */
-public class PH_Examen extends javax.swing.JFrame {
+import FC.Examen;
+import java.util.Vector;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
-    /**
-     * Creates new form PagePH
-     */
+
+public class PH_Examen extends javax.swing.JFrame {
+    //AfficheImage AF;
+
+
     public PH_Examen() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
+        
         
        // on rajoutra ici une partie du code pour afficher une image à un endroit dans le jpanel5 quand on clic sur la jlist
     }
@@ -298,4 +300,28 @@ public class PH_Examen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
+
+    public void actualiserInfos(Examen Exam) {
+        actualiserListeImages(Exam);
+    }
+    
+    public void actualiserListeImages(Examen e){
+        DefaultListModel modele = new DefaultListModel();
+        for(int i=0;i<e.getLISTEIMAGES().getListeImages().size();i++){
+            //modele.addElement((int)(e.getLISTEIMAGES().getListeImages().get(i).getIdImage()));
+            modele.addElement((e.getLISTEIMAGES().getListeImages().get(i).getNom()));
+            //retrouver l'image a partir du nom
+        }      
+        jList1.setModel(modele);
+    }
+
+    public JList<String> getListeImages() {
+        return jList1;
+    }
+    
+  
+    
+    
+    
+   
 }

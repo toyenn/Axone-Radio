@@ -99,6 +99,9 @@ public class Professionnel { // classe abstraite ou interface ?
            return false;
         }
     }
+    public String toString(){
+        return this.prénom+" "+this.nom;
+    }
     
     public boolean MdpValide(String mdp){
         // 5 caractères minimum

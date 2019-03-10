@@ -40,6 +40,7 @@ public class Controlleur {
     Service s;
     Aile ai;
     Patient PATIENTSELECTIONNE;
+    Examen SELECTEDEXAMEN;
     
     public Controlleur() throws ClassNotFoundException, SQLException { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
         // connexion à la BD
@@ -158,12 +159,13 @@ public class Controlleur {
                 int id = req.getIntNomPrenomIdPatient(valpat);
                 System.out.println("id récupéré :"+id);
                 System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////");
-                Patient SelectedPat = req.ChargementPatient(id);
-                SelectedPat.InformationsPatient();
-                //changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
+                PATIENTSELECTIONNE = req.ChargementPatient(id);
+                PATIENTSELECTIONNE.InformationsPatient();
+                phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
+                changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
             }
         });
-
+        
         phRechPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -200,6 +202,7 @@ public class Controlleur {
         phDossPat.getButtonRetour().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
+                //changerMenu(phRechPat);
                 System.out.println("variable en fct de qui est connecte, a voir plus tard");
             }
         });
@@ -208,9 +211,12 @@ public class Controlleur {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() >= 2) {
-                    int numcol = phDossPat.getTableExamens().getSelectedRow();
-                    System.out.println(numcol);
-                    // on change les menus avec les infos de l'examen en parametre
+                    int ligne = phDossPat.getTableExamens().getSelectedRow();
+                    
+                    int a = (int)phDossPat.getTableExamens().getValueAt(ligne, 0);
+                    //System.out.println("\n\n\n\n\n\n\nID :"+a);
+                    SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
+                    phExam.actualiserInfos(SELECTEDEXAMEN);
                     vuePrin.changerWindow(phExam);
                 }
             }
@@ -236,9 +242,49 @@ public class Controlleur {
             }
 
         });
+        
+        phDossPat.getButtoncocher().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                phDossPat.ActualiserDMRPatient(CHU, PATIENTSELECTIONNE);
+            }
+        });
 
       
-        
+        ///////////// BOUTONS AFFICHAGE EXAMEN
+        phExam.getListeImages().addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.getClickCount() >= 2) {
+                    String ligne =phExam.getListeImages().getSelectedValue();
+                    System.out.println(ligne);
+                    Imagepacs SELECTEDIMG = SELECTEDEXAMEN.getLISTEIMAGES().getImage(ligne);
+                    SELECTEDIMG.InformationsImage();
+                    AfficheImage frame = new AfficheImage(SELECTEDIMG);
+                    frame.setVisible(true);
+                   
+            
+            
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
         
         
         

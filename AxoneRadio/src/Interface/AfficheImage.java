@@ -1,3 +1,5 @@
+package Interface;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -313,16 +315,16 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
 
     }
 
-    public static void main(String args[]){
-        
-        try {
-            Imagepacs I = new Imagepacs(21,1,4,"nom");
-            AfficheImage frame = new AfficheImage(I); // id de limage en parametre puis idpatient puis idexam
-            frame.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String args[]){
+//        
+//        try {
+//            Imagepacs I = new Imagepacs(21,2,4,"idée de nom");
+//            AfficheImage frame = new AfficheImage(I); // id de limage en parametre puis idpatient puis idexam
+//            frame.setVisible(true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     
    
   
@@ -412,4 +414,12 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
             
         
     }
+
+    public IHMImages getPanneau() {
+        return panneau;
+    }
+    
+    
+    
+    
 }

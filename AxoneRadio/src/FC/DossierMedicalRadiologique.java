@@ -58,6 +58,23 @@ public class DossierMedicalRadiologique { // pour un patient
         System.out.println("*************************************");
     }
     
+    public Examen GetExamenDMR(int id){
+         int i=0;
+        
+        boolean trouve = false;
+        while(!trouve && i<this.listeExamens.size()){
+            if(this.listeExamens.get(i).getIdExamen()==id){
+                trouve = true;
+                //System.out.println("ON A TROUVE LEXAMEN");
+                return this.listeExamens.get(i);
+                
+            }
+            i++;
+        }
+        System.out.println("ERREUR EXAMEN INTROUVABLE");
+        return null;
+    }
+    
    
     
 }
