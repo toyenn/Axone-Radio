@@ -17,6 +17,8 @@ public class Professionnel { // classe abstraite ou interface ?
     private String login;
     private String motDePasse;
 
+    
+
     public Professionnel(int id,String nom, String prénom, String login, String motDePasse, String service) {
         this.nom = nom;
         this.prénom = prénom;
@@ -51,6 +53,10 @@ public class Professionnel { // classe abstraite ou interface ?
     }
     public String getPrenom(){
         return prénom;
+    }
+    
+    public String getService() {
+        return service;
     }
     
     

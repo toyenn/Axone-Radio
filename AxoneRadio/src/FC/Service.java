@@ -52,6 +52,25 @@ public class Service {
         this.getListeAiles().add(a);
     }
     }
+    
+    public Aile getAile(String nom){
+        int i=0;
+        //System.out.println("Aile a trouver : "+nom);
+        boolean trouve = false;
+        while(!trouve && i<this.ListeAiles.size()){
+            if(this.ListeAiles.get(i).getNomAile().equals(nom)){
+                trouve = true;
+                System.out.println("ON A TROUVE LAILE");
+                return this.ListeAiles.get(i);
+                
+            }
+            i++;
+        }
+        System.out.println("Aile introuvable");
+        return null;
+    }
+    
+    
     public void AfficherInformationsService(){
         System.out.println("--------------------------------");
         System.out.println("SERVICE de : "+this.nomService);

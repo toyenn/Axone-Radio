@@ -5,8 +5,12 @@
  */
 package Interface;
 
+import FC.*;
+
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,25 +23,11 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
      */
     public PH_RechercherPatient() {
         initComponents();
-         this.setResizable(false);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
-        
-        Service.addFocusListener(new FocusListener(){
-            @Override
-            public void focusGained(FocusEvent e) {
-                
-            }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                
-            }
-            
-     
-        });
         
-        
-      
+
     }
 
     /**
@@ -68,20 +58,20 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         buttonRechInfo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        Service = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        Comboservice = new javax.swing.JComboBox<>();
+        ComboAile = new javax.swing.JComboBox<>();
+        ComboPatients = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         buttonRechServ = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        nom = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        pre = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        spe = new javax.swing.JLabel();
         buttonPara = new javax.swing.JButton();
         buttonDeco = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -234,19 +224,19 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rechercher Patient", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Sans Typewriter", 1, 24), new java.awt.Color(0, 51, 255))); // NOI18N
 
-        Service.setBackground(new java.awt.Color(0, 51, 255));
-        Service.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
-        Service.addActionListener(new java.awt.event.ActionListener() {
+        Comboservice.setBackground(new java.awt.Color(0, 51, 255));
+        Comboservice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
+        Comboservice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ServiceActionPerformed(evt);
+                ComboserviceActionPerformed(evt);
             }
         });
 
-        jComboBox2.setBackground(new java.awt.Color(0, 51, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloc A", "Bloc B", "Bloc C", "Bloc D" }));
+        ComboAile.setBackground(new java.awt.Color(0, 51, 255));
+        ComboAile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloc A", "Bloc B", "Bloc C", "Bloc D" }));
 
-        jComboBox3.setBackground(new java.awt.Color(0, 51, 255));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pat Bole , 1234567", "Pat Track, 1235382", "Maggy Bole, 9837261" }));
+        ComboPatients.setBackground(new java.awt.Color(0, 51, 255));
+        ComboPatients.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pat Bole , 1234567", "Pat Track, 1235382", "Maggy Bole, 9837261" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Service");
@@ -280,49 +270,49 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Service, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboAile, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Comboservice, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Service, jComboBox2, jComboBox3});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ComboAile, ComboPatients, Comboservice});
 
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Service, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Comboservice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboAile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(29, 29, 29)
                 .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Service, jComboBox2, jComboBox3, jLabel2, jLabel3, jLabel6});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboAile, ComboPatients, Comboservice, jLabel2, jLabel3, jLabel6});
 
         jTabbedPane1.addTab("Recherche par service", jPanel5);
 
         jLabel1.setText("Nom :");
 
-        jLabel7.setText("jLabel7");
+        nom.setText("jLabel7");
 
         jLabel13.setText("Prénom :");
 
-        jLabel14.setText("jLabel14");
+        pre.setText("jLabel14");
 
         jLabel15.setText("Spécialité");
 
-        jLabel16.setText("jLabel16");
+        spe.setText("jLabel16");
 
         buttonPara.setText("Parametres");
 
@@ -344,20 +334,20 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel16))
+                                .addComponent(spe))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel14))
+                                .addComponent(pre))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(110, 110, 110)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel14, jLabel16, jLabel7});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {nom, pre, spe});
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel13, jLabel15});
 
@@ -367,15 +357,15 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                    .addComponent(nom))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
+                    .addComponent(pre))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel16))
+                    .addComponent(spe))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPara)
@@ -383,7 +373,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel14, jLabel16, jLabel7});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {nom, pre, spe});
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel13, jLabel15});
 
@@ -468,10 +458,10 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void ServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceActionPerformed
+    private void ComboserviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboserviceActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_ServiceActionPerformed
+
+    }//GEN-LAST:event_ComboserviceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,28 +501,25 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Service;
+    private javax.swing.JComboBox<String> ComboAile;
+    private javax.swing.JComboBox<String> ComboPatients;
+    private javax.swing.JComboBox<String> Comboservice;
     private javax.swing.JButton buttonDeco;
     private javax.swing.JButton buttonPara;
     private javax.swing.JButton buttonRechInfo;
     private javax.swing.JButton buttonRechServ;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -547,6 +534,9 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel nom;
+    private javax.swing.JLabel pre;
+    private javax.swing.JLabel spe;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -576,9 +566,65 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     public javax.swing.JButton getButtonRechServ() {
         return buttonRechServ;
     }
+
+    public JComboBox<String> getComboAile() {
+        return ComboAile;
+    }
+
+    public JComboBox<String> getComboPatients() {
+        return ComboPatients;
+    }
+
+    public JComboBox<String> getComboservice() {
+        return Comboservice;
+    }
+
+    public void setComboAile(JComboBox<String> ComboAile) {
+        this.ComboAile = ComboAile;
+    }
+
+    public void setComboPatients(JComboBox<String> ComboPatients) {
+        this.ComboPatients = ComboPatients;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+    
+
+    public void setComboservice(JComboBox<String> Comboservice) {
+        this.Comboservice = Comboservice;
+    }
+
+    public void actualiserAile(Service s) {
+        //s.AfficherInformationsService();
+        this.ComboAile.removeAllItems();
+        for (int i = 0; i < s.getListeAiles().size(); i++) {
+            this.ComboAile.addItem(s.getListeAiles().get(i).getNomAile());
+        }
+    }
+    
+      public void actualiserPatients(Patients p) {
+        //s.AfficherInformationsService();
+        this.ComboPatients.removeAllItems();
+        for (int i = 0; i < p.getListePatients().size(); i++) {
+            this.ComboPatients.addItem(p.getListePatients().get(i).getNom()+" "+p.getListePatients().get(i).getPrénom()+", "+p.getListePatients().get(i).getid());
+        }
+    }
+
     
     
-//    public void ActualiserInfos(Professionnel p){
-//        jLabel7.setText(p.);
-//    }
+    public void ActualiserInfos(Professionnel p, Services LISTE) {
+        System.out.println("knfneqnfojq");
+        p.InformationsProfessionnel();
+        nom.setText(p.getNom());
+        pre.setText(p.getPrenom());
+        spe.setText(p.getService());
+        Comboservice.removeAllItems();
+        for (int i = 0; i < LISTE.getListeServices().size(); i++) {
+            Comboservice.addItem(LISTE.getListeServices().get(i).getNomService());
+        }
+
+        //Comboservice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
+    }
 }

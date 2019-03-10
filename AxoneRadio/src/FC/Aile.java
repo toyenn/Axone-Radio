@@ -9,7 +9,7 @@ package FC;
  *
  * @author Nathan
  */
-class Aile {
+public class Aile {
     
    private int idAile;
    private String nomAile;

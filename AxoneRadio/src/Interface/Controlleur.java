@@ -35,14 +35,18 @@ public class Controlleur {
     private JFrame vueAvant;
     
     
-    public RequetesBD req;
-    Professionnel pro;
+    private RequetesBD req;
+    private Professionnel pro;
+    Services CHU;
+    Service s;
+    Aile ai;
+    Patient PATIENTSELECTIONNE;
     
     
     public Controlleur() throws ClassNotFoundException, SQLException { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
         System.out.println("Connexion BD");
         req= new RequetesBD();
-        
+        CHU = req.CreerListeServices();
         System.out.println("test");
         co = new VueConnect();
         System.out.println("test 2");
@@ -73,12 +77,18 @@ public class Controlleur {
                     System.out.println("Mauvais mdp");
                 }
                 else{
-                    System.out.println("YOUPI");
+                    System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
+                    
+                    phRechPat.ActualiserInfos(pro,CHU);
                      changerMenu(phRechPat);
                 }
                
             }
         });
+        
+        
+        // bouton page de recherpatientph
+        
         
         phRechPat.getButtonRechInfo().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
@@ -95,15 +105,80 @@ public class Controlleur {
             }
         });
         
+        
+        
+        
         phRechPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
                 //changerMenu(phDossPat, co);
-                co.setTextIdentifiant("Identidiant");
+                co.setTextIdentifiant("Identifiant");
                 co.setTextMDP("mdp");
                 changerMenu(co);
             }
         });
+        
+       
+        phRechPat.getComboservice().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String a = String.valueOf(phRechPat.getComboservice().getSelectedItem());
+                
+                System.out.println("on a selectionné :"+a);
+                s =CHU.getService(a);
+                if(s==null){
+                    s=CHU.getListeServices().firstElement();
+                }
+                //s.AfficherInformationsService();
+               
+                phRechPat.actualiserAile(s);
+              
+                
+            }
+        });
+        
+        phRechPat.getComboAile().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String b = String.valueOf(phRechPat.getComboAile().getSelectedItem());
+                System.out.println("on a selectionné :"+b);
+                ai = s.getAile(b);
+                
+                if(ai==null){
+                    //ai=CHU.getListeServices().firstElement().getListeAiles().firstElement();
+                     ai=s.getListeAiles().firstElement();
+                }
+//                //s.AfficherInformationsService();
+               Patients lp = req.AfficherPatientsDansService(ai.getIdAile());
+                phRechPat.actualiserPatients(lp);
+              
+                
+            }
+        });
+        phRechPat.getButtonRechServ().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String c = String.valueOf(phRechPat.getComboPatients().getSelectedItem());
+                System.out.println("on a selectionné :"+c);
+                int idPatient=0;
+                // problème pour récuperer que l'id  du patient
+                
+               
+//                //s.AfficherInformationsService();
+              
+              PATIENTSELECTIONNE = req.RecherchePatient(idPatient); // pas très opti car retour dans BD.. à revoir
+                
+            }
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        // creer examen
         
         
         phDossPat.getButtonCreerExam().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre

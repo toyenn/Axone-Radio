@@ -57,6 +57,21 @@ public class Services {
     }
        
     }
+    public Service getService(String nom){
+        int i=0;
+        System.out.println("service a trouver : "+nom);
+        boolean trouve = false;
+        while(!trouve && i<this.listeServices.size()){
+            if(this.listeServices.get(i).getNomService().equals(nom)){
+                trouve = true;
+                System.out.println("ON A TROUVE LE SERVICE");
+                return this.listeServices.get(i);
+                
+            }
+            i++;
+        }
+        return null;
+    }
     
     public void AfficherInformationServices(){
         System.out.println("*****************************************************");
