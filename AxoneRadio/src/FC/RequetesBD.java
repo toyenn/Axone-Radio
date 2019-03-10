@@ -267,8 +267,8 @@ public class RequetesBD {
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
 
-            System.out.println("AFFICHAGE DES PATIENTS DU SERVICE NUMERO : "+IDService);
-            System.out.println("*********************************************************");
+//            System.out.println("AFFICHAGE DES PATIENTS DU SERVICE NUMERO : "+IDService);
+//            System.out.println("*********************************************************");
             while (result.next()) {
                 id = result.getInt("idPatient");
                 nom = result.getString("nom");
