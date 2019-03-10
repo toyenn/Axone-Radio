@@ -29,12 +29,13 @@ public class Images {
     }
     
     public void AfficherInformationsImages(){
-        System.out.println("#####################");
+        System.out.println("/////////////");
         System.out.println("LISTE IMAGES EXAMEN :");
-        System.out.println("#####################");
+        System.out.println("/////////////");
         for(int i=0;i<this.getListeImages().size();i++){
             System.out.println("");
             this.getListeImages().get(i).InformationsImage();
         }
+        System.out.println("/////////////");
     }
 }

@@ -29,9 +29,9 @@ public class Patients {
     }
     
     public void AfficherInformationsPatients(){
-        System.out.println("#####################");
-        System.out.println("INFORMATIONS PATIENTS :");
-        System.out.println("#####################");
+        System.out.println("###############################################################");
+        System.out.println("LISTE DES PATIENTS :");
+        System.out.println("###############################################################");
         for(int i=0;i<this.getListePatients().size();i++){
             System.out.println("");
             this.getListePatients().get(i).InformationsPatient();

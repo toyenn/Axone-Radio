@@ -107,28 +107,28 @@ public class Connect {
 
 /////////////////////////////// TEST 11 : CREATION PATIENTS AILE PUIS + DMR + IMAGES POUR LE PREMIER PATIENT
             // création de la liste de tous les services du CHU :
-            Services CHU = req.CreerListeServices();
-            // Récupération du de la première aile du premier service
-            int idAile = CHU.getListeServices().get(0).getListeAiles().get(0).getIdAile();
-            // récupération de tous les patients de cette aile
-            Patients LISTEPATIENTS = req.AfficherPatientsDansService(idAile);
-            // ajout du DMR de chaque patient de cette aile
-            for(int i=0;i<LISTEPATIENTS.getListePatients().size();i++){
-                LISTEPATIENTS.getListePatients().get(i).setDMR(req.GetDMRPatient(LISTEPATIENTS.getListePatients().get(i)));
-            }
-           // Affichage des informations :
-            LISTEPATIENTS.AfficherInformationsPatients();
-            Patient p = LISTEPATIENTS.getListePatients().get(0);
-            for(int i=0;i<LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().size();i++){
-                Examen ex = LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().get(i);
-                ex.setLISTEIMAGES(req.getImagesExamen(ex.getIdExamen()));
-                
-            }
-            System.out.println("/////////////////////////////////////////////////////////////////////////////");
-            LISTEPATIENTS.getListePatients().get(0).InformationsPatient();
+//            Services CHU = req.CreerListeServices();
+//            // Récupération du de la première aile du premier service
+//            int idAile = CHU.getListeServices().get(0).getListeAiles().get(0).getIdAile();
+//            // récupération de tous les patients de cette aile
+//            Patients LISTEPATIENTS = req.AfficherPatientsDansService(idAile);
+//            // ajout du DMR de chaque patient de cette aile
+//            for(int i=0;i<LISTEPATIENTS.getListePatients().size();i++){
+//                LISTEPATIENTS.getListePatients().get(i).setDMR(req.GetDMRPatient(LISTEPATIENTS.getListePatients().get(i)));
+//            }
+//           // Affichage des informations :
+//            LISTEPATIENTS.AfficherInformationsPatients();
+//            Patient p = LISTEPATIENTS.getListePatients().get(0);
+//            for(int i=0;i<LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().size();i++){
+//                Examen ex = LISTEPATIENTS.getListePatients().get(0).getDMR().getListeExamens().get(i);
+//                ex.setLISTEIMAGES(req.getImagesExamen(ex.getIdExamen()));
+//                
+//            }
+//            System.out.println("/////////////////////////////////////////////////////////////////////////////");
+//            LISTEPATIENTS.getListePatients().get(0).InformationsPatient();
             
            
-
+            
     }
     
     

@@ -6,29 +6,111 @@
 package Interface;
 
 import FC.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 
-/**
- *
- * @author ndeyeawagaye
- */
+
+
 public class PH_RechercherPatient extends javax.swing.JFrame {
 
     /**
      * Creates new form PagePH
      */
-    public PH_RechercherPatient() {
+    private Services ListeServices;
+    private Service SelectedService;
+    private Aile SelectedAile;
+    private RequetesBD req;
+    
+    public PH_RechercherPatient(Services ListeServices, RequetesBD req) {
         initComponents();
-        this.setResizable(false);
+         this.setResizable(false);
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
-
+        this.ListeServices = ListeServices;
+        this.SelectedService = null;
+        this.SelectedAile = null;
+        this.req = req;
+        this.RemplirComboServices();
         
-
+       this.RemplirComboAiles();
+       
+       this.RemplirComboPatients();
+       
+       
+       
+       this.ComboBoxServices.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               RemplirComboAiles();
+               RemplirComboPatients();
+               
+              
+            }
+        });
+       
+       this.ComboBoxAiles.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+              RemplirComboPatients();
+            }
+        });
+        
+      
     }
+    
+    
+    public void RemplirComboServices(){
+        this.ComboBoxServices.removeAllItems();
+        for(int i=0;i<this.ListeServices.getListeServices().size();i++){
+            this.ComboBoxServices.addItem(this.ListeServices.getListeServices().get(i).getNomService());
+        }
+    }
+    
+    public void RemplirComboAiles(){
+
+         this.ComboBoxAiles.removeAllItems();
+         String sel = String.valueOf(ComboBoxServices.getSelectedItem());
+                
+          System.out.println("on a selectionné le service :"+sel);
+                this.SelectedService =this.ListeServices.getService(sel);
+                if(this.SelectedService==null){
+                    this.SelectedService=this.ListeServices.getListeServices().firstElement();
+                }
+                for(int i=0;i<SelectedService.getListeAiles().size();i++){
+            this.ComboBoxAiles.addItem(SelectedService.getListeAiles().get(i).getNomAile());
+        }
+               
+    }
+    
+    public void RemplirComboPatients(){
+//        this.ComboBoxPatients.removeAllItems();
+//        System.out.println("Aile a trouver :"+(String)this.ComboBoxAiles.getSelectedItem());
+//        this.SelectedAile = this.SelectedService.getAile((String)this.ComboBoxAiles.getSelectedItem());
+        
+        
+        // métthode 2
+        this.ComboBoxPatients.removeAllItems();
+        String b = String.valueOf(this.ComboBoxAiles.getSelectedItem());
+        System.out.println("on a selectionné :"+b);
+          this.SelectedAile = this.SelectedService.getAile(b);
+                
+                if(this.SelectedAile==null){
+                    //ai=CHU.getListeServices().firstElement().getListeAiles().firstElement();
+                     this.SelectedAile=this.SelectedService.getListeAiles().firstElement();
+                }
+//                //s.AfficherInformationsService();
+               Patients lp = req.AfficherPatientsDansService(this.SelectedAile.getIdAile());
+               for(int i=0;i<lp.getListePatients().size();i++){
+            this.ComboBoxPatients.addItem(lp.getListePatients().get(i).NomPrenomIdPatient());
+       }
+    }
+    
+
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,20 +140,20 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         buttonRechInfo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        Comboservice = new javax.swing.JComboBox<>();
-        ComboAile = new javax.swing.JComboBox<>();
-        ComboPatients = new javax.swing.JComboBox<>();
+        ComboBoxServices = new javax.swing.JComboBox<>();
+        ComboBoxAiles = new javax.swing.JComboBox<>();
+        ComboBoxPatients = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         buttonRechServ = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        nom = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        pre = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        spe = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         buttonPara = new javax.swing.JButton();
         buttonDeco = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -224,19 +306,19 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rechercher Patient", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Sans Typewriter", 1, 24), new java.awt.Color(0, 51, 255))); // NOI18N
 
-        Comboservice.setBackground(new java.awt.Color(0, 51, 255));
-        Comboservice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
-        Comboservice.addActionListener(new java.awt.event.ActionListener() {
+        ComboBoxServices.setBackground(new java.awt.Color(0, 51, 255));
+        ComboBoxServices.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
+        ComboBoxServices.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboserviceActionPerformed(evt);
+                ComboBoxServicesActionPerformed(evt);
             }
         });
 
-        ComboAile.setBackground(new java.awt.Color(0, 51, 255));
-        ComboAile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloc A", "Bloc B", "Bloc C", "Bloc D" }));
+        ComboBoxAiles.setBackground(new java.awt.Color(0, 51, 255));
+        ComboBoxAiles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloc A", "Bloc B", "Bloc C", "Bloc D" }));
 
-        ComboPatients.setBackground(new java.awt.Color(0, 51, 255));
-        ComboPatients.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pat Bole , 1234567", "Pat Track, 1235382", "Maggy Bole, 9837261" }));
+        ComboBoxPatients.setBackground(new java.awt.Color(0, 51, 255));
+        ComboBoxPatients.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pat Bole , 1234567", "Pat Track, 1235382", "Maggy Bole, 9837261" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Service");
@@ -270,49 +352,49 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboAile, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Comboservice, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(ComboBoxAiles, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxServices, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ComboAile, ComboPatients, Comboservice});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ComboBoxAiles, ComboBoxPatients, ComboBoxServices});
 
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Comboservice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxServices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ComboAile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxAiles, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(29, 29, 29)
                 .addComponent(buttonRechServ, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboAile, ComboPatients, Comboservice, jLabel2, jLabel3, jLabel6});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboBoxAiles, ComboBoxPatients, ComboBoxServices, jLabel2, jLabel3, jLabel6});
 
         jTabbedPane1.addTab("Recherche par service", jPanel5);
 
         jLabel1.setText("Nom :");
 
-        nom.setText("jLabel7");
+        jLabel7.setText("jLabel7");
 
         jLabel13.setText("Prénom :");
 
-        pre.setText("jLabel14");
+        jLabel14.setText("jLabel14");
 
-        jLabel15.setText("Spécialité");
+        jLabel15.setText("Service");
 
-        spe.setText("jLabel16");
+        jLabel16.setText("jLabel16");
 
         buttonPara.setText("Parametres");
 
@@ -334,20 +416,20 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addComponent(spe))
+                                .addComponent(jLabel16))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
-                                .addComponent(pre))
+                                .addComponent(jLabel14))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(110, 110, 110)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {nom, pre, spe});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel14, jLabel16, jLabel7});
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel13, jLabel15});
 
@@ -357,15 +439,15 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nom))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(pre))
+                    .addComponent(jLabel14))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(spe))
+                    .addComponent(jLabel16))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPara)
@@ -373,7 +455,7 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {nom, pre, spe});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel14, jLabel16, jLabel7});
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel13, jLabel15});
 
@@ -385,11 +467,11 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(316, 316, 316))
+                .addGap(366, 366, 366))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 457, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -458,10 +540,10 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void ComboserviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboserviceActionPerformed
+    private void ComboBoxServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxServicesActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_ComboserviceActionPerformed
+        
+    }//GEN-LAST:event_ComboBoxServicesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,16 +576,22 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PH_RechercherPatient().setVisible(true);
+                //new PH_RechercherPatient().setVisible(true);
             }
         });
     }
-
+    public javax.swing.JButton getButtonInfos() { // bouton recherche par infos
+        return buttonRechInfo; // recuperer infos d'avant et le mettre dans le constructeur ?
+    }
+    
+    public javax.swing.JButton getButtonService() { // bouton recherche par service
+        return buttonRechServ;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboAile;
-    private javax.swing.JComboBox<String> ComboPatients;
-    private javax.swing.JComboBox<String> Comboservice;
+    private javax.swing.JComboBox<String> ComboBoxAiles;
+    private javax.swing.JComboBox<String> ComboBoxPatients;
+    private javax.swing.JComboBox<String> ComboBoxServices;
     private javax.swing.JButton buttonDeco;
     private javax.swing.JButton buttonPara;
     private javax.swing.JButton buttonRechInfo;
@@ -514,12 +602,15 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -534,9 +625,6 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel nom;
-    private javax.swing.JLabel pre;
-    private javax.swing.JLabel spe;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -567,64 +655,36 @@ public class PH_RechercherPatient extends javax.swing.JFrame {
         return buttonRechServ;
     }
 
-    public JComboBox<String> getComboAile() {
-        return ComboAile;
+    public JComboBox<String> getComboBoxAiles() {
+        return ComboBoxAiles;
     }
 
-    public JComboBox<String> getComboPatients() {
-        return ComboPatients;
+    public JComboBox<String> getComboBoxPatients() {
+        return ComboBoxPatients;
     }
 
-    public JComboBox<String> getComboservice() {
-        return Comboservice;
+    public JComboBox<String> getComboBoxServices() {
+        return ComboBoxServices;
     }
 
-    public void setComboAile(JComboBox<String> ComboAile) {
-        this.ComboAile = ComboAile;
+    public void setComboBoxAiles(JComboBox<String> ComboBoxAiles) {
+        this.ComboBoxAiles = ComboBoxAiles;
     }
 
-    public void setComboPatients(JComboBox<String> ComboPatients) {
-        this.ComboPatients = ComboPatients;
+    public void setComboBoxPatients(JComboBox<String> ComboBoxPatients) {
+        this.ComboBoxPatients = ComboBoxPatients;
     }
 
-    public JPanel getjPanel1() {
-        return jPanel1;
+    public void setComboBoxServices(JComboBox<String> ComboBoxServices) {
+        this.ComboBoxServices = ComboBoxServices;
     }
     
-
-    public void setComboservice(JComboBox<String> Comboservice) {
-        this.Comboservice = Comboservice;
-    }
-
-    public void actualiserAile(Service s) {
-        //s.AfficherInformationsService();
-        this.ComboAile.removeAllItems();
-        for (int i = 0; i < s.getListeAiles().size(); i++) {
-            this.ComboAile.addItem(s.getListeAiles().get(i).getNomAile());
-        }
-    }
-    
-      public void actualiserPatients(Patients p) {
-        //s.AfficherInformationsService();
-        this.ComboPatients.removeAllItems();
-        for (int i = 0; i < p.getListePatients().size(); i++) {
-            this.ComboPatients.addItem(p.getListePatients().get(i).getNom()+" "+p.getListePatients().get(i).getPrénom()+", "+p.getListePatients().get(i).getid());
-        }
-    }
-
     
     
-    public void ActualiserInfos(Professionnel p, Services LISTE) {
-        System.out.println("knfneqnfojq");
-        p.InformationsProfessionnel();
-        nom.setText(p.getNom());
-        pre.setText(p.getPrenom());
-        spe.setText(p.getService());
-        Comboservice.removeAllItems();
-        for (int i = 0; i < LISTE.getListeServices().size(); i++) {
-            Comboservice.addItem(LISTE.getListeServices().get(i).getNomService());
-        }
-
-        //Comboservice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Cardiologie", "Urgences", "Réanimation", "Urologie" }));
+    public void ActualiserInformationsProfessionnel(Professionnel pro){
+        jLabel7.setText(pro.getNom());
+         jLabel14.setText(pro.getPrenom());
+          jLabel16.setText(pro.getService());
     }
+    
 }

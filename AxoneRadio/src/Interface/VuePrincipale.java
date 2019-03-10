@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,40 +17,55 @@ import javax.swing.JPanel;
  */
 public class VuePrincipale {
     
-    private JFrame frame;
+    private JFrame frame1,frame2;
     private JButton retour;
+    private GridBagConstraints c;
 
     public VuePrincipale() {
-       // retour = new JButton();
-       // retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
-        this.frame = new JFrame();
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        this.frame1 = new JFrame();
+        this.frame2 = new JFrame();
+        this.retour = new JButton();
+        this.retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
+        
+//        this.frame1.setLayout(new GridBagLayout());
+//        c = new GridBagConstraints();
+//        c.fill = GridBagConstraints.NORTHWEST;
+//        this.frame1.add(retour,c);
+        this.frame1.add(retour);
+        
+        this.frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame1.setResizable(false);
     }
     
     public void setMenuOn() {
-        this.getFrame().pack();
-        this.getFrame().setVisible(true);
-        retour = new JButton();
-        retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
-        this.getFrame().repaint();
-        this.getFrame().revalidate();
-    }
-
-    public void setMenuOff() {
-        this.getFrame().setVisible(false);
+        frame1.pack();
+        frame1.setVisible(true);
+        frame1.repaint();
+        frame1.revalidate();
     }
     
     public void newFrame(JFrame frame){
-        this.setMenuOff();
-        this.frame=frame;
+        frame1.setVisible(false);
+        this.frame1=frame;
+        retour.repaint();
         this.setMenuOn();        
+    }
+    
+    public void changerWindow(JFrame frame){
+        frame2.setVisible(false);
+        frame2=frame;
+        frame2.setVisible(true);
+    }
+    
+    public void newWindow(JFrame frame){
+        frame2 = frame;
+        frame2.setVisible(true);
     }
 
     /**
      * @return the frame
      */
     public JFrame getFrame() {
-        return frame;
+        return frame1;
     }
 }

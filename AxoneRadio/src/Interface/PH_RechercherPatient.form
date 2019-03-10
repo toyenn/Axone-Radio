@@ -59,12 +59,12 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jTabbedPane1" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="316" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="366" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" pref="95" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="457" max="32767" attributes="0"/>
                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
@@ -385,11 +385,11 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="buttonRechServ" min="-2" pref="133" max="-2" attributes="0"/>
-                              <Component id="ComboAile" linkSize="1" min="-2" pref="247" max="-2" attributes="0"/>
-                              <Component id="ComboPatients" linkSize="1" min="-2" pref="167" max="-2" attributes="0"/>
-                              <Component id="Comboservice" linkSize="1" min="-2" pref="166" max="-2" attributes="0"/>
+                              <Component id="ComboBoxAiles" linkSize="1" min="-2" pref="247" max="-2" attributes="0"/>
+                              <Component id="ComboBoxPatients" linkSize="1" min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="ComboBoxServices" linkSize="1" min="-2" pref="166" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="99" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -398,17 +398,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Comboservice" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ComboBoxServices" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="ComboAile" linkSize="2" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="ComboBoxAiles" linkSize="2" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ComboPatients" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ComboBoxPatients" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -419,7 +419,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="Comboservice">
+                <Component class="javax.swing.JComboBox" name="ComboBoxServices">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -435,13 +435,13 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboserviceActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboBoxServicesActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="ComboAile">
+                <Component class="javax.swing.JComboBox" name="ComboBoxAiles">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -459,7 +459,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="ComboPatients">
+                <Component class="javax.swing.JComboBox" name="ComboBoxPatients">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -536,17 +536,17 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel15" linkSize="5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="spe" linkSize="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel16" linkSize="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" linkSize="5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="pre" linkSize="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel14" linkSize="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel1" linkSize="5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="nom" linkSize="3" min="-2" pref="68" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" linkSize="3" min="-2" pref="68" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
@@ -562,17 +562,17 @@
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nom" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pre" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel15" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spe" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -590,7 +590,7 @@
                 <Property name="text" type="java.lang.String" value="Nom :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nom">
+            <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel7"/>
               </Properties>
@@ -600,17 +600,17 @@
                 <Property name="text" type="java.lang.String" value="Pr&#xe9;nom :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="pre">
+            <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel14"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sp&#xe9;cialit&#xe9;"/>
+                <Property name="text" type="java.lang.String" value="Service"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="spe">
+            <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel16"/>
               </Properties>

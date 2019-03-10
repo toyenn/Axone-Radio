@@ -42,13 +42,13 @@ public class RequetesBD {
 
     // GESTION DE LUTILISATEUR
     
-    public void ChangerMotDePasse(int id, String newmdp) {
+    public void ChangerMotDePasse(Professionnel pro, String newmdp) {
         try {
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
 
-            String query = "UPDATE connexion\n" + "SET motdepasse='" + newmdp + "'\nWHERE idpersonnel='" + id + "'";
+            String query = "UPDATE connexion\n" + "SET motdepasse='" + newmdp + "'\nWHERE idpersonnel='" + pro.getId() + "'";
             state.executeUpdate(query);
 
             state.close();
@@ -224,7 +224,7 @@ public class RequetesBD {
         }
   
         Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
-        pat.InformationsPatient();
+       // pat.InformationsPatient();
         return pat;
     } 
     
@@ -282,7 +282,7 @@ public class RequetesBD {
                 
                 Service = result.getInt("idService");
                 Patient pat = new Patient(id,nom,prenom,date,genre, hospitalise,Service);
-                pat.InformationsPatient();
+                //pat.InformationsPatient();
                 LISTEPATIENTS.AjouterPatient(pat);
 
                 //System.out.print("\t" + result.getObject(i).toString() + "\t |");
@@ -423,7 +423,7 @@ public class RequetesBD {
                LISTEIMAGES.AjouterImage(img);
                 
             }
-            LISTEIMAGES.AfficherInformationsImages();
+            //LISTEIMAGES.AfficherInformationsImages();
             result.close();
             state.close();
 
@@ -498,6 +498,27 @@ public class RequetesBD {
 //    void ChargerListeImages(Patient p) {
 //        
 //    }
+     public int getIntNomPrenomIdPatient(String s){ // return un id correspondant à un patient dans une chaine "nom prenom ,id"
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            if(c==','){
+                return Integer.parseInt(s.substring(i+1));
+            }
+        }
+           return 0; 
+    }
     
-    
+     
+     
+     // chargement de toutes le infos d'un patient à partir de son id
+     public Patient ChargementPatient(int id){
+         Patient p =this.RecherchePatient(id); // charge le patient avec lid id
+            p.setDMR(this.GetDMRPatient(p)); // charge le dmr du patient
+            for(int i=0;i<p.getDMR().getListeExamens().size();i++){ // charge les images des examens
+                Examen ex = p.getDMR().getListeExamens().get(i);
+                ex.setLISTEIMAGES(this.getImagesExamen(ex.getIdExamen()));
+            }
+            return p;
+     }
+     
 }

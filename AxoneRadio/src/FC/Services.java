@@ -59,12 +59,12 @@ public class Services {
     }
     public Service getService(String nom){
         int i=0;
-        System.out.println("service a trouver : "+nom);
+        //System.out.println("service a trouver : "+nom);
         boolean trouve = false;
         while(!trouve && i<this.listeServices.size()){
             if(this.listeServices.get(i).getNomService().equals(nom)){
                 trouve = true;
-                System.out.println("ON A TROUVE LE SERVICE");
+                //System.out.println("ON A TROUVE LE SERVICE");
                 return this.listeServices.get(i);
                 
             }
@@ -74,12 +74,12 @@ public class Services {
     }
     
     public void AfficherInformationServices(){
-        System.out.println("*****************************************************");
+        System.out.println("**********************************************************************************************************");
         System.out.println("INFORMATIONS DES SERVICES DU CHU :");
-        System.out.println("*****************************************************");
+        System.out.println("**********************************************************************************************************");
         for(int i=0;i<this.listeServices.size();i++){
             this.listeServices.get(i).AfficherInformationsService();
         }
-        System.out.println("*****************************************************");
+        System.out.println("**********************************************************************************************************");
     }
 }

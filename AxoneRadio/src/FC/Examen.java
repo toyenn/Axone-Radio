@@ -78,9 +78,9 @@ public class Examen {
     
     
     public void AfficherInformationsExamen(){
-        System.out.println("***************************");
+        System.out.println("########################");
         System.out.println("INFORMATIONS DE L'EXAMEN :");
-        System.out.println("***************************");
+        System.out.println("########################");
         System.out.println("ID EXAMEN : "+this.idExamen);
         System.out.println("PATIENT : "+this.getPatient().getNom()+" "+this.getPatient().getPrénom());
         System.out.println("PH RESPO : "+this.getPHresponsable().getNom()+" "+this.getPHresponsable().getPrenom());
@@ -88,9 +88,10 @@ public class Examen {
         System.out.println("TYPE EXAM : " +this.getType().toString());
         System.out.println("CR : "+this.getCr().getTexte());
         System.out.println("SERVICE QUI A DEMANDE : "+this.getService());
-        System.out.println("***************************");
+        
         
        this.LISTEIMAGES.AfficherInformationsImages();
+       System.out.println("########################");
     }
     
 }

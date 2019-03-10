@@ -56,14 +56,14 @@ public class Imagepacs {
         this.nom = nom;
     }
     public void InformationsImage(){
-        System.out.println("----------------------");
+        System.out.println("~~~~~~~~");
         System.out.println("INFORMATIONS IMAGE :");
-        System.out.println("----------------------");
+        System.out.println("~~~~~~~~");
         System.out.println("ID : " + this.idImage);
         System.out.println("NOM : " + this.getNom());
         System.out.println("ID EXAMEN : " +this.idExamen);
         System.out.println("ID PATIENT : "+this.idPatient);
-        System.out.println("----------------------");
+        System.out.println("~~~~~~~~");
     }
     
     

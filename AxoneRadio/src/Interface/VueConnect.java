@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,20 +32,19 @@ public class VueConnect extends javax.swing.JFrame {
 //        Dimension c = new Dimension(((int) a), ((int) b));
 //        this.setSize(c);
         this.setResizable(false);
-        jPanel1.requestFocusInWindow();
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
-        jTextField1.addFocusListener(new FocusListener() {
+        Ident.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(jTextField1.getText().equals("Identifiant")){
-                jTextField1.setText("");
+                if(Ident.getText().equals("Identifiant")){
+                Ident.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                    if(jTextField1.getText().equals("")){
-                        jTextField1.setText("Identifiant");
+                    if(Ident.getText().equals("")){
+                        Ident.setText("Identifiant");
                     }
             }
 
@@ -66,6 +67,12 @@ public class VueConnect extends javax.swing.JFrame {
 
         });
         
+    
+
+
+
+ 
+
     }
 
     /**
@@ -79,7 +86,7 @@ public class VueConnect extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        Ident = new javax.swing.JTextField();
         mdp = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -96,16 +103,11 @@ public class VueConnect extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(510, 380, 160, 50);
 
-        jTextField1.setText("Identifiant");
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(550, 250, 140, 30);
+        Ident.setText("Identifiant");
+        jPanel1.add(Ident);
+        Ident.setBounds(550, 250, 140, 30);
 
         mdp.setText("mdp");
-        mdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mdpActionPerformed(evt);
-            }
-        });
         jPanel1.add(mdp);
         mdp.setBounds(550, 310, 140, 30);
 
@@ -139,10 +141,6 @@ public class VueConnect extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mdpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,13 +179,13 @@ public class VueConnect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Ident;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField mdp;
     // End of variables declaration//GEN-END:variables
     public javax.swing.JButton getButton() {
@@ -195,17 +193,21 @@ public class VueConnect extends javax.swing.JFrame {
     }
     
     public String getTextIdentifiant(){
-        return jTextField1.getText();
+        return this.Ident.getText();
     }
     public String getTextMDP(){
-        return mdp.getText();
+        return this.mdp.getText();
+    }
+
+    public JTextField getIdent() {
+        return Ident;
+    }
+
+ 
+
+    public JPasswordField getMdp() {
+        return mdp;
     }
     
-     public void setTextMDP(String t){
-        mdp.setText(t);
-    }
-     
-      public void setTextIdentifiant(String t){
-        jTextField1.setText(t);
-    }
+    
 }

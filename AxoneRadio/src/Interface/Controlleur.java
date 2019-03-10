@@ -12,13 +12,14 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import FC.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author natfo
- */
+   
+
+
 public class Controlleur {
 
     private VueConnect co;
@@ -28,13 +29,11 @@ public class Controlleur {
     private PH_DossierPatient phDossPat;
     private PH_Examen phExam;
     private PH_RechercherPatient phRechPat;
-    private CréerUnExamen2 ph2;
+    private CréerUnExamen2 crExam2;
     private PageSecretaire pageSecr;
     private VuePrincipale vuePrin;
     private Parametres para;
-    private JFrame vueAvant;
-    
-    
+
     private RequetesBD req;
     private Professionnel pro;
     Services CHU;
@@ -42,32 +41,27 @@ public class Controlleur {
     Aile ai;
     Patient PATIENTSELECTIONNE;
     
-    
     public Controlleur() throws ClassNotFoundException, SQLException { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
-        System.out.println("Connexion BD");
+        // connexion à la BD
         req= new RequetesBD();
         CHU = req.CreerListeServices();
-        System.out.println("test");
+        
+        // chargelent des interfaces
         co = new VueConnect();
-        System.out.println("test 2");
         crDMR = new CréerUnDMR();
         crExam = new CréerUnExamen();
         pageManip = new PageManipulateur1();
         phDossPat = new PH_DossierPatient();
         phExam = new PH_Examen();
-        System.out.println("test 7");
-        ph2 = new CréerUnExamen2();
-        System.out.println("test 8");
-        phRechPat = new PH_RechercherPatient();
-        para = new Parametres();
+        phRechPat = new PH_RechercherPatient(this.CHU,this.req);
+        crExam2 = new CréerUnExamen2();
+        pageSecr = new PageSecretaire();
         vuePrin = new VuePrincipale();
-        System.out.println("test 10");
-        para = new Parametres();
-        System.out.println("test 11");
+        para = new Parametres(); // parametre professionnelle pro ? pour modifier mdp
 
         vuePrin.newFrame(co);
 
-        //Bouton page de connexion
+        //////// BOUTONS PAGE DE CONNEXION /////////
         co.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,161 +71,279 @@ public class Controlleur {
                     System.out.println("Mauvais mdp");
                 }
                 else{
-                    System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
+                    //System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
                     
-                    phRechPat.ActualiserInfos(pro,CHU);
+                    //phRechPat.ActualiserInfos(pro,CHU);
+                    phRechPat.ActualiserInformationsProfessionnel(pro);
                      changerMenu(phRechPat);
                 }
-               
+            }
+        });
+        
+        co.getMdp().addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_ENTER) {
+                pro = req.Identification(co.getTextIdentifiant(), co.getTextMDP());
+                if(pro.getId()==0){
+                    JOptionPane.showMessageDialog(co, "Identifiants incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Mauvais mdp");
+                }
+                else{
+                    System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
+                    
+                    //phRechPat.ActualiserInfos(pro,CHU);
+                     changerMenu(phRechPat);
+                }
+            }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+        });
+
+        
+        co.getIdent().addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_ENTER) {
+                pro = req.Identification(co.getTextIdentifiant(), co.getTextMDP());
+                if(pro.getId()==0){
+                    JOptionPane.showMessageDialog(co, "Identifiants incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Mauvais mdp");
+                }
+                else{
+                    System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
+                    
+                    //phRechPat.ActualiserInfos(pro,CHU);
+                     changerMenu(phRechPat);
+                }
+            }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
             }
         });
         
         
-        // bouton page de recherpatientph
-        
-        
-        phRechPat.getButtonRechInfo().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
+        //////// BOUTONS PAGE DE RECHERCHE DE PATIENTS /////////
+        phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-               // changerMenu(phRechPat, phDossPat);
+                
                changerMenu(phDossPat);
             }
         });
-        phRechPat.getButtonRechServ().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+
+        phRechPat.getButtonService().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                //changerMenu(phRechPat,phDossPat);
-                changerMenu(phDossPat);
+                String valpat = String.valueOf(phRechPat.getComboBoxPatients().getSelectedItem());
+                int id = req.getIntNomPrenomIdPatient(valpat);
+                System.out.println("id récupéré :"+id);
+                System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////");
+                Patient SelectedPat = req.ChargementPatient(id);
+                SelectedPat.InformationsPatient();
+                //changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
             }
         });
-        
-        
-        
-        
+
         phRechPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                //changerMenu(phDossPat, co);
-                co.setTextIdentifiant("Identifiant");
-                co.setTextMDP("mdp");
                 changerMenu(co);
             }
         });
-        
-       
-        phRechPat.getComboservice().addActionListener(new ActionListener() {
+
+        phRechPat.getButtonPara().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                String a = String.valueOf(phRechPat.getComboservice().getSelectedItem());
-                
-                System.out.println("on a selectionné :"+a);
-                s =CHU.getService(a);
-                if(s==null){
-                    s=CHU.getListeServices().firstElement();
-                }
-                //s.AfficherInformationsService();
-               
-                phRechPat.actualiserAile(s);
-              
-                
+                vuePrin.newWindow(para);
+            }
+        });
+
+        
+        
+        
+        
+        //////// BOUTONS DOSSIER PATIENT /////////
+        phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.newWindow(crExam);
             }
         });
         
-        phRechPat.getComboAile().addActionListener(new ActionListener() {
+        phDossPat.getButtonVal().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
-                String b = String.valueOf(phRechPat.getComboAile().getSelectedItem());
-                System.out.println("on a selectionné :"+b);
-                ai = s.getAile(b);
-                
-                if(ai==null){
-                    //ai=CHU.getListeServices().firstElement().getListeAiles().firstElement();
-                     ai=s.getListeAiles().firstElement();
-                }
-//                //s.AfficherInformationsService();
-               Patients lp = req.AfficherPatientsDansService(ai.getIdAile());
-                phRechPat.actualiserPatients(lp);
-              
-                
-            }
-        });
-        phRechPat.getButtonRechServ().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String c = String.valueOf(phRechPat.getComboPatients().getSelectedItem());
-                System.out.println("on a selectionné :"+c);
-                int idPatient=0;
-                // problème pour récuperer que l'id  du patient
-                
-               
-//                //s.AfficherInformationsService();
-              
-              PATIENTSELECTIONNE = req.RecherchePatient(idPatient); // pas très opti car retour dans BD.. à revoir
-                
+                vuePrin.newWindow(phExam);
             }
         });
         
-        
-        
-        
-        
-        
-        
-        
-        // creer examen
-        
-        
-        phDossPat.getButtonCreerExam().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+        phDossPat.getButtonRetour().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(crExam);
-                //changerMenu(phDossPat, crExam);
-                //vuePrin.newFrame(crExam);
+                System.out.println("variable en fct de qui est connecte, a voir plus tard");
             }
         });
-        
-        phDossPat.getTableExamens().addMouseListener(new MouseListener(){
+
+        phDossPat.getTableExamens().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(e.getClickCount()>=2){
-                int numcol = phDossPat.getTableExamens().getSelectedRow();
-                System.out.println(numcol);
-                // on change les menus avec les infos de l'examen en parametre
-                changerMenu(phExam);
-                //changerMenu(phDossPat, phExam);
+                if (e.getClickCount() >= 2) {
+                    int numcol = phDossPat.getTableExamens().getSelectedRow();
+                    System.out.println(numcol);
+                    // on change les menus avec les infos de l'examen en parametre
+                    vuePrin.changerWindow(phExam);
                 }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                
+
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                
+
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                
+
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+
+      
+        
+        
+        
+        
+        //////// BOUTONS CREER NOUVEL EXAMEN /////////
+        crExam.getButtonAjout().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.changerWindow(phExam);
+            }
+        });
+        
+        crExam2.getButtonModif().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.changerWindow(crExam);
+            }
+        });
+        
+        ///////////// BOUTON PARAMETRES ///////////
+        
+       
+        para.getButtonAnnul().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // il faudra changer la méthode dessous pour ca cf bloc note:
+                para.ResetChamps();
+                vuePrin.changerWindow(phRechPat);
+            }
+        });
+        
+        para.getButtonVal().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(para.ChangementMDP(pro, req)){
+                    para.ResetChamps();
+                    vuePrin.changerWindow(phRechPat);
+                }
+                
+                
+                
+                // il faudra changer la méthode dessous pour ca cf bloc note:
                 
             }
-            
-            
         });
+        
+        
+        //////// BOUTONS ACCUEIL PAGE SECRETAIRE /////////
+        
+        pageSecr.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(co);
+            }
+        });
+        
+        
+        
+        
+        //////////// PAGE MANIP INITILE CAR QD ON CREE UN DMR IL SE CREE JUSTE JUSTE OU ALORS JUSTE METTRE UN MESSAGE : UN DMR SERA CREE POUR CE PATIENT ETES VOUS SUR ?
+        
+         //Bouton page manipulateur
+        pageManip.getButtonCreerDmr().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(crDMR);
+            }
+        });
+        
+        pageManip.getButtonChercher().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(phDossPat);
+            }
+        });
+        
+        pageManip.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(co);
+            }
+        });
+        
+        
+        
+        //////// BOUTONS PAGE DE CREATION DMR /////////
+        crDMR.getButtonCreerDmr().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(phDossPat);
+            }
+        });
+        
+        crDMR.getButtonRetour().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(pageManip);
+            }
+        });
+        
 
     }
 
     public void changerMenu(JFrame vueApres) {
-        vueAvant = vuePrin.getFrame();
         vuePrin.newFrame(vueApres);
 
     }
-    // creer une méthode qui permet d'avoir 2 vues en meme temps ? cf creer examen ou parametres
 
 }

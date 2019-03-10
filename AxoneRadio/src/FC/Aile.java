@@ -48,12 +48,12 @@ public class Aile {
     }
     
     public void AfficherInformationsAile(){
-        System.out.println("----------------");
+        System.out.println("--------------------------------------------------------------------------------");
         System.out.println("AILE :");
         System.out.println("Numero : "+this.idAile);
         System.out.println("Nom : "+this.getNomAile());
         System.out.println("Nb personnes : "+this.nbPersonnes);
-        System.out.println("----------------");
+        System.out.println("--------------------------------------------------------------------------------");
     }
     
     

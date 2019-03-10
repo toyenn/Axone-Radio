@@ -86,11 +86,19 @@ public class Patient {
     public void setDMR(DossierMedicalRadiologique DMR) {
         this.DMR = DMR;
     }
+    
+    public String NomPrenomIdPatient(){
+        return this.nom+" "+this.prénom+" ,"+this.id;
+    }
+    
+   
+    
+   
 
-    void InformationsPatient() {
-        System.out.println("----------------------");
+    public void InformationsPatient() {
+        System.out.println("--------------------------------------------");
         System.out.println("INFORMATIONS PATIENT :");
-        System.out.println("----------------------");
+        System.out.println("--------------------------------------------");
         System.out.println("ID : " + this.id);
         System.out.println("NOM : " + this.nom);
         System.out.println("PRENOM : " + this.prénom);
@@ -98,11 +106,11 @@ public class Patient {
         System.out.println("GENRE : " + this.genre);
         System.out.println("HOSPITALISE : " + this.hospitalise);
         System.out.println("SERVICE ID : " + this.Service);
-        System.out.println("----------------------");
+        System.out.println("--------------------------------------------");
         
-        System.out.println("LISTE DES EXAMENS : ");
+        
         DMR.AfficherInformationsExamens();
-        System.out.println("----------------------");
+        System.out.println("--------------------------------------------");
         
 
     }

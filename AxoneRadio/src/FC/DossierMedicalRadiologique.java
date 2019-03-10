@@ -48,10 +48,14 @@ public class DossierMedicalRadiologique { // pour un patient
     }
     
     public void AfficherInformationsExamens(){
+        System.out.println("*************************************");
+        System.out.println("AFFICHAGE DU DMR DU PATIENT :");
+        System.out.println("*************************************");
         for(int i=0;i<this.listeExamens.size();i++){
             this.getListeExamens().get(i).AfficherInformationsExamen();
             
         }
+        System.out.println("*************************************");
     }
     
    

@@ -58,6 +58,95 @@ public class Professionnel { // classe abstraite ou interface ?
     public String getService() {
         return service;
     }
+
+    public String getPrénom() {
+        return prénom;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrénom(String prénom) {
+        this.prénom = prénom;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    
+    // change le mdp en local et sur la BD
+    public boolean setMotDePasse(String mdp,RequetesBD req) {
+        if(MdpValide(mdp)){
+        this.motDePasse = mdp;
+        req.ChangerMotDePasse(this, mdp);
+        return true;
+        }
+        else{
+           return false;
+        }
+    }
+    
+    public boolean MdpValide(String mdp){
+        // 5 caractères minimum
+        // 1 majuscule minimum
+        // 1 minuscule minimum
+        // 1 chiffre minimum
+        //1 lettre minimum
+        char c;
+        int i=0;
+        boolean majuscule = false;
+        boolean minuscule = false;
+        boolean lettre = false;
+        boolean nombre=false;
+        
+        if(mdp.length()<5){
+            System.out.println("Mot de Passe invalide : trop petit");
+            return false;
+        }
+        
+            while(i<mdp.length() && (majuscule==false || minuscule==false || lettre==false || nombre==false)){
+            c = mdp.charAt(i);
+            if((c>='0')&&(c<='9')){
+  
+                nombre = true;
+              }
+            else{
+
+                lettre = true;
+            }
+            if((c>='a')&&(c<='z')){
+
+                minuscule = true;
+            }
+            else if((c>='A')&&(c<='Z')){
+               
+                majuscule = true;
+            }
+            i++;
+            
+        }
+        if(lettre && majuscule && minuscule && nombre){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     
     
 }
