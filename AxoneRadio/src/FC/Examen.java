@@ -22,16 +22,16 @@ public class Examen {
     
     private Images LISTEIMAGES;
 
-    // examen sans id dans constructeur ?
-    public Examen(int idExam,Patient Patient, Professionnel PHresponsable, DateN date, TypeExamen type, CompteRendu cr, int IDservice) {
+    // examen sans type cr
+    public Examen(int idExam,Patient Patient, Professionnel PHresponsable, DateN date, TypeExamen type, int IDservice) {
         this.idExamen = idExam;
         this.Patient = Patient;
         this.PHresponsable = PHresponsable;
         this.date = date;
         this.type = type;
-        this.cr = cr;
         this.IDservice = IDservice;
         this.LISTEIMAGES = new Images();
+        this.cr = new CompteRendu(this);
     }
 
     public int getIdExamen() {
@@ -73,6 +73,10 @@ public class Examen {
     public void setLISTEIMAGES(Images LISTEIMAGES) {
         this.LISTEIMAGES = LISTEIMAGES;
     }
+
+    public void setCr(CompteRendu cr) {
+        this.cr = cr;
+    }
     
 
     
@@ -86,7 +90,7 @@ public class Examen {
         System.out.println("PH RESPO : "+this.getPHresponsable().getNom()+" "+this.getPHresponsable().getPrenom());
         System.out.println("DATE : "+this.getDate().toString());
         System.out.println("TYPE EXAM : " +this.getType().toString());
-        System.out.println("CR : "+this.getCr().getTexte());
+        this.getCr().afficherInfoCR();      
         System.out.println("SERVICE QUI A DEMANDE : "+this.getService());
         
         

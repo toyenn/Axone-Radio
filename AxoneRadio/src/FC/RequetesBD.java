@@ -332,7 +332,59 @@ public class RequetesBD {
   
        
         
-    } 
+    }
+    
+    
+    public CompteRendu getCrExamen(Examen exam){
+         
+           CompteRendu cr = new CompteRendu(exam);
+           int idCR;
+           
+           Professionnel Createur;
+   
+    
+           EtatCr etat;
+           String texte;
+        
+         
+
+   
+    int IDservice; 
+        try {
+//           
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT * FROM compterendu WHERE idexam=" + exam.getIdExamen());
+            //On récupère les MetaData
+            ResultSetMetaData resultMeta = result.getMetaData();
+
+            while (result.next()) {
+               idCR = result.getInt("idcr");
+               Createur = this.getProfessionnel(result.getInt("idcreateur"));
+               etat = EtatCr.valueOf((result.getString("etatcr")));
+               texte = result.getString("textecr");
+               
+               
+               
+              
+               cr = new CompteRendu(idCR,exam,Createur,etat,texte);
+               
+               
+               
+                
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cr;
+    }
     
     public DossierMedicalRadiologique GetDMRPatient(Patient pat){ 
         DossierMedicalRadiologique DMR = new DossierMedicalRadiologique();
@@ -371,10 +423,16 @@ public class RequetesBD {
                
                date = new DateN(result.getString("dateExam"));
                type = TypeExamen.valueOf(result.getString("typeExam"));
-               cr = new CompteRendu(pat,PHresponsable);
-               cr.AjouterTexte(result.getString("CR"));
+               
                IDservice = result.getInt("idService");
-               Examen exam = new Examen(idExamen,pat,PHresponsable,date,type,cr,IDservice);
+               Examen exam = new Examen(idExamen,pat,PHresponsable,date,type,IDservice);
+               //cr = new CompteRendu(pat,PHresponsable);
+               //azeexam.getCr().AjouterTexte(result.getString("CR"));
+                exam.setCr(this.getCrExamen(exam));
+//                System.out.println("lkndksnlksdnclknfkcnldvwnv");
+//                exam.getCr().afficherInfoCR();
+               //exam.getCr().setCreateur(PHresponsable);
+               //exam.ajouterCr(cr);
                //exam.AfficherInformationsExamen();
                DMR.AjouterExamen(exam);
                 
@@ -514,8 +572,11 @@ public class RequetesBD {
      public Patient ChargementPatient(int id){
          Patient p =this.RecherchePatient(id); // charge le patient avec lid id
             p.setDMR(this.GetDMRPatient(p)); // charge le dmr du patient
-            for(int i=0;i<p.getDMR().getListeExamens().size();i++){ // charge les images des examens
+            
+            for(int i=0;i<p.getDMR().getListeExamens().size();i++){ // charge les images des examens et compte rendu
                 Examen ex = p.getDMR().getListeExamens().get(i);
+               
+                ex.getCr().afficherInfoCR();
                 ex.setLISTEIMAGES(this.getImagesExamen(ex.getIdExamen()));
             }
             return p;

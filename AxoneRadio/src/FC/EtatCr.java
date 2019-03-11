@@ -10,5 +10,7 @@ package FC;
  * @author Nathan
  */
 public enum EtatCr {
-    validé,attente,nonecrit
+    validé,attente,nonecrit;
+    
+
 }
