@@ -6,7 +6,9 @@
 package Interface;
 
 import FC.Examen;
+import FC.Services;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JList;
 
 /**
@@ -309,9 +311,9 @@ public class PH_Examen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
-public void actualiserInfos(Examen Exam) {
+public void actualiserInfos(Services CHU,Examen Exam) {
         actualiserListeImages(Exam);
-        jLabel3.setText(Exam.getCr().toString());
+        jLabel3.setText(Exam.getCr().InfosCR(CHU)); // CHU permet de donner le nom du service a partir de lid
     }
     
     public void actualiserListeImages(Examen e){
@@ -327,4 +329,10 @@ public void actualiserInfos(Examen Exam) {
     public JList<String> getListeImages() {
         return jList1;
     }
+
+    public JButton getButtonEditerCr() {
+        return jButton3;
+    }
+    
+    
 }

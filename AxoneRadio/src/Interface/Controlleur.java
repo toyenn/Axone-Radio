@@ -31,6 +31,7 @@ public class Controlleur {
     private PH_RechercherPatient phRechPat;
     //private CréerUnExamen2 crExam2;
     //private PageSecretaire pageSecr;
+    private CR compteR;
     private VuePrincipale vuePrin;
     private Parametres para;
 
@@ -55,6 +56,7 @@ public class Controlleur {
         phDossPat = new PH_DossierPatient();
         phExam = new PH_Examen();
         phRechPat = new PH_RechercherPatient(this.CHU,this.req);
+        compteR = new CR();
         //crExam2 = new CréerUnExamen2();
         //pageSecr = new PageSecretaire();
         vuePrin = new VuePrincipale();
@@ -98,7 +100,7 @@ public class Controlleur {
                 }
                 else{
                     System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
-                    
+                    phRechPat.ActualiserInformationsProfessionnel(pro);
                     //phRechPat.ActualiserInfos(pro,CHU);
                      changerMenu(phRechPat);
                 }
@@ -129,7 +131,7 @@ public class Controlleur {
                 }
                 else{
                     System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
-                    
+                    phRechPat.ActualiserInformationsProfessionnel(pro);
                     //phRechPat.ActualiserInfos(pro,CHU);
                      changerMenu(phRechPat);
                 }
@@ -162,6 +164,7 @@ public class Controlleur {
                 PATIENTSELECTIONNE = req.ChargementPatient(id);
                 //PATIENTSELECTIONNE.InformationsPatient();
                 phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
+                phDossPat.ActualiserInfosPro(pro);
                 changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
             }
         });
@@ -188,6 +191,7 @@ public class Controlleur {
         phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
+                crExam.ActualiserInfos(pro,PATIENTSELECTIONNE);
                 vuePrin.newWindow(crExam);
             }
         });
@@ -216,7 +220,7 @@ public class Controlleur {
                     int a = (int)phDossPat.getTableExamens().getValueAt(ligne, 0);
                     //System.out.println("\n\n\n\n\n\n\nID :"+a);
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
-                    phExam.actualiserInfos(SELECTEDEXAMEN);
+                    phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
                     vuePrin.changerWindow(phExam);
                 }
             }
@@ -286,12 +290,49 @@ public class Controlleur {
             }
         });
         
+        phExam.getButtonEditerCr().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               compteR.ActualiserInfos(CHU, pro, PATIENTSELECTIONNE, SELECTEDEXAMEN);                    
+               vuePrin.newWindow(compteR);
+            }
+        });
+        
+        ///////////// BOUTON COMPTE RENDU///////////////////////////
+        compteR.getValiderButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               if(compteR.getTextCR().equals("")){
+                   SELECTEDEXAMEN.getCr().setEtat(EtatCr.nonecrit);
+               }
+               else{
+                   SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
+               }
+            }
+        });
+        
+        
         
         
         //////// BOUTONS CREER NOUVEL EXAMEN /////////
+        crExam.RemplirComboServices(CHU);
+        crExam.RemplirComboAiles(CHU);
+        crExam.getComboServices().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               crExam.RemplirComboAiles(CHU);
+            }
+        });
+        
         crExam.getButtonAjout().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
+                crExam.ajouterExamen(CHU,pro,PATIENTSELECTIONNE,req);
+                crExam.ResetChamps();
+                
+                int max = PATIENTSELECTIONNE.getDMR().getIdMax();
+                SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(max);
+                phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
                 vuePrin.changerWindow(phExam);
             }
         });

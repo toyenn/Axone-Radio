@@ -98,6 +98,26 @@ public class CompteRendu {
     public EtatCr getEtat() {
         return etat;
     }
+    
+    public String InfosCR(Services S){
+        String s="";
+        s+="Patient :\n----------------\n";
+        s+="Id : "+this.exam.getPatient().getid()+"\n";
+        s+="Nom : "+this.exam.getPatient().getNom()+"  ,prénom : "+this.exam.getPatient().getPrénom()+"\n";
+        s+="Date Naissance : "+this.exam.getPatient().getDate().toString_DateNaissance()+" , ";
+        s+="Genre : "+this.exam.getPatient().getGenre()+"\n";
+        s+="Adresse : "+"       "+"\n";
+        s+="----------------\n";
+        s+="Professionnel ayant crée l'examen : ";
+        s+=this.Createur.getNom()+" "+this.Createur.getPrenom()+" , "+this.Createur.getId()+"\n";
+        s+=this.Createur.getService();
+        s+="\n----------------\n";
+        s+="Examen : \n"+"Date création : "+this.getExam().getDate().toString()+"\n";
+        s+="Type : "+this.getExam().getType().toString()+"  ,Service demandeur : "+S.getNomService(this.getExam().getIDservice())+"\n";
+        s+="\n----------------\n";
+        s+=this.texte;
+        return s;
+    }
 
     public String getTexte() {
         return texte;

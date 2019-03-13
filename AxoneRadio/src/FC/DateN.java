@@ -32,6 +32,8 @@ public class DateN {
         this.minute = minute;
     }
     
+
+    
     public DateN(String DateBD){ // récupère la date au format de la base de données pour un patient
       
         this.annee = Integer.parseInt(DateBD.substring(0, 4));

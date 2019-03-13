@@ -33,6 +33,17 @@ public class Examen {
         this.LISTEIMAGES = new Images();
         this.cr = new CompteRendu(this);
     }
+    
+     public Examen(Patient Patient, Professionnel PHresponsable, DateN date, TypeExamen type, int IDservice) {
+        this.idExamen=0;
+        this.Patient = Patient;
+        this.PHresponsable = PHresponsable;
+        this.date = date;
+        this.type = type;
+        this.IDservice = IDservice;
+        this.LISTEIMAGES = new Images();
+        this.cr = new CompteRendu(this);
+    }
 
     public int getIdExamen() {
         return idExamen;

@@ -59,9 +59,7 @@ public class Professionnel { // classe abstraite ou interface ?
         return service;
     }
 
-    public String getPrénom() {
-        return prénom;
-    }
+  
 
     public String getMotDePasse() {
         return motDePasse;

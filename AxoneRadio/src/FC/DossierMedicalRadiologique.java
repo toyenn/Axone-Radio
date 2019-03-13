@@ -32,6 +32,17 @@ public class DossierMedicalRadiologique { // pour un patient
             this.listeExamens.add(ExamAjouter);
         }
     }
+    public int getIdMax(){
+        int i=0;
+        int max=1;
+        while(i<this.listeExamens.size()){
+            if(this.listeExamens.get(i).getIdExamen()>max){
+                max = this.listeExamens.get(i).getIdExamen();
+            }
+            i++;
+        }
+        return max;
+    }
     
     
     
