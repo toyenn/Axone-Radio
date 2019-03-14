@@ -17,6 +17,18 @@ public class Images {
     public Images(){
         listeImages = new Vector<Imagepacs>();
     }
+    
+     public int getIdMax(){
+        int i=0;
+        int max=1;
+        while(i<this.listeImages.size()){
+            if(this.listeImages.get(i).getIdExamen()>max){
+                max = this.listeImages.get(i).getIdImage();
+            }
+            i++;
+        }
+        return max;
+    }
 
     public Vector<Imagepacs> getListeImages() {
         return listeImages;

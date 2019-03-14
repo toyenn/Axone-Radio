@@ -16,6 +16,7 @@ import FC.TypeExamen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -698,7 +699,9 @@ public class CréerUnExamen extends javax.swing.JFrame {
         // on ajoute l'examen en local
         pat.getDMR().AjouterExamen(examAajouter);
         // on ajoute l'examen dans la BD
-       // req.AjoutExamen(examAajouter);
+        req.AjoutExamen(examAajouter);
+        
+        JOptionPane.showMessageDialog(this, "L'examen a bien été crée", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void ResetChamps(){

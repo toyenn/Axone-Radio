@@ -14,6 +14,7 @@ public class Imagepacs {
     private int idPatient;
     private int idExamen;
     private String nom;
+    
 
     public Imagepacs(int idImage, int idPatient, int idExamen, String nom) {
         this.idImage = idImage;

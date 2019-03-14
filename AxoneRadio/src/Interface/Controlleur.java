@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import FC.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
    
@@ -29,6 +31,7 @@ public class Controlleur {
     private PH_DossierPatient phDossPat;
     private PH_Examen phExam;
     private PH_RechercherPatient phRechPat;
+    private AjouterImage ajoutImg;
     //private CréerUnExamen2 crExam2;
     //private PageSecretaire pageSecr;
     private CR compteR;
@@ -61,7 +64,7 @@ public class Controlleur {
         //pageSecr = new PageSecretaire();
         vuePrin = new VuePrincipale();
         para = new Parametres(); // parametre professionnelle pro ? pour modifier mdp
-
+        ajoutImg = new AjouterImage();
         vuePrin.newFrame(co);
 
         //////// BOUTONS PAGE DE CONNEXION /////////
@@ -298,18 +301,100 @@ public class Controlleur {
             }
         });
         
+        
+        phExam.getButtonAddImage().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ajoutImg.actualiserInfosPage(CHU,PATIENTSELECTIONNE,SELECTEDEXAMEN);
+                
+                vuePrin.newWindow(ajoutImg);
+            }
+           
+        });
+        
+        //////////////// BOUTON AJOUTER IMAGE ///////////////////
+        ajoutImg.getButtonCharger().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               JFileChooser fileOuvrirImage = new JFileChooser();
+           
+            if (fileOuvrirImage.showOpenDialog(phExam) == JFileChooser.APPROVE_OPTION) {
+                // creer nouvelle image qui va dans lexam
+                
+                // actualise la bd
+                ajoutImg.setCheminImage(fileOuvrirImage.getSelectedFile()
+                        .getAbsolutePath());
+                ajoutImg.setTextChemin(ajoutImg.getCheminImage());
+               
+//                panneau.ajouterImage(new File(fileOuvrirImage.getSelectedFile()
+//                        .getAbsolutePath()));
+            }
+            }
+            
+        });
+        
+        ajoutImg.getButtonValider().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!ajoutImg.getChampsNom().getText().equals("")){
+                    if(!ajoutImg.getCheminImage().equals("")){
+                        System.out.println("blabla");
+                        int id = req.getMaxIdImg()+1;
+                        System.out.println("id :"+id);
+                         Imagepacs ImageAAjouter = new Imagepacs(id,PATIENTSELECTIONNE.getid(),SELECTEDEXAMEN.getIdExamen(),ajoutImg.getChampsNom().getText());
+                         SELECTEDEXAMEN.getLISTEIMAGES().AjouterImage(ImageAAjouter); //ajouter img en local
+                         phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
+                         
+                         
+                          //ajouter img en ligne :
+                         req.ecrirePACS(ImageAAjouter, ajoutImg.getCheminImage());
+                         
+                         
+                         JOptionPane.showMessageDialog(ajoutImg, "L'image a bien été rajouté", "Information", JOptionPane.INFORMATION_MESSAGE);
+    
+                         
+                        
+                         ///// JE SAIS PLUS COMMENT ON QUITTE LA FENETRE
+                         ajoutImg.setVisible(false);
+                    }
+                    else{
+                        System.out.println("ERREUR image non selectionne");
+                    }
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(ajoutImg, "Veuillez remplir tous les champs", "Erreur", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }
+        });
+        
+        
         ///////////// BOUTON COMPTE RENDU///////////////////////////
         compteR.getValiderButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(compteR.getTextCR().equals("")){
+               if(compteR.getTextCR().getText().equals("")){
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.nonecrit);
+                    phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
+                    // QUITTER FENETRE
+                    JOptionPane.showMessageDialog(compteR, "Le compte rendu a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    compteR.setVisible(false);/////////////////////// AUTRE MOYEN AVEC CNTROLEUR AYAYAYAY
                }
                else{
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
+                   SELECTEDEXAMEN.getCr().setTexte(compteR.getTextCR().getText());
+                   phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
+                   JOptionPane.showMessageDialog(compteR, "Le compte rendu a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    compteR.setVisible(false);/////////////////////// AUTRE MOYEN AVEC CNTROLEUR AYAYAYAY
+                   
+                   
                }
             }
         });
+        
+        
+        
         
         
         

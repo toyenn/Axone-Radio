@@ -5,13 +5,22 @@
  */
 package FC;
 
+import Interface.AfficheImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -334,6 +343,68 @@ public class RequetesBD {
         
     }
     
+    //modification dun cr en changeant letat ou en changeant le texte
+    public void ModifierCR(Examen exam){
+       
+      
+
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            String url = "jdbc:mysql://localhost:3306/connexion";
+//            url+= "?serverTimezone=UTC";
+//            String user = "root";
+//            String passwd = "";
+//
+//        Connection conn = DriverManager.getConnection(url, user, passwd);
+            CompteRendu CR = exam.getCr();
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+           String Querry="INSERT INTO compterendu SET etatcr = "+exam.getCr().getEtat().toString()+" , textecr = "+exam.getCr().getTexte()+" WHERE idexam = "+exam.getCr().getExam().getIdExamen();
+           state.executeUpdate(Querry);
+
+            System.out.println("Le CR a bien été modifié ds la BD");
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+  
+       
+        
+    }
+    // ajout d'un CR :
+    public void AjoutCR(Examen exam){
+       
+      
+
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            String url = "jdbc:mysql://localhost:3306/connexion";
+//            url+= "?serverTimezone=UTC";
+//            String user = "root";
+//            String passwd = "";
+//
+//        Connection conn = DriverManager.getConnection(url, user, passwd);
+            CompteRendu CR = exam.getCr();
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+           String Querry="INSERT INTO `compterendu` (`idcr`, `idexam`, `idcreateur`, `etatcr`, `textecr`) VALUES ("+CR.getExam().getIdExamen()+", "+CR.getExam().getIdExamen()+", '"+CR.getCreateur().getId()+"', '"+CR.getEtat().toString()+"', '"+CR.getTexte()+"')";
+           state.executeUpdate(Querry);
+
+            System.out.println("Le CR a bien été ajouté à la BD");
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+  
+       
+        
+    }
     
     public CompteRendu getCrExamen(Examen exam){
          
@@ -582,4 +653,77 @@ public class RequetesBD {
             return p;
      }
      
+     
+     
+     
+     public int getMaxIdImg(){
+          int id=0;
+         try {
+//           
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT MAX(idImage) FROM pacs");
+            //On récupère les MetaData
+           
+           
+            while (result.next()) {
+               //id = result.getInt("idImage");
+               id = result.getInt(1);
+              
+               
+               
+               
+              
+               
+               
+               
+               
+                
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return id;
+     }
+     
+     
+     
+     
+     // ajouter image pacs
+     // ajoute l'image selectionné au préalable dans le pacs
+     public void ecrirePACS(Imagepacs img,String Cheminimg) {
+        try {
+                // enregistrement en local :
+                //this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
+                
+                RequetesBD req = new RequetesBD();
+                
+               PreparedStatement ps = req.getConn().prepareStatement("insert into pacs(idImage, nomImage,idExam,idPatient,image) values(?,?,?,?,?)");
+                
+              // InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
+               InputStream is = new FileInputStream(new File(Cheminimg));
+               ps.setInt(1,img.getIdImage() );
+               ps.setString(2,img.getNom());
+               ps.setInt(3,img.getIdExamen());
+                ps.setInt(4,img.getIdPatient());
+               ps.setBlob(5,is);
+               
+              
+               ps.executeUpdate();
+               JOptionPane.showMessageDialog(null,"Data Inserted");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }
