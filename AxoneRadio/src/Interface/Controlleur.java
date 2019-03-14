@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import FC.*;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
@@ -29,8 +30,6 @@ public class Controlleur {
     private PH_DossierPatient phDossPat;
     private PH_Examen phExam;
     private PH_RechercherPatient phRechPat;
-    //private CréerUnExamen2 crExam2;
-    //private PageSecretaire pageSecr;
     private VuePrincipale vuePrin;
     private Parametres para;
 
@@ -47,7 +46,7 @@ public class Controlleur {
         req= new RequetesBD();
         CHU = req.CreerListeServices();
         
-        // chargelent des interfaces
+        // chargement des interfaces
         co = new VueConnect();
         crDMR = new CréerUnDMR();
         crExam = new CréerUnExamen();
@@ -55,8 +54,6 @@ public class Controlleur {
         phDossPat = new PH_DossierPatient();
         phExam = new PH_Examen();
         phRechPat = new PH_RechercherPatient(this.CHU,this.req);
-        //crExam2 = new CréerUnExamen2();
-        //pageSecr = new PageSecretaire();
         vuePrin = new VuePrincipale();
         para = new Parametres(); // parametre professionnelle pro ? pour modifier mdp
 
@@ -147,8 +144,22 @@ public class Controlleur {
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
+                String valId;
+                valId="";
+                valId = phRechPat.getjTextFieldId().getText();
+                int id = Integer.parseInt(valId);
+                System.out.println("id récupéré :"+id);;
+                System.out.println("//////////////////////////////////////////////////////////////////////////////////////////////////////////");
+                PATIENTSELECTIONNE = req.ChargementPatient(id);
+                //PATIENTSELECTIONNE.InformationsPatient();
+                try{
+                    phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
+                    changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
+                } catch(NullPointerException npe){
+                    Component frame = null;
+                    JOptionPane.showMessageDialog(frame,"L'ID rentré n'est pas dans la base de donnée","Inane warning",JOptionPane.WARNING_MESSAGE);
+                }
                 
-               changerMenu(phDossPat);
             }
         });
 
@@ -296,16 +307,7 @@ public class Controlleur {
             }
         });
         
-//        crExam2.getButtonModif().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                vuePrin.changerWindow(crExam);
-//            }
-//        });
-        
         ///////////// BOUTON PARAMETRES ///////////
-        
-       
         para.getButtonAnnul().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {

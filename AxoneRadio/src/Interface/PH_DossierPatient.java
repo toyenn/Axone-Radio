@@ -1,11 +1,7 @@
 // A FAIRE ici : 
-
 // rajouter un bouton modifier pour les infos administratives ? et du coup une interface pour ca
-
 // rajouter un bouton modifier pour les examens selectionnées
-
 //creer une méthode qui permet de mettre a jour l'affichage du tableau des examens comme ca a chaque fois quil y a une modif comme un ajout dexam on apelle cete méthode ou encore quand on clic sur le bouton "examssans compte rendu"
-
 // ajouter des boutons retour la et dans les autres pages
 package Interface;
 
@@ -549,15 +545,12 @@ public class PH_DossierPatient extends javax.swing.JFrame {
             }
         });
     }
-    
-  
 
-     
-   public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
+    public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
         return getButtonCreerExam();
     }
 
-   public javax.swing.JTable getTableExamens() { // bouton recherche par service
+    public javax.swing.JTable getTableExamens() { // bouton recherche par service
         return tableExamens;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -608,7 +601,6 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         return buttonCreerExam;
     }
 
-
     /**
      * @return the buttonVal
      */
@@ -622,49 +614,46 @@ public class PH_DossierPatient extends javax.swing.JFrame {
 //    public javax.swing.JButton getButtonRetour() {
 //        return buttonRetour;
 //    }
-
     public JCheckBox getButtoncocher() {
         return jCheckBox2;
     }
-    
-    
-    public void ActualiserInfosPatient(Services S,Patient p){
+
+    public void ActualiserInfosPatient(Services S, Patient p) {
         numeropatient.setText(String.valueOf(p.getid()));
         nompatient.setText(p.getNom());
         prenompatient.setText(p.getPrénom());
         datepatient.setText(p.getDate().toString_DateNaissance());
         genrepatient.setText(p.getGenre());
         adressepatient.setText(S.getNomService(p.getService()));
-        ActualiserDMRPatient(S,p);
-        
+        ActualiserDMRPatient(S, p);
+
     }
-    public void ActualiserDMRPatient(Services S,Patient p){
+
+    public void ActualiserDMRPatient(Services S, Patient p) {
         DefaultTableModel dtm = new DefaultTableModel(0, 6);
 
         for (int i = 0; i < p.getDMR().getListeExamens().size(); i++) {
-            if(jCheckBox2.isSelected()){
-                if(p.getDMR().getListeExamens().get(i).getCr().getEtat().toString().equals("nonecrit")){
+            if (jCheckBox2.isSelected()) {
+                if (p.getDMR().getListeExamens().get(i).getCr().getEtat().toString().equals("nonecrit")) {
                     Object[] data = new Object[6];
                     data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
                     data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
-                   data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
-                   data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
-                  data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
-                  data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
-                  dtm.addRow(data);
+                    data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
+                    data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
+                    data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
+                    data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
+                    dtm.addRow(data);
                 }
+            } else {
+                Object[] data = new Object[6];
+                data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
+                data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
+                data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
+                data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
+                data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
+                data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
+                dtm.addRow(data);
             }
-            else{
-            Object[] data = new Object[6];
-            data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
-            data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
-            data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
-            data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
-            data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
-            data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
-            dtm.addRow(data);
-            }
-            
 
         }
 
@@ -682,8 +671,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(dtm);
         tableExamens.setRowSorter(sorter);
     }
-    
-    public void ActualiserInfosPro(){
+
+    public void ActualiserInfosPro() {
         System.out.println("pas encore fait");
         // en fonctiond es boutons
     }
