@@ -271,8 +271,21 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         }
         else if(cliqueMenu.getSource().equals(writeInPacs)){
             System.out.println("Ecriture dans le PACS");
-            
-            panneau.ecrirePACS();    
+            String code = JOptionPane.showInputDialog(
+        this, 
+        "Entrer le nom de l'image", 
+        "Enregistrement de l'image modifiée au PACS", 
+        JOptionPane.INFORMATION_MESSAGE
+    );
+            if(code!=null && code!=""){
+            panneau.ecrirePACS(code);    
+            this.dispose(); // Fermer la fenetre
+            }
+            else{
+                System.out.println("ERREUR");
+                JOptionPane.showMessageDialog(this, "Le nom entré est incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
+                   
+            }
                 
                 
                 

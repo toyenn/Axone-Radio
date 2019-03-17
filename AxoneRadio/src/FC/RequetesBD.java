@@ -361,7 +361,9 @@ public class RequetesBD {
             CompteRendu CR = exam.getCr();
             //Création d'un objet Statement
             Statement state = conn.createStatement();
-           String Querry="INSERT INTO compterendu SET etatcr = "+exam.getCr().getEtat().toString()+" , textecr = "+exam.getCr().getTexte()+" WHERE idexam = "+exam.getCr().getExam().getIdExamen();
+            
+            // erreur la :
+           String Querry="UPDATE compterendu SET etatcr = '"+exam.getCr().getEtat().toString()+"' , textecr = '"+exam.getCr().getTexte()+"' WHERE idexam = "+exam.getCr().getExam().getIdExamen();
            state.executeUpdate(Querry);
 
             System.out.println("Le CR a bien été modifié ds la BD");
@@ -653,7 +655,42 @@ public class RequetesBD {
             return p;
      }
      
-     
+          public int getMaxIdExam(){
+          int id=0;
+         try {
+//           
+
+            //Création d'un objet Statement
+            Statement state = conn.createStatement();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
+            ResultSet result = state.executeQuery("SELECT MAX(idExamen) FROM examens");
+            //On récupère les MetaData
+           
+           
+            while (result.next()) {
+               //id = result.getInt("idImage");
+               id = result.getInt(1);
+              
+               
+               
+               
+              
+               
+               
+               
+               
+                
+            }
+
+            result.close();
+            state.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return id;
+     }
      
      
      public int getMaxIdImg(){

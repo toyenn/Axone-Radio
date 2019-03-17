@@ -396,7 +396,7 @@ public class IHMImages extends JPanel {
     }
 
     // y déplacer dna requetesBD
-    void ecrirePACS() {
+    void ecrirePACS(String n) {
         try {
                 // enregistrement en local :
                 this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
@@ -408,14 +408,14 @@ public class IHMImages extends JPanel {
                 
                InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
                
-               ps.setString(1,"Nom de limage");
+               ps.setString(1,n);
                ps.setInt(2,4);
                 ps.setInt(3,1);
                ps.setBlob(4,is);
                
               
                ps.executeUpdate();
-               JOptionPane.showMessageDialog(null,"Data Inserted");
+               //JOptionPane.showMessageDialog(null,"Data Inserted");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

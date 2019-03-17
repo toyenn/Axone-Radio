@@ -694,12 +694,20 @@ public class CréerUnExamen extends javax.swing.JFrame {
         int id = CHU.getService((String)jComboBox3.getSelectedItem()).getAile((String)jComboBox2.getSelectedItem()).getIdAile();
         
    
-        Examen examAajouter = new Examen(pat.getDMR().getIdMax()+1,pat,pro,d,type,id);
+        Examen examAajouter = new Examen(req.getMaxIdExam()+1,pat,pro,d,type,id);
         examAajouter.AfficherInformationsExamen();
+        //pour le cr
+        
+        examAajouter.getCr().setIdCR(examAajouter.getIdExamen());
+        
+        //ajout cr bd aussi
+        
+        
         // on ajoute l'examen en local
         pat.getDMR().AjouterExamen(examAajouter);
         // on ajoute l'examen dans la BD
         req.AjoutExamen(examAajouter);
+        req.AjoutCR(examAajouter);
         
         JOptionPane.showMessageDialog(this, "L'examen a bien été crée", "Information", JOptionPane.INFORMATION_MESSAGE);
     }

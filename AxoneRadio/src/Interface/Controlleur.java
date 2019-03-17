@@ -370,13 +370,17 @@ public class Controlleur {
         });
         
         
+        
         ///////////// BOUTON COMPTE RENDU///////////////////////////
         compteR.getValiderButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                if(compteR.getTextCR().getText().equals("")){
+                   
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.nonecrit);
                     phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
+                    // actualiserle cr dans la BD
+                    req.ModifierCR(SELECTEDEXAMEN);
                     // QUITTER FENETRE
                     JOptionPane.showMessageDialog(compteR, "Le compte rendu a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
                     compteR.setVisible(false);/////////////////////// AUTRE MOYEN AVEC CNTROLEUR AYAYAYAY
@@ -385,6 +389,8 @@ public class Controlleur {
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
                    SELECTEDEXAMEN.getCr().setTexte(compteR.getTextCR().getText());
                    phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
+                   // modifier le cr dans la BD
+                   req.ModifierCR(SELECTEDEXAMEN);
                    JOptionPane.showMessageDialog(compteR, "Le compte rendu a bien été modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
                     compteR.setVisible(false);/////////////////////// AUTRE MOYEN AVEC CNTROLEUR AYAYAYAY
                    
@@ -429,6 +435,20 @@ public class Controlleur {
 //            }
 //        });
         
+/////////////////// BOUTON PARTIE INTERFACE IMAGE
+
+
+
+
+
+
+
+
+
+
+
+
+
         ///////////// BOUTON PARAMETRES ///////////
         
        
