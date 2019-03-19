@@ -58,8 +58,6 @@ public class CréerUnDMR extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 600));
 

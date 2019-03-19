@@ -5,11 +5,7 @@
  */
 package Interface;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -36,14 +32,15 @@ public class VuePrincipale {
     }
     
     public void newFrame(JFrame frame){
+        this.frame1.setVisible(false);
         this.frame1=frame;
         this.setMenuOn();        
     }
     
     public void changerWindow(JFrame frame){
-        frame2.setVisible(false);
         frame2=frame;
         frame2.setVisible(true);
+        this.frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
     
     public void newWindow(JFrame frame){
