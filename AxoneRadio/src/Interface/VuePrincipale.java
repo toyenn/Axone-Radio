@@ -18,22 +18,13 @@ import javax.swing.JPanel;
 public class VuePrincipale {
     
     private JFrame frame1,frame2;
-    private JButton retour;
-    private GridBagConstraints c;
 
     public VuePrincipale() {
         this.frame1 = new JFrame();
         this.frame2 = new JFrame();
-        this.retour = new JButton();
-        this.retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png")));
-        
-//        this.frame1.setLayout(new GridBagLayout());
-//        c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.NORTHWEST;
-//        this.frame1.add(retour,c);
-        this.frame1.add(retour);
         
         this.frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.frame1.setResizable(false);
     }
     
@@ -45,9 +36,7 @@ public class VuePrincipale {
     }
     
     public void newFrame(JFrame frame){
-        frame1.setVisible(false);
         this.frame1=frame;
-        retour.repaint();
         this.setMenuOn();        
     }
     
@@ -62,9 +51,6 @@ public class VuePrincipale {
         frame2.setVisible(true);
     }
 
-    /**
-     * @return the frame
-     */
     public JFrame getFrame() {
         return frame1;
     }

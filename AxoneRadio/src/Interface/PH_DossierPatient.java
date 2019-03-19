@@ -686,4 +686,18 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         textfonction.setText(pro.getService());
         
     }
+
+    /**
+     * @return the buttonPara
+     */
+    public javax.swing.JButton getButtonPara() {
+        return buttonPara;
+    }
+
+    /**
+     * @return the buttonDeco
+     */
+    public javax.swing.JButton getButtonDeco() {
+        return buttonDeco;
+    }
 }

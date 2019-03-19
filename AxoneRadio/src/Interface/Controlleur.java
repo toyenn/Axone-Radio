@@ -152,7 +152,10 @@ public class Controlleur {
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+               int id = Integer.parseInt(phRechPat.getTextFieldId().getText());
+               PATIENTSELECTIONNE = req.ChargementPatient(id);
+               phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE);
+               phDossPat.ActualiserInfosPro(pro);
                changerMenu(phDossPat);
             }
         });
@@ -203,6 +206,20 @@ public class Controlleur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vuePrin.newWindow(phExam);
+            }
+        });
+        
+        phDossPat.getButtonPara().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.newWindow(para);
+            }
+        });
+        
+        phDossPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(co);
             }
         });
         
