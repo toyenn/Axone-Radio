@@ -190,10 +190,6 @@ public class Controlleur {
                 vuePrin.newWindow(para);
             }
         });
-
-        
-        
-        
         
         //////// BOUTONS DOSSIER PATIENT /////////
         phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
@@ -228,7 +224,7 @@ public class Controlleur {
                     //System.out.println("\n\n\n\n\n\n\nID :"+a);
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
                     phExam.actualiserInfos(SELECTEDEXAMEN);
-                    vuePrin.changerWindow(phExam);
+                    vuePrin.newWindow(phExam);
                 }
             }
 
@@ -265,8 +261,7 @@ public class Controlleur {
         ///////////// BOUTONS AFFICHAGE EXAMEN
         phExam.getListeImages().addMouseListener(new MouseListener(){
             @Override
-            public void mouseClicked(MouseEvent e) {
-               
+            public void mouseClicked(MouseEvent e) {   
             }
 
             @Override
@@ -278,9 +273,6 @@ public class Controlleur {
                     SELECTEDIMG.InformationsImage();
                     AfficheImage frame = new AfficheImage(SELECTEDIMG);
                     frame.setVisible(true);
-                   
-            
-            
                 }
             }
 
@@ -324,21 +316,10 @@ public class Controlleur {
                     para.ResetChamps();
                     vuePrin.changerWindow(phRechPat);
                 }
-                
-                
-                
                 // il faudra changer la méthode dessous pour ca cf bloc note:
                 
             }
         });
-        
-        
-      
-        
-        
-        
-        
-        
         
         //////////// PAGE MANIP INITILE CAR QD ON CREE UN DMR IL SE CREE JUSTE JUSTE OU ALORS JUSTE METTRE UN MESSAGE : UN DMR SERA CREE POUR CE PATIENT ETES VOUS SUR ?
         
