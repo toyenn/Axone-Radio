@@ -26,7 +26,6 @@ public class Controlleur {
     private VueConnect co;
     private CréerUnDMR crDMR;
     private CréerUnExamen crExam;
-   // private PageManipulateur1 pageManip;
     private PH_DossierPatient phDossPat;
     private PH_Examen phExam;
     private PH_RechercherPatient phRechPat;
@@ -36,6 +35,7 @@ public class Controlleur {
     private Parametres para;
     private RequetesBD req;
     private Professionnel pro;
+    private AccueilPH menuP;
     
     Services CHU;
     Service s;
@@ -49,10 +49,10 @@ public class Controlleur {
         CHU = req.CreerListeServices();
         
         // chargelent des interfaces
+        menuP = new AccueilPH();
         co = new VueConnect();
         crDMR = new CréerUnDMR();
         crExam = new CréerUnExamen();
-        //pageManip = new PageManipulateur1();
         phDossPat = new PH_DossierPatient();
         phExam = new PH_Examen();
         phRechPat = new PH_RechercherPatient(this.CHU,this.req);
@@ -73,7 +73,7 @@ public class Controlleur {
                 }
                 else{
                     phRechPat.ActualiserInformationsProfessionnel(pro);
-                     changerMenu(phRechPat);
+                     changerMenu(menuP);
                 }
             }
         });
@@ -95,8 +95,8 @@ public class Controlleur {
                     }
                     else{
                         System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
-                        phRechPat.ActualiserInformationsProfessionnel(pro);
-                        changerMenu(phRechPat);
+                        menuP.ActualiserInformationsProfessionnel(pro);
+                        changerMenu(menuP);
                     }
                 }   
             }
@@ -121,8 +121,8 @@ public class Controlleur {
                 }
                 else{
                     System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
-                    phRechPat.ActualiserInformationsProfessionnel(pro);
-                     changerMenu(phRechPat);
+                    menuP.ActualiserInformationsProfessionnel(pro);
+                    changerMenu(menuP);
                 }
             }
             }
@@ -133,6 +133,38 @@ public class Controlleur {
             }
         });
        
+        //Boutons page d'accueil
+        menuP.getButtonDeco2().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(co);
+            }
+        });
+        
+        menuP.getButtonGerer().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                phRechPat.ActualiserInformationsProfessionnel(pro);
+                changerMenu(phRechPat);
+            }
+        });
+        
+        menuP.getButtonPara().addActionListener(new ActionListener() { 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.newWindow(para);
+            }
+        });
+        
+        menuP.getButtonCrDmr().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                crDMR.ActualiserInformationsProfessionnel(pro);
+                vuePrin.newWindow(crDMR);
+            }
+        });
+        
+        
         //////// BOUTONS PAGE DE RECHERCHE DE PATIENTS /////////
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
@@ -147,6 +179,13 @@ public class Controlleur {
                     Component frame = null;
                     JOptionPane.showMessageDialog(frame,"L'ID rentré n'est pas dans la base de donnée","Inane warning",JOptionPane.WARNING_MESSAGE);
                 }
+            }
+        });
+        
+        phRechPat.getButtonRetour().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(menuP);
             }
         });
 
@@ -164,14 +203,14 @@ public class Controlleur {
             }
         });
         
-        phRechPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+        phRechPat.getButtonDeco().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changerMenu(co);
             }
         });
 
-        phRechPat.getButtonPara().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
+        phRechPat.getButtonPara().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
                 vuePrin.newWindow(para);
@@ -179,7 +218,7 @@ public class Controlleur {
         });
         
         //////// BOUTONS DOSSIER PATIENT /////////
-        phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+        phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
                 crExam.ActualiserInfos(pro,PATIENTSELECTIONNE);
@@ -187,21 +226,21 @@ public class Controlleur {
             }
         });
         
-        phDossPat.getButtonVal().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+        phDossPat.getButtonVal().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
                 vuePrin.newWindow(phExam);
             }
         });
         
-        phDossPat.getButtonPara().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
+        phDossPat.getButtonPara().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vuePrin.newWindow(para);
             }
         });
         
-        phDossPat.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
+        phDossPat.getButtonDeco().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changerMenu(co);
@@ -406,29 +445,6 @@ public class Controlleur {
                 } 
             }
         });
-        
-        //////////// PAGE MANIP INITILE CAR QD ON CREE UN DMR IL SE CREE JUSTE JUSTE OU ALORS JUSTE METTRE UN MESSAGE : UN DMR SERA CREE POUR CE PATIENT ETES VOUS SUR ?
-         //Bouton page manipulateur
-//        pageManip.getButtonCreerDmr().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                changerMenu(crDMR);
-//            }
-//        });
-//        
-//        pageManip.getButtonChercher().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                changerMenu(phDossPat);
-//            }
-//        });
-        
-//        pageManip.getButtonDeco().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                changerMenu(co);
-//            }
-//        });
         
         //////// BOUTONS PAGE DE CREATION DMR /////////
         crDMR.getButtonCreerDmr().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre

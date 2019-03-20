@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import FC.Professionnel;
+
 /**
  *
  * @author ndeyeawagaye
@@ -48,11 +50,11 @@ public class CréerUnDMR extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
+        labelNom = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
+        labelPrenom = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
+        labelFonction = new javax.swing.JLabel();
         buttonDeco4 = new javax.swing.JButton();
         buttonPara4 = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
@@ -195,15 +197,15 @@ public class CréerUnDMR extends javax.swing.JFrame {
 
         jLabel9.setText("Nom :");
 
-        jLabel49.setText("jLabel7");
+        labelNom.setText("jLabel7");
 
         jLabel50.setText("Prénom :");
 
-        jLabel51.setText("jLabel14");
+        labelPrenom.setText("jLabel14");
 
         jLabel52.setText("Fonction :");
 
-        jLabel53.setText("jLabel16");
+        labelFonction.setText("jLabel16");
 
         buttonDeco4.setText("Déconnection");
 
@@ -223,15 +225,15 @@ public class CréerUnDMR extends javax.swing.JFrame {
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel52)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel53))
+                                .addComponent(labelFonction))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelNom, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel50)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel51)))
+                                .addComponent(labelPrenom)))
                         .addGap(40, 40, 40)
                         .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -249,15 +251,15 @@ public class CréerUnDMR extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel49))
+                            .addComponent(labelNom))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel50)
-                            .addComponent(jLabel51))
+                            .addComponent(labelPrenom))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel53)))
+                            .addComponent(labelFonction)))
                     .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -390,12 +392,9 @@ public class CréerUnDMR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -409,12 +408,20 @@ public class CréerUnDMR extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel labelFonction;
+    private javax.swing.JLabel labelNom;
+    private javax.swing.JLabel labelPrenom;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getButtonCreerDmr() {
         return jButton3;
     }
-
+    
+    public void ActualiserInformationsProfessionnel(Professionnel pro){
+        labelNom.setText(pro.getNom());
+        labelPrenom.setText(pro.getPrenom());
+        labelFonction.setText(pro.getService());
+    }
 
 
 
