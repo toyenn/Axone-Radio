@@ -41,7 +41,7 @@ public class CR extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        buttonAnnul = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -86,7 +86,7 @@ public class CR extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 204));
         jLabel1.setText("Compte rendu");
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 204));
+        jButton4.setBackground(new java.awt.Color(153, 153, 153));
         jButton4.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 204));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ecrire-3.png"))); // NOI18N
@@ -97,11 +97,11 @@ public class CR extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 255));
-        jButton6.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 51, 204));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/annuler.png"))); // NOI18N
-        jButton6.setText("Annuler");
+        buttonAnnul.setBackground(new java.awt.Color(153, 153, 153));
+        buttonAnnul.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        buttonAnnul.setForeground(new java.awt.Color(0, 51, 204));
+        buttonAnnul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/annuler.png"))); // NOI18N
+        buttonAnnul.setText("Annuler");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information de l'examen", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Sans Typewriter", 1, 14), new java.awt.Color(0, 51, 204))); // NOI18N
@@ -415,7 +415,7 @@ public class CR extends javax.swing.JFrame {
                         .addGap(304, 304, 304)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonAnnul, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -440,7 +440,7 @@ public class CR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton6))
+                    .addComponent(buttonAnnul))
                 .addContainerGap())
         );
 
@@ -507,10 +507,10 @@ public class CR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Servic;
+    private javax.swing.JButton buttonAnnul;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -575,6 +575,13 @@ public class CR extends javax.swing.JFrame {
 
     public JTextArea getTextCR() {
         return jTextArea1;
+    }
+
+    /**
+     * @return the buttonAnnul
+     */
+    public javax.swing.JButton getButtonAnnul() {
+        return buttonAnnul;
     }
     
  

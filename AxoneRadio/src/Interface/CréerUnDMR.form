@@ -377,9 +377,9 @@
                               <Component id="jLabel54" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="buttonPara4" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonPara" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="buttonDeco4" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonDeco" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -412,8 +412,8 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonPara4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonDeco4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonPara" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonDeco" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -451,12 +451,12 @@
                 <Property name="text" type="java.lang.String" value="jLabel16"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonDeco4">
+            <Component class="javax.swing.JButton" name="buttonDeco">
               <Properties>
                 <Property name="text" type="java.lang.String" value="D&#xe9;connection"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonPara4">
+            <Component class="javax.swing.JButton" name="buttonPara">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Parametres"/>
               </Properties>

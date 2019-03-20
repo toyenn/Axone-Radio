@@ -18,7 +18,6 @@ public class VuePrincipale {
     public VuePrincipale() {
         this.frame1 = new JFrame();
         this.frame2 = new JFrame();
-        
         this.frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.frame1.setResizable(false);
@@ -40,7 +39,7 @@ public class VuePrincipale {
     public void changerWindow(JFrame frame){
         frame2=frame;
         frame2.setVisible(true);
-        this.frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+       // this.frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
     
     public void newWindow(JFrame frame){
@@ -50,5 +49,9 @@ public class VuePrincipale {
 
     public JFrame getFrame() {
         return frame1;
+    }
+    
+    public void closeWindow(){
+        frame2.setVisible(false);
     }
 }

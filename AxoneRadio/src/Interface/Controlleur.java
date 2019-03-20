@@ -402,6 +402,13 @@ public class Controlleur {
                }
             }
         });
+        
+        compteR.getButtonAnnul().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.closeWindow();
+            }
+        });
 
         //////// BOUTONS CREER NOUVEL EXAMEN /////////
         crExam.RemplirComboServices(CHU);
@@ -425,18 +432,23 @@ public class Controlleur {
             }
         });
         
-/////////////////// BOUTON PARTIE INTERFACE IMAGE
+        crExam.getButtonAnnul().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.closeWindow();
+            }
+        });
 
         ///////////// BOUTON PARAMETRES ///////////
         para.getButtonAnnul().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 para.ResetChamps();
-                vuePrin.changerWindow(phRechPat);
+                vuePrin.closeWindow();
             }
         });
         
-        para.getButtonVal().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+        para.getButtonVal().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(para.ChangementMDP(pro, req)){
@@ -447,16 +459,27 @@ public class Controlleur {
         });
         
         //////// BOUTONS PAGE DE CREATION DMR /////////
-        crDMR.getButtonCreerDmr().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
+        crDMR.getButtonCreerDmr().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changerMenu(phDossPat);
             }
         });
         
+        crDMR.getButtonDeco().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(co);
+            }
+        });
         
+        crDMR.getButtonPara().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vuePrin.newWindow(para);
+            }
+        });
         
-
     }
 
     public void changerMenu(JFrame vueApres) {

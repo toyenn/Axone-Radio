@@ -55,8 +55,8 @@ public class CréerUnDMR extends javax.swing.JFrame {
         labelPrenom = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         labelFonction = new javax.swing.JLabel();
-        buttonDeco4 = new javax.swing.JButton();
-        buttonPara4 = new javax.swing.JButton();
+        buttonDeco = new javax.swing.JButton();
+        buttonPara = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -207,9 +207,9 @@ public class CréerUnDMR extends javax.swing.JFrame {
 
         labelFonction.setText("jLabel16");
 
-        buttonDeco4.setText("Déconnection");
+        buttonDeco.setText("Déconnection");
 
-        buttonPara4.setText("Parametres");
+        buttonPara.setText("Parametres");
 
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/secretaire.png"))); // NOI18N
 
@@ -237,9 +237,9 @@ public class CréerUnDMR extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(buttonPara4)
+                        .addComponent(buttonPara)
                         .addGap(32, 32, 32)
-                        .addComponent(buttonDeco4)
+                        .addComponent(buttonDeco)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -263,8 +263,8 @@ public class CréerUnDMR extends javax.swing.JFrame {
                     .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonPara4)
-                    .addComponent(buttonDeco4))
+                    .addComponent(buttonPara)
+                    .addComponent(buttonDeco))
                 .addContainerGap())
         );
 
@@ -383,8 +383,8 @@ public class CréerUnDMR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonDeco4;
-    private javax.swing.JButton buttonPara4;
+    private javax.swing.JButton buttonDeco;
+    private javax.swing.JButton buttonPara;
     private javax.swing.JButton jButton3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel10;
@@ -421,6 +421,20 @@ public class CréerUnDMR extends javax.swing.JFrame {
         labelNom.setText(pro.getNom());
         labelPrenom.setText(pro.getPrenom());
         labelFonction.setText(pro.getService());
+    }
+
+    /**
+     * @return the buttonDeco
+     */
+    public javax.swing.JButton getButtonDeco() {
+        return buttonDeco;
+    }
+
+    /**
+     * @return the buttonPara
+     */
+    public javax.swing.JButton getButtonPara() {
+        return buttonPara;
     }
 
 

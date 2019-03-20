@@ -112,7 +112,7 @@ public class CréerUnExamen extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        buttonAnnul = new javax.swing.JButton();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
         jComboBox6 = new javax.swing.JComboBox<>();
@@ -264,14 +264,14 @@ public class CréerUnExamen extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(214, 217, 233));
-        jButton1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/annuler.png"))); // NOI18N
-        jButton1.setText("Annuler");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonAnnul.setBackground(new java.awt.Color(214, 217, 233));
+        buttonAnnul.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        buttonAnnul.setForeground(new java.awt.Color(0, 51, 204));
+        buttonAnnul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/annuler.png"))); // NOI18N
+        buttonAnnul.setText("Annuler");
+        buttonAnnul.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonAnnulActionPerformed(evt);
             }
         });
 
@@ -320,7 +320,7 @@ public class CréerUnExamen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonAnnul, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(145, 145, 145))
@@ -348,7 +348,7 @@ public class CréerUnExamen extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAnnul, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -549,9 +549,9 @@ public class CréerUnExamen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonAnnulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnnulActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonAnnulActionPerformed
 
     /**
      * @param args the command line arguments
@@ -610,7 +610,7 @@ public class CréerUnExamen extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonAnnul;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -719,5 +719,12 @@ public class CréerUnExamen extends javax.swing.JFrame {
         jComboBox3.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
         
+    }
+
+    /**
+     * @return the buttonAnnul
+     */
+    public javax.swing.JButton getButtonAnnul() {
+        return buttonAnnul;
     }
 }

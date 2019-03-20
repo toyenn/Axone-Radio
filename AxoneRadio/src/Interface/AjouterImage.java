@@ -70,8 +70,6 @@ public class AjouterImage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         labelchemin = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +101,7 @@ public class AjouterImage extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icone.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 255));
+        jButton6.setBackground(new java.awt.Color(153, 153, 153));
         jButton6.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 51, 204));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/annuler.png"))); // NOI18N
