@@ -20,10 +20,10 @@ import javax.swing.JOptionPane;
 
    
 
-
+// classe qui permet de gérer le changement d'interfaces
 public class Controlleur {
 
-    private VueConnect co;
+    private VueConnect co; // page connexion
     private CréerUnDMR crDMR;
     private CréerUnExamen crExam;
     private PH_DossierPatient phDossPat;
@@ -37,11 +37,14 @@ public class Controlleur {
     private Professionnel pro;
     private AccueilPH menuP;
     
+    // attributs qui changeront en fonction du choix de l'utilisateur
     Services CHU;
     Service s;
     Aile ai;
     Patient PATIENTSELECTIONNE;
     Examen SELECTEDEXAMEN;
+    Imagepacs SELECTEDIMG;
+    AfficheImage frame;
     
     public Controlleur() throws ClassNotFoundException, SQLException { // certains constructeurs des interfaces auront des parametres genre un parametre "patient" qui permet de charger les données du patient pour ensuite l'afficher
         // connexion à la BD
@@ -63,6 +66,8 @@ public class Controlleur {
         vuePrin.newFrame(co);
 
         //////// BOUTONS PAGE DE CONNEXION /////////
+        
+        // si on clique sur le bouton connexion
         co.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +83,7 @@ public class Controlleur {
             }
         });
         
+       // si on appuie sur le bouton entré en étant focus sur le bouton mdp
         co.getMdp().addKeyListener(new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {
@@ -104,7 +110,7 @@ public class Controlleur {
             }
         });
 
-        
+        // si on appuie sur le bouton entré en étant focus sur le bouton connexion
         co.getIdent().addKeyListener(new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {  
@@ -133,7 +139,9 @@ public class Controlleur {
             }
         });
        
-        //Boutons page d'accueil
+       //////////Boutons page d'accueil
+        
+       // si on se déconnecte
         menuP.getButtonDeco2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -141,6 +149,7 @@ public class Controlleur {
             }
         });
         
+        // si on clique sur le bouton gérer dmr
         menuP.getButtonGerer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -149,6 +158,7 @@ public class Controlleur {
             }
         });
         
+        // si on clique sur le bouton parametres
         menuP.getButtonPara().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -156,6 +166,7 @@ public class Controlleur {
             }
         });
         
+        // si on clique sur le bouton créerdmr
         menuP.getButtonCrDmr().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -165,7 +176,12 @@ public class Controlleur {
         });
         
         
+        
+        
+        
         //////// BOUTONS PAGE DE RECHERCHE DE PATIENTS /////////
+        
+        // si on clique sur le bouton recherche par id
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -182,6 +198,7 @@ public class Controlleur {
             }
         });
         
+        // si on clique sur le bouton retour
         phRechPat.getButtonRetour().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -189,6 +206,7 @@ public class Controlleur {
             }
         });
 
+        // si on clique sur le bouton recherche par service
         phRechPat.getButtonService().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -203,6 +221,7 @@ public class Controlleur {
             }
         });
         
+        // si on se déconnecte
         phRechPat.getButtonDeco().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -210,6 +229,7 @@ public class Controlleur {
             }
         });
 
+         // si on affiche les paramètres
         phRechPat.getButtonPara().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -218,6 +238,7 @@ public class Controlleur {
         });
         
         //////// BOUTONS DOSSIER PATIENT /////////
+        // si on clique sur le bouton créer examen
         phDossPat.getButtonCreerExamen().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -226,13 +247,26 @@ public class Controlleur {
             }
         });
         
+        // si on valide après avoir cliqué 
         phDossPat.getButtonVal().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                vuePrin.newWindow(phExam);
+                if(phDossPat.getTableExamens().getSelectedRowCount()==1){
+                int ligne = phDossPat.getTableExamens().getSelectedRow();
+                    
+                    int a = (int)phDossPat.getTableExamens().getValueAt(ligne, 0);
+                    //System.out.println("\n\n\n\n\n\n\nID :"+a);
+                    SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
+                    phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
+                    vuePrin.changerWindow(phExam);
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame,"Vous devez selectionner un examen","Inane warning",JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
         
+        // accéder aux paramètres
         phDossPat.getButtonPara().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -240,6 +274,7 @@ public class Controlleur {
             }
         });
         
+        // si on  se déconnecte
         phDossPat.getButtonDeco().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -247,6 +282,7 @@ public class Controlleur {
             }
         });
 
+        // si on double clic sur le tableau
         phDossPat.getTableExamens().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -278,6 +314,7 @@ public class Controlleur {
             }
         });
         
+        // si on clic sur le bouton retour
         phDossPat.getButtonRetour().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -285,6 +322,7 @@ public class Controlleur {
             }
         });
         
+        // modifie la recherche pour afficher que les exams avec cr
         phDossPat.getButtoncocher().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -292,21 +330,30 @@ public class Controlleur {
             }
         });
       
-        ///////////// BOUTONS AFFICHAGE EXAMEN
+        ///////////// BOUTONS AFFICHAGE EXAMEN//////////////////////
+        // affiche l'image qu'on a double clic
         phExam.getListeImages().addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {             
             }
+            
+            
 
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.getClickCount() >= 2) {
+                    
                     String ligne =phExam.getListeImages().getSelectedValue();
                     System.out.println(ligne);
-                    Imagepacs SELECTEDIMG = SELECTEDEXAMEN.getLISTEIMAGES().getImage(ligne);
+                    System.out.println("nb images :"+SELECTEDEXAMEN.getLISTEIMAGES().getListeImages().size());
+                    SELECTEDIMG = SELECTEDEXAMEN.getLISTEIMAGES().getImage(ligne);
                     SELECTEDIMG.InformationsImage();
-                    AfficheImage frame = new AfficheImage(SELECTEDIMG);
+                    
+                    frame = new AfficheImage(SELECTEDIMG,SELECTEDEXAMEN,phExam,req);
+                    
                     frame.setVisible(true);
+                    
+                    
                 }
             }
 
@@ -323,6 +370,15 @@ public class Controlleur {
             }
         });
         
+        
+        phExam.getButtonModifier().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        // permet de modifier le cr
         phExam.getButtonEditerCr().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -331,6 +387,7 @@ public class Controlleur {
             }
         });
         
+        // permet d'ajouter une image a lexamen
         phExam.getButtonAddImage().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -341,6 +398,7 @@ public class Controlleur {
         });
         
         //////////////// BOUTON AJOUTER IMAGE ///////////////////
+        // charge limage a partir du repertoire
         ajoutImg.getButtonCharger().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -352,12 +410,13 @@ public class Controlleur {
             }
         });
         
+        // valide ssi les infos sont correct
         ajoutImg.getButtonValider().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!ajoutImg.getChampsNom().getText().equals("")){
                     if(!ajoutImg.getCheminImage().equals("")){
-                        System.out.println("blabla");
+                       
                         int id = req.getMaxIdImg()+1;
                         System.out.println("id :"+id);
                          Imagepacs ImageAAjouter = new Imagepacs(id,PATIENTSELECTIONNE.getid(),SELECTEDEXAMEN.getIdExamen(),ajoutImg.getChampsNom().getText());
@@ -379,6 +438,7 @@ public class Controlleur {
         });
         
         ///////////// BOUTON COMPTE RENDU///////////////////////////
+        // enregistre les infos du cr et met en type validé si cr fait
         compteR.getValiderButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -403,6 +463,7 @@ public class Controlleur {
             }
         });
         
+        // permet de revenir en arrière
         compteR.getButtonAnnul().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -411,8 +472,10 @@ public class Controlleur {
         });
 
         //////// BOUTONS CREER NOUVEL EXAMEN /////////
+        // actualise une première fois els infos
         crExam.RemplirComboServices(CHU);
         crExam.RemplirComboAiles(CHU);
+        // initialise les combos box en fonction de la combo box service
         crExam.getComboServices().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -420,6 +483,7 @@ public class Controlleur {
             }
         });
         
+        // valide en local et en ligne lexam
         crExam.getButtonAjout().addActionListener(new ActionListener() { // c'est pas mieux d'ouvrir une nouvelle fenetre et de la rendre visible ? C'est possible d'avoir 2 fenetres ouvertes ? ca sera necessaire pour le bouton parametre
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -432,12 +496,21 @@ public class Controlleur {
             }
         });
         
+        // revient en arrière
         crExam.getButtonAnnul().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vuePrin.closeWindow();
             }
         });
+        
+        
+        
+        
+        
+        
+        
+        
 
         ///////////// BOUTON PARAMETRES ///////////
         para.getButtonAnnul().addActionListener(new ActionListener() {
@@ -459,10 +532,30 @@ public class Controlleur {
         });
         
         //////// BOUTONS PAGE DE CREATION DMR /////////
+        
+        crDMR.RemplirComboServices(CHU);
+        crDMR.RemplirComboAiles(CHU);
+        
+        crDMR.getComboServices().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               crDMR.RemplirComboAiles(CHU);
+            }
+        });
+        
         crDMR.getButtonCreerDmr().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                changerMenu(phDossPat);
+                if(crDMR.CréerDMR(CHU,req)==1){
+                JOptionPane.showMessageDialog(crDMR, "Le patient a bien été crée", "Information", JOptionPane.INFORMATION_MESSAGE);
+                crDMR.ResetChamps();
+                vuePrin.closeWindow();             
+                }
+                else{
+                 JOptionPane.showMessageDialog(crDMR, "Erreur données incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+    
+                }
+                
             }
         });
         

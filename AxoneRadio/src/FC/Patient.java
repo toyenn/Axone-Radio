@@ -17,18 +17,20 @@ public class Patient {
     private DateN date;
     private String genre;
     boolean hospitalise;
+    private String adresse;
 
     public int Service;
     //public String Aile;
 
     public DossierMedicalRadiologique DMR;
 
-    public Patient(int id, String nom, String prénom, DateN date, String genre, boolean hospitalise, int Service) {
+    public Patient(int id, String nom, String prénom, DateN date, String genre, String adresse,boolean hospitalise, int Service) {
         this.id = id;
         this.nom = nom;
         this.prénom = prénom;
         this.date = date;
         this.genre = genre;
+        this.adresse = adresse;
         this.hospitalise = hospitalise;
         this.Service = Service;
         DMR = new DossierMedicalRadiologique();
@@ -37,6 +39,35 @@ public class Patient {
     // setteurs et getteurs :
     public int getid() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setService(int Service) {
+        this.Service = Service;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String isHospitalise() {
+        if(hospitalise){
+            return "oui";
+        }
+        else{
+            return "non";
+        }
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getNom() {

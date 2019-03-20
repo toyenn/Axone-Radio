@@ -396,7 +396,7 @@ public class IHMImages extends JPanel {
     }
 
     // y déplacer dna requetesBD
-    void ecrirePACS(String n) {
+    void ecrirePACS(String n, Examen exa) {
         try {
                 // enregistrement en local :
                 this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
@@ -409,8 +409,8 @@ public class IHMImages extends JPanel {
                InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
                
                ps.setString(1,n);
-               ps.setInt(2,4);
-                ps.setInt(3,1);
+               ps.setInt(2,exa.getIdExamen());
+                ps.setInt(3,exa.getPatient().getid());
                ps.setBlob(4,is);
                
               
@@ -431,6 +431,7 @@ public class IHMImages extends JPanel {
                 
                 RequetesBD req = new RequetesBD();
                 Statement state = req.getConn().createStatement();
+                System.out.println("on récupère l'image numéro :"+image.getIdImage());
                 ResultSet result = state.executeQuery("SELECT * FROM pacs WHERE idImage=" +image.getIdImage());
                 
            

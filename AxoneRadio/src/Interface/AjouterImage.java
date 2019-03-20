@@ -506,7 +506,7 @@ public class AjouterImage extends javax.swing.JFrame {
        jLabel11.setText(PATIENTSELECTIONNE.getPrénom());
        jLabel20.setText(PATIENTSELECTIONNE.getDate().toString_DateNaissance());
        jLabel21.setText(PATIENTSELECTIONNE.getGenre());
-       
+       jLabel30.setText(PATIENTSELECTIONNE.getAdresse());
        
        jLabel3.setText(SELECTEDEXAMEN.getDate().toString());
        jLabel5.setText(SELECTEDEXAMEN.getType().toString());

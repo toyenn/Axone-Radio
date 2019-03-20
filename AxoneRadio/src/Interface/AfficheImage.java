@@ -82,11 +82,16 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         private final JButton Reset = new javax.swing.JButton(new ImageIcon("src/images/reset.png")); // ajouter icone
         private final JLabel texteSlideLumi = new javax.swing.JLabel("Luminosité");
         private final JLabel texteSlideContraste = new javax.swing.JLabel("Contraste");
-    
-
-    public AfficheImage(Imagepacs img) { // constructeur avec comme parametre lid de limage
+        public Examen ex;
+        public PH_Examen inter;
+        public RequetesBD req;
+    public AfficheImage(Imagepacs img, Examen ex,PH_Examen inter,RequetesBD req) { // constructeur avec comme parametre lid de limage
+       
         super();
         this.img = img;
+        this.ex = ex;
+        this.inter=inter;
+        this.req = req;
         panneau = new IHMImages(this.img);
         //this.setLocationRelativeTo(null);
         //setBounds(100, 100, 500, 375);
@@ -278,7 +283,13 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         JOptionPane.INFORMATION_MESSAGE
     );
             if(code!=null && code!=""){
-            panneau.ecrirePACS(code);    
+            panneau.ecrirePACS(code,ex);
+            int id = req.getMaxIdImg();
+            Imagepacs imAajout = new Imagepacs(id,ex.getPatient().getid(),ex.getIdExamen(),code);
+            ex.getLISTEIMAGES().AjouterImage(imAajout);
+            
+             
+            inter.actualiserListeImages(ex);
             this.dispose(); // Fermer la fenetre
             }
             else{

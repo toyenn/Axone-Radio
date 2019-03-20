@@ -656,7 +656,7 @@ public void actualiserInfos(Services CHU,Examen Exam) {
         jLabel13.setText(Exam.getPatient().getPrénom());
         jLabel14.setText(Exam.getPatient().getDate().toString_DateNaissance());
         jLabel15.setText(Exam.getPatient().getGenre());
-        jLabel16.setText(Exam.getPatient().getGenre()); // adresse
+        jLabel16.setText(Exam.getPatient().getAdresse()); // adresse
         
         // pro
         jLabel20.setText(String.valueOf(Exam.getPHresponsable().getId()));
@@ -698,6 +698,14 @@ public void actualiserInfos(Services CHU,Examen Exam) {
     public JButton getButtonAddImage() {
         return jButton1;
     }
+
+    public JButton getButtonModifier() {
+        return jButton2;
+    }
+    
+    
+    
+    
     
     
     

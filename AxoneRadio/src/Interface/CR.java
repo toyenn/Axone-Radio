@@ -553,7 +553,7 @@ public class CR extends javax.swing.JFrame {
        jLabel13.setText(PATIENTSELECTIONNE.getPrénom());
        jLabel20.setText(PATIENTSELECTIONNE.getDate().toString_DateNaissance());
        jLabel21.setText(PATIENTSELECTIONNE.getGenre());
-       //jLabel33.setText(PATIENTSELECTIONNE.getAdresse());
+       jLabel33.setText(PATIENTSELECTIONNE.getAdresse());
                
        // mise a jour informations pro
        jLabel15.setText(String.valueOf(pro.getId()));
