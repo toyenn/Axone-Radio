@@ -55,7 +55,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
     private final IHMImages panneau;
     
     
-    private final JMenuItem enregistrerMenu = new JMenuItem();
+   
 
     private final JMenuItem inversionMenu = new JMenuItem();
     private final JMenuItem assombrirMenu = new JMenuItem();
@@ -129,9 +129,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         ouvrirMenu.setText("ouvrir");
        
 
-        fichierMenu.add(enregistrerMenu);
-        enregistrerMenu.addActionListener((ActionListener) this);
-        enregistrerMenu.setText("enregistrer");
+       
 
         fichierMenu.add(writeInPacs);
         writeInPacs.addActionListener((ActionListener) this);
@@ -236,7 +234,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         
         barredoutils.setBorder(new BevelBorder(BevelBorder.RAISED));
         //barredoutils.setBorder(new BevelBorder(BevelBorder.));
-         barredoutils.setVisible(false); // visible d'entrée ??
+         barredoutils.setVisible(true); // visible d'entrée ??
          
          
          
@@ -267,13 +265,7 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
         else if (cliqueMenu.getSource().equals(BoutonRotationGauche)) {
            panneau.rotationGauche();
         }
-        else if (cliqueMenu.getSource().equals(enregistrerMenu)) {
-            try {
-                panneau.getIm().createFile(panneau.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(AfficheImage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
         else if(cliqueMenu.getSource().equals(writeInPacs)){
             System.out.println("Ecriture dans le PACS");
             String code = JOptionPane.showInputDialog(

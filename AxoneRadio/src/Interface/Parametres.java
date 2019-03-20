@@ -82,7 +82,7 @@ public class Parametres extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("<html>Pour toute demande d'aide ou de signalisation de bug, <br>veuillez contacter le support à l'adresse mail :<br><b>axoneradio@gmail.com<b></html>");
+        jLabel2.setText("<html>Pour toute demande d'aide ou de signalisation de bug, <br>veuillez contacter le support à l'adresse mail :<br><b>axoneradio@gmail.com</b><br><br>Version : 1.8.0</html>");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -202,6 +202,12 @@ public class VueConnect extends javax.swing.JFrame {
     public JTextField getIdent() {
         return Ident;
     }
+    public void resetChamps(){
+        mdp.setText("mdp");
+        Ident.setText("Identifiant");
+        
+        
+    }
 
  
 

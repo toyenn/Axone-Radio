@@ -201,7 +201,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Pour toute demande d&apos;aide ou de signalisation de bug, &lt;br&gt;veuillez contacter le support &#xe0; l&apos;adresse mail :&lt;br&gt;&lt;b&gt;axoneradio@gmail.com&lt;b&gt;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Pour toute demande d&apos;aide ou de signalisation de bug, &lt;br&gt;veuillez contacter le support &#xe0; l&apos;adresse mail :&lt;br&gt;&lt;b&gt;axoneradio@gmail.com&lt;/b&gt;&lt;br&gt;&lt;br&gt;Version : 1.8.0&lt;/html&gt;"/>
           </Properties>
         </Component>
       </SubComponents>

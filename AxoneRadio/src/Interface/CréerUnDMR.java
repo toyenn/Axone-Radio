@@ -642,6 +642,27 @@ public class CréerUnDMR extends javax.swing.JFrame {
         return buttonPara;
     }
 
+    public JComboBox<String> getjComboBox3() {
+        return jComboBox3;
+    }
+
+    public JComboBox<String> getjComboBox4() {
+        return jComboBox4;
+    }
+
+    public JComboBox<String> getjComboBox5() {
+        return jComboBox5;
+    }
+
+    public JComboBox<String> getjComboBox6() {
+        return jComboBox6;
+    }
+
+    public JComboBox<String> getjComboBox7() {
+        return jComboBox7;
+    }
+    
+
 
 
 

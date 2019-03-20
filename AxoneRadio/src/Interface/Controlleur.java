@@ -78,6 +78,7 @@ public class Controlleur {
                 }
                 else{
                     phRechPat.ActualiserInformationsProfessionnel(pro);
+                    co.resetChamps();
                      changerMenu(menuP);
                 }
             }
@@ -103,6 +104,7 @@ public class Controlleur {
                         System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
                         menuP.ActualiserInformationsProfessionnel(pro);
                         changerMenu(menuP);
+                        co.resetChamps();
                     }
                 }   
             }
@@ -129,6 +131,7 @@ public class Controlleur {
                     System.out.println("IDENTIFIANTS RECONNUS DANS LA BD");
                     menuP.ActualiserInformationsProfessionnel(pro);
                     changerMenu(menuP);
+                    co.resetChamps();
                 }
             }
             }
@@ -145,6 +148,7 @@ public class Controlleur {
         menuP.getButtonDeco2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 changerMenu(co);
             }
         });
@@ -374,7 +378,21 @@ public class Controlleur {
         phExam.getButtonModifier().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!(phExam.getListeImages().getSelectedIndex()==-1)){
+                    String ligne =phExam.getListeImages().getSelectedValue();
+                    System.out.println(ligne);
+                    System.out.println("nb images :"+SELECTEDEXAMEN.getLISTEIMAGES().getListeImages().size());
+                    SELECTEDIMG = SELECTEDEXAMEN.getLISTEIMAGES().getImage(ligne);
+                    SELECTEDIMG.InformationsImage();
+                    
+                    frame = new AfficheImage(SELECTEDIMG,SELECTEDEXAMEN,phExam,req);
+                    
+                    frame.setVisible(true);
+                }
+                else{
+                     JOptionPane.showMessageDialog(frame,"Vous devez selectionner une image pour la modifier","Inane warning",JOptionPane.WARNING_MESSAGE);
                 
+                }
             }
         });
         
@@ -573,11 +591,60 @@ public class Controlleur {
             }
         });
         
+        
+        
+       // ajout dfes bulles d'aide :
+       crExam.getjComboBox4().setToolTipText("Année");
+       crExam.getjComboBox5().setToolTipText("Mois");
+       crExam.getjComboBox6().setToolTipText("Jour");
+       crExam.getjComboBox7().setToolTipText("Heure");
+       crExam.getjComboBox8().setToolTipText("Minute");
+       crExam.getjComboBox3().setToolTipText("Service");
+       crExam.getjComboBox2().setToolTipText("Aile");
+        
+       crDMR.getjComboBox4().setToolTipText("Année");
+       crDMR.getjComboBox5().setToolTipText("Mois");
+       crDMR.getjComboBox6().setToolTipText("Jour");
+       crDMR.getjComboBox7().setToolTipText("Aile");      
+       crDMR.getjComboBox3().setToolTipText("Service");
+       
+       
+       ajoutImg.getButtonValider().setToolTipText("Ajouter l'image au pacs");
+        
+       phDossPat.getButtonVal().setToolTipText("Afficher l'examen selectionné");
+       
+       phExam.getButtonAddImage().setToolTipText("Ajouter une image à l'examen");
+       phExam.getButtonModifier().setToolTipText("Modifier un examen selectionné");
+       phExam.getButtonEditerCr().setToolTipText("Modifier le compte rendu");
+       
+   
+           
+        
+        
+        
     }
+    
+  
 
     public void changerMenu(JFrame vueApres) {
         vuePrin.newFrame(vueApres);
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
 }

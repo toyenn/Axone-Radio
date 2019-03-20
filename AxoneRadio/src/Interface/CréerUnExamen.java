@@ -727,4 +727,26 @@ public class CréerUnExamen extends javax.swing.JFrame {
     public javax.swing.JButton getButtonAnnul() {
         return buttonAnnul;
     }
+
+    public JComboBox<String> getjComboBox2() {
+        return jComboBox2;
+    }
+
+    public JComboBox<String> getjComboBox3() {
+        return jComboBox3;
+    }
+
+    public JComboBox<String> getjComboBox4() {
+        return jComboBox4;
+    }
+
+    public JComboBox<String> getjComboBox7() {
+        return jComboBox7;
+    }
+
+    public JComboBox<String> getjComboBox8() {
+        return jComboBox8;
+    }
+    
+    
 }
