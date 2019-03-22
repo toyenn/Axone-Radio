@@ -159,7 +159,7 @@ public class IHMImages extends JPanel {
 
     protected void inversionNiveauGris() throws IOException {
         //int[][] image;
-        BufferedImage imageInv = new BufferedImage(monImage.getHeight(), monImage.getWidth(), monImage.getType());
+        BufferedImage imageInv = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
         //image = new int[monImage.getHeight()][monImage.getWidth()];
       //  im.inversionCouleurs(im.getImage1D());
         
@@ -194,11 +194,11 @@ public class IHMImages extends JPanel {
 
     protected void rotationGauche() {
         System.out.println("rotation a gauche de limage");
-        BufferedImage imageRot = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
+        BufferedImage imageRot = new BufferedImage(monImage.getHeight(), monImage.getWidth(), monImage.getType());
 
         im.RotationGaucheImage();
         final WritableRaster raster = imageRot.getRaster();
-        raster.setPixels(0, 0, monImage.getWidth(), monImage.getHeight(), im.getImage1D());
+        raster.setPixels(0, 0, monImage.getHeight(), monImage.getWidth(), im.getImage1D());
         monImage = imageRot;
         imDeBase.RotationGaucheImage();
         repaint();
@@ -254,12 +254,12 @@ public class IHMImages extends JPanel {
 
     protected void rotationDroite() {
         System.out.println("rotation a droite de limage");
-        BufferedImage imageRot = new BufferedImage(monImage.getWidth(), monImage.getHeight(), monImage.getType());
+        BufferedImage imageRot = new BufferedImage(monImage.getHeight(), monImage.getWidth(), monImage.getType());
 
         im.RotationDroiteImage();
          imDeBase.RotationDroiteImage();
         final WritableRaster raster = imageRot.getRaster();
-        raster.setPixels(0, 0, monImage.getWidth(), monImage.getHeight(), im.getImage1D());
+        raster.setPixels(0, 0, monImage.getHeight(), monImage.getWidth(), im.getImage1D());
         monImage = imageRot;
         
         repaint();

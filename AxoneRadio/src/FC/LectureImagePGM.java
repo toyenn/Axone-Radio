@@ -137,34 +137,34 @@ for (int i = 0; i < height*width; ++i) {
     
 
     public void inversionCouleurs(int[][] image) {
-        int width = image[0].length;
-        int height = image.length;
+     
+       
         int[][] result = new int[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                result[i][j] = MAXVAL - image[i][j];
+                image[i][j] = MAXVAL - image[i][j];
             }
             
         }
-        this.image = result;
+        //this.image = result;
         this.MiseAJourTableau1D();
        // return result;
         
     }
     
-    public int[] inversionCouleurs(int[] image) {
-        
-       
-        int[] result = new int[image.length];
-        for (int i = 0; i < image.length; ++i) {
-           
-                result[i] = MAXVAL - image[i];
-            }
-            
-        
-        return result;
-        
-    }
+//    public int[] inversionCouleurs(int[] image) {
+//        
+//       
+//        int[] result = new int[image.length];
+//        for (int i = 0; i < image.length; ++i) {
+//           
+//                result[i] = MAXVAL - image[i];
+//            }
+//            
+//        
+//        return result;
+//        
+//    }
     
     
     public void augmenterContrasteEtlumi(LectureImagePGM imageDeBase,int puissancelumi, int puissancecontraste) {
@@ -313,12 +313,13 @@ for (int i = 0; i < height*width; ++i) {
 //      }
        
        public void RotationGaucheImage() { // rotation gauche
-        int width = this.image[0].length;
-        int height = this.image.length;
-        int[][] result = new int[width][height];
+       int temp = this.height;
+        this.height = this.width;     
+        this.width = temp;
+        int[][] result = new int[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                result[i][j]= this.image[j][width-1-i];
+                result[i][j]= this.image[j][height-1-i];
                 
             }
          
@@ -338,23 +339,47 @@ for (int i = 0; i < height*width; ++i) {
                 taille++;
             }
         }
+         
        }
-       
        public void RotationDroiteImage() { // rotation a 90 degres a droite
-        int width = this.image[0].length;
-        int height = this.image.length;
-        int[][] result = new int[width][height];
+               int temp = this.height;
+        this.height = this.width;
+          
+        this.width = temp;
+        
+           
+          
+        int[][] result = new int[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                result[i][j]= this.image[height-1-j][i];
+                result[i][j]= this.image[width-j-1][i];
                 
             }
          
         }
+           System.out.println("Dimension de image 2D : hauteur :"+height+", largeur :"+width);
+       
         this.image = result;
         this.MiseAJourTableau1D();
         
+        
       }
+//       public void RotationDroiteImage() { // rotation a 90 degres a droite
+//        int width = this.image[0].length;
+//        int height = this.image.length;
+//        int[][] result = new int[width][height];
+//        for (int i = 0; i < height; ++i) {
+//            for (int j = 0; j < width; ++j) {
+//                result[i][j]= this.image[height-1-j][i];
+//                
+//            }
+//         
+//        }
+//        this.image = result;
+//        this.MiseAJourTableau1D();
+//        
+//      }
+       
        // pour faire rotation à 180 degres on cliquera 2 fois sur le bouton
        
        
