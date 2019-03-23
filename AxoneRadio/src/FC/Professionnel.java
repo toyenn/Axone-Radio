@@ -16,16 +16,18 @@ public class Professionnel { // classe abstraite ou interface ?
     private String service;
     private String login;
     private String motDePasse;
-
+    
+    private TypePro profession;
     
 
-    public Professionnel(int id,String nom, String prénom, String login, String motDePasse, String service) {
+    public Professionnel(int id,String nom, String prénom, String login, String motDePasse, String service,TypePro profession) {
         this.nom = nom;
         this.prénom = prénom;
         this.id = id;
         this.service = service;
         this.login = login;
         this.motDePasse = motDePasse;
+        this.profession = profession;
     }
     
     public void InformationsProfessionnel(){
@@ -37,6 +39,7 @@ public class Professionnel { // classe abstraite ou interface ?
         System.out.println("LOGIN : "+this.login);
         System.out.println("MOT DE PASSE : "+this.motDePasse);
         System.out.println("SERVICE : "+this.service);
+        System.out.println("PROFESSION : "+this.profession.toString());
          System.out.println("*************************");
     }
 
@@ -147,6 +150,11 @@ public class Professionnel { // classe abstraite ou interface ?
             return false;
         }
     }
+
+    public TypePro getProfession() {
+        return profession;
+    }
+    
     
     
     

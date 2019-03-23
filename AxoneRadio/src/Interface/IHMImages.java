@@ -399,14 +399,14 @@ public class IHMImages extends JPanel {
     void ecrirePACS(String n, Examen exa) {
         try {
                 // enregistrement en local :
-                this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
+                this.getIm().createFile(this.getIm().getImage(),"src/temp/resultatBD.pgm");
                 
                 RequetesBD req = new RequetesBD();
                 
                PreparedStatement ps = req.getConn().prepareStatement("insert into pacs(nomImage,idExam,idPatient,image) values(?,?,?,?)");
                // enregistrer en local :
                 
-               InputStream is = new FileInputStream(new File("C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm"));
+               InputStream is = new FileInputStream(new File("src/temp/resultatBD.pgm"));
                
                ps.setString(1,n);
                ps.setInt(2,exa.getIdExamen());
@@ -446,13 +446,13 @@ public class IHMImages extends JPanel {
                   
                 int b;
                 InputStream bis = result.getBinaryStream("image");
-                FileOutputStream f = new FileOutputStream("C:\\Users\\Nathan\\Pictures\\SIR\\wtf2.pgm");
+                FileOutputStream f = new FileOutputStream("src/temp/ecriture.pgm");
                 while ((b = bis.read()) >= 0) {
                   f.write(b);
                 }
                 f.close();
                 bis.close();}
-              this.ajouterImage(new File("C:\\Users\\Nathan\\Pictures\\SIR\\wtf2.pgm"));
+              this.ajouterImage(new File("src/temp/ecriture.pgm"));
 //               
 //              
 //               ps.executeUpdate();

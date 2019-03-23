@@ -89,6 +89,42 @@ public class Examen {
         this.cr = cr;
     }
     
+    public String InformationsExam(){
+        String s="";
+        s+="EXAMEN NUMERO ";
+        s+=this.getIdExamen();
+        s+="\n Date de l'examen : ";
+        s+=this.getDate().toString();
+        s+="\nType d'examen : ";
+        s+=this.getType().toString();
+        //s+="\nService demandeur : "+a.getNomService(this.getIdExamen());
+        
+        s+="\n\n\nINFORMATIONS PATIENT :";
+         s+="\nID : "+this.getPatient().getId();
+         s+="\nNom : "+this.getPatient().getNom();
+        s+="\nPrénom : "+this.getPatient().getPrénom();
+        s+="\nDate de Naissance : "+this.getPatient().getDate().toString_DateNaissance();
+        s+="\nGenre : "+this.getPatient().getGenre();
+        s+="\nAdresse : "+this.getPatient().getAdresse();
+        s+="\nHospitalise : "+this.getPatient().isHospitalise();
+        s+="\n\n";
+        
+        s+="\nINFORMATIONS CREATEUR EXAMEN :";
+        s+="\nID : "+this.getPHresponsable().getId();
+        s+="\nNom : "+this.getPHresponsable().getNom();
+        s+="\nPrénom : "+this.getPHresponsable().getPrenom();
+        s+="\nService : "+this.getPHresponsable().getService();
+        s+="\n\n\n";
+        
+        s+="COMPTE RENDU : ("+this.getCr().getEtat()+")";
+        s+="\nCreateur : "+this.getCr().getCreateur().getNom()+" "+this.getCr().getCreateur().getPrenom();
+        s+="\n"+this.getCr().getTexte();
+        
+        
+        return s;
+        
+    }
+    
 
     
     
@@ -107,6 +143,34 @@ public class Examen {
         
        this.LISTEIMAGES.AfficherInformationsImages();
        System.out.println("########################");
+    }
+    
+    
+    public boolean contientinfoExam(Services s,String recherche){//return true ssi letexte dans recherche contient un peu d'info de exam
+// idexam, nom ph, prenom ph, date exam, type exam
+    if(recherche==""){
+        return true;
+    }
+    if(String.valueOf(this.idExamen).toUpperCase().contains(recherche.toUpperCase())){
+       return true;
+   }
+   else if(this.PHresponsable.getNom().toUpperCase().contains(recherche.toUpperCase())){
+       return true;
+   }
+   else if(this.PHresponsable.getPrenom().toUpperCase().contains(recherche.toUpperCase())){
+       return true;
+   }
+   else if(this.getType().toString().toUpperCase().contains(recherche.toUpperCase())){
+       return true;
+   }
+   else if(s.getNomService(this.getIDservice()).toUpperCase().contains(recherche.toUpperCase())){
+       return true;
+   }
+   else{
+       return false;
+   }
+    
+   
     }
     
 }

@@ -1,18 +1,18 @@
 // A FAIRE ici : 
-
 // rajouter un bouton modifier pour les infos administratives ? et du coup une interface pour ca
-
 // rajouter un bouton modifier pour les examens selectionnées
-
 //creer une méthode qui permet de mettre a jour l'affichage du tableau des examens comme ca a chaque fois quil y a une modif comme un ajout dexam on apelle cete méthode ou encore quand on clic sur le bouton "examssans compte rendu"
-
 // ajouter des boutons retour la et dans les autres pages
 package Interface;
 
 import FC.Patient;
 import FC.Professionnel;
 import FC.Services;
+import FC.TypePro;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JCheckBox;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -30,6 +30,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
+        
+        
     }
 
     /**
@@ -68,6 +70,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         buttonCreerExam = new javax.swing.JButton();
         buttonDMR = new javax.swing.JButton();
+        textid = new javax.swing.JTextField();
+        Recherche = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textnom = new javax.swing.JLabel();
@@ -178,7 +182,7 @@ public class PH_DossierPatient extends javax.swing.JFrame {
                             .addComponent(numeropatient, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(153, 153, 153)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,6 +324,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
             }
         });
 
+        Recherche.setText("Recherche  :");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -327,17 +333,22 @@ public class PH_DossierPatient extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
                         .addComponent(buttonCreerExam, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buttonDMR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addGap(52, 52, 52)
+                        .addComponent(Recherche)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textid, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox2)
-                        .addGap(8, 8, 8)))
-                .addContainerGap())
+                        .addGap(8, 8, 8))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,17 +360,17 @@ public class PH_DossierPatient extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jCheckBox2)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonCreerExam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonDMR))
-                        .addGap(2, 2, 2)))
+                        .addComponent(Recherche)
+                        .addComponent(textid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCreerExam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonDMR)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCreerExam, buttonDMR});
@@ -479,8 +490,8 @@ public class PH_DossierPatient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -557,18 +568,16 @@ public class PH_DossierPatient extends javax.swing.JFrame {
             }
         });
     }
-    
-  
 
-     
-   public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
+    public javax.swing.JButton getButtonCreerExamen() { // bouton recherche par service
         return getButtonCreerExam();
     }
 
-   public javax.swing.JTable getTableExamens() { // bouton recherche par service
+    public javax.swing.JTable getTableExamens() { // bouton recherche par service
         return tableExamens;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Recherche;
     private javax.swing.JLabel adressepatient;
     private javax.swing.JButton buttonCreerExam;
     private javax.swing.JButton buttonDMR;
@@ -606,6 +615,7 @@ public class PH_DossierPatient extends javax.swing.JFrame {
     private javax.swing.JLabel servicepatient;
     private javax.swing.JTable tableExamens;
     private javax.swing.JLabel textfonction;
+    private javax.swing.JTextField textid;
     private javax.swing.JLabel textnom;
     private javax.swing.JLabel textprenom;
     // End of variables declaration//GEN-END:variables
@@ -617,7 +627,6 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         return buttonCreerExam;
     }
 
-
     /**
      * @return the buttonVal
      */
@@ -625,55 +634,65 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         return buttonDMR;
     }
 
+    public JTextField getChampsrecherche() {
+        return textid;
+    }
+    
+
     /**
      * @return the buttonRetour
      */
 //    public javax.swing.JButton getButtonRetour() {
 //        return buttonRetour;
 //    }
-
     public JCheckBox getButtoncocher() {
         return jCheckBox2;
     }
-    
-    
-    public void ActualiserInfosPatient(Services S,Patient p){
+
+    public void ActualiserInfosPatient(Services S, Patient p) {
         numeropatient.setText(String.valueOf(p.getid()));
         nompatient.setText(p.getNom());
         prenompatient.setText(p.getPrénom());
         datepatient.setText(p.getDate().toString_DateNaissance());
         genrepatient.setText(p.getGenre());
         adressepatient.setText(p.getAdresse());
-        ActualiserDMRPatient(S,p);
-        
+        ActualiserDMRPatient(S, p);
+
     }
-    public void ActualiserDMRPatient(Services S,Patient p){
+
+    public void ActualiserDMRPatient(Services S, Patient p) {
         DefaultTableModel dtm = new DefaultTableModel(0, 6);
 
         for (int i = 0; i < p.getDMR().getListeExamens().size(); i++) {
-            if(jCheckBox2.isSelected()){
-                if(p.getDMR().getListeExamens().get(i).getCr().getEtat().toString().equals("nonecrit")){
-                    Object[] data = new Object[6];
-                    data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
-                    data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
-                   data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
-                   data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
-                  data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
-                  data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
-                  dtm.addRow(data);
+            if (jCheckBox2.isSelected()) {
+                if (p.getDMR().getListeExamens().get(i).getCr().getEtat().toString().equals("nonecrit")) {
+                    
+                        if (p.getDMR().getListeExamens().get(i).contientinfoExam(S, textid.getText())) {
+                            Object[] data = new Object[6];
+                            data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
+                            data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
+                            data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
+                            data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
+                            data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
+                            data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
+                            dtm.addRow(data);
+                        }
+                    
                 }
+            } else {
+                
+                    if (p.getDMR().getListeExamens().get(i).contientinfoExam(S, textid.getText())) {
+                        Object[] data = new Object[6];
+                        data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
+                        data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
+                        data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
+                        data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
+                        data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
+                        data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
+                        dtm.addRow(data);
+                    }
+                
             }
-            else{
-            Object[] data = new Object[6];
-            data[0] = p.getDMR().getListeExamens().get(i).getIdExamen();
-            data[1] = p.getDMR().getListeExamens().get(i).getType().getName();
-            data[2] = p.getDMR().getListeExamens().get(i).getDate().toString();
-            data[3] = p.getDMR().getListeExamens().get(i).getPHresponsable().toString();
-            data[4] = p.getDMR().getListeExamens().get(i).getCr().getEtat().toString();
-            data[5] = S.getNomService(p.getDMR().getListeExamens().get(i).getService());
-            dtm.addRow(data);
-            }
-            
 
         }
 
@@ -691,12 +710,12 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(dtm);
         tableExamens.setRowSorter(sorter);
     }
-    
-    public void ActualiserInfosPro(Professionnel pro){
+
+    public void ActualiserInfosPro(Professionnel pro) {
         textnom.setText(pro.getNom());
         textprenom.setText(pro.getPrenom());
         textfonction.setText(pro.getService());
-        
+
     }
 
     /**
@@ -718,5 +737,15 @@ public class PH_DossierPatient extends javax.swing.JFrame {
      */
     public javax.swing.JButton getButtonRetour() {
         return buttonRetour;
+    }
+
+    public void SetAffichageDroits(TypePro profession) {
+        if (profession.toString().equals("Secretaire")) {
+            this.buttonCreerExam.setVisible(false);
+            this.buttonDMR.setVisible(false);
+        } else {
+            this.buttonCreerExam.setVisible(true);
+            this.buttonDMR.setVisible(true);
+        }
     }
 }

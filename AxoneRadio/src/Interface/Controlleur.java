@@ -36,6 +36,7 @@ public class Controlleur {
     private RequetesBD req;
     private Professionnel pro;
     private AccueilPH menuP;
+    private AperçuAvantImpression Aperçu;
     
     // attributs qui changeront en fonction du choix de l'utilisateur
     Services CHU;
@@ -63,6 +64,7 @@ public class Controlleur {
         vuePrin = new VuePrincipale();
         para = new Parametres(); 
         ajoutImg = new AjouterImage();
+        Aperçu = new AperçuAvantImpression();
         vuePrin.newFrame(co);
 
         //////// BOUTONS PAGE DE CONNEXION /////////
@@ -194,6 +196,7 @@ public class Controlleur {
                try{
                     phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
                     phDossPat.ActualiserInfosPro(pro);
+                    phDossPat.SetAffichageDroits(pro.getProfession()); // affiche la page en fonction des droits
                     changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
                 } catch(NullPointerException npe){
                     Component frame = null;
@@ -221,6 +224,7 @@ public class Controlleur {
                 PATIENTSELECTIONNE = req.ChargementPatient(id);
                 phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
                 phDossPat.ActualiserInfosPro(pro);
+                phDossPat.SetAffichageDroits(pro.getProfession()); // on affiche ou pas des boutons selon la profession
                 changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
             }
         });
@@ -262,6 +266,7 @@ public class Controlleur {
                     //System.out.println("\n\n\n\n\n\n\nID :"+a);
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
                     phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
+                     phExam.setAffichageDroits(pro.getProfession());
                     vuePrin.changerWindow(phExam);
                 }
                 else{
@@ -290,6 +295,7 @@ public class Controlleur {
         phDossPat.getTableExamens().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(!pro.getProfession().toString().equals("Secretaire")){
                 if (e.getClickCount() >= 2) {
                     int ligne = phDossPat.getTableExamens().getSelectedRow();
                     
@@ -297,8 +303,10 @@ public class Controlleur {
                     //System.out.println("\n\n\n\n\n\n\nID :"+a);
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
                     phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
+                    phExam.setAffichageDroits(pro.getProfession());
                     vuePrin.changerWindow(phExam);
                 }
+            }
             }
 
             @Override
@@ -331,6 +339,25 @@ public class Controlleur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 phDossPat.ActualiserDMRPatient(CHU, PATIENTSELECTIONNE);
+            }
+        });
+        phDossPat.getChampsrecherche().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                 phDossPat.ActualiserDMRPatient(CHU, PATIENTSELECTIONNE);
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+                phDossPat.ActualiserDMRPatient(CHU, PATIENTSELECTIONNE);
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                 phDossPat.ActualiserDMRPatient(CHU, PATIENTSELECTIONNE);
             }
         });
       
@@ -405,6 +432,15 @@ public class Controlleur {
             }
         });
         
+        phExam.getButtonImprim().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              Aperçu.setExam(SELECTEDEXAMEN);
+              Aperçu.remplirTextArea();
+              vuePrin.newWindow(Aperçu);
+            }
+        });
+        
         // permet d'ajouter une image a lexamen
         phExam.getButtonAddImage().addActionListener(new ActionListener(){
             @Override
@@ -472,6 +508,7 @@ public class Controlleur {
                else{
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
                    SELECTEDEXAMEN.getCr().setTexte(compteR.getTextCR().getText());
+                   SELECTEDEXAMEN.getCr().setCreateur(pro);// ajoute le pro connecté en redacteur de cr
                    phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
                    // modifier le cr dans la BD
                    req.ModifierCR(SELECTEDEXAMEN);

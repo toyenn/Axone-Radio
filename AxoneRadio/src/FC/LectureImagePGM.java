@@ -342,12 +342,9 @@ for (int i = 0; i < height*width; ++i) {
          
        }
        public void RotationDroiteImage() { // rotation a 90 degres a droite
-               int temp = this.height;
-        this.height = this.width;
-          
-        this.width = temp;
-        
-           
+        int temp = this.height;
+        this.height = this.width;         
+        this.width = temp; 
           
         int[][] result = new int[height][width];
         for (int i = 0; i < height; ++i) {
