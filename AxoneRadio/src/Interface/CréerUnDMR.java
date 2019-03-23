@@ -477,18 +477,12 @@ public class CréerUnDMR extends javax.swing.JFrame {
         return jButton3;
     }
     
-    public void ActualiserInformationsProfessionnel(Professionnel pro){
-        labelNom.setText(pro.getNom());
-        labelPrenom.setText(pro.getPrenom());
-        labelFonction.setText(pro.getService());
-    }
+ 
 
     /**
      * @return the buttonDeco
      */
-    public javax.swing.JButton getButtonDeco() {
-        return buttonDeco;
-    }
+   
     
     public int CréerDMR(Services CHU,RequetesBD req){
         String nom="";
@@ -541,9 +535,7 @@ public class CréerUnDMR extends javax.swing.JFrame {
     /**
      * @return the buttonPara
      */
-    public javax.swing.JButton getButtonPara() {
-        return buttonPara;
-    }
+   
 
     public JComboBox<String> getjComboBox3() {
         return jComboBox3;

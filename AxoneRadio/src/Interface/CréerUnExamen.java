@@ -15,6 +15,7 @@ import FC.Services;
 import FC.TypeExamen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -57,6 +58,10 @@ public class CréerUnExamen extends javax.swing.JFrame {
         for(int i=0;i<ListeServices.getListeServices().size();i++){
             this.jComboBox3.addItem(ListeServices.getListeServices().get(i).getNomService());
         }
+    }
+
+    public JButton getButtonValider() {
+        return jButton2;
     }
 
     public JComboBox<String> getComboServices() {

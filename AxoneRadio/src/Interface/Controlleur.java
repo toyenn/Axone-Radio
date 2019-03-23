@@ -176,7 +176,7 @@ public class Controlleur {
         menuP.getButtonCrDmr().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                crDMR.ActualiserInformationsProfessionnel(pro);
+                //crDMR.ActualiserInformationsProfessionnel(pro);
                 vuePrin.newWindow(crDMR);
             }
         });
@@ -191,7 +191,12 @@ public class Controlleur {
         phRechPat.getButtonInfos().addActionListener(new ActionListener() { // recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                if((!phRechPat.getTextFieldId().getText().equals(""))){
+                    try{
                int id = Integer.parseInt(phRechPat.getTextFieldId().getText());
+                    
+               
                PATIENTSELECTIONNE = req.ChargementPatient(id);
                try{
                     phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE); // maj de la page suivante
@@ -202,7 +207,20 @@ public class Controlleur {
                     Component frame = null;
                     JOptionPane.showMessageDialog(frame,"L'ID rentré n'est pas dans la base de donnée","Inane warning",JOptionPane.WARNING_MESSAGE);
                 }
+               }catch(java.lang.NumberFormatException ex){
+                        Component frame = null;
+                    JOptionPane.showMessageDialog(frame,"Erreur vous n'avez pas entré un id valide","Inane warning",JOptionPane.WARNING_MESSAGE);
+                
+                    }
+               
+               
             }
+                else{
+                        Component frame = null;
+                     JOptionPane.showMessageDialog(frame,"Vous devez entrer un id","Inane warning",JOptionPane.WARNING_MESSAGE);
+                
+                }
+        }
         });
         
         // si on clique sur le bouton retour
@@ -217,6 +235,7 @@ public class Controlleur {
         phRechPat.getButtonService().addActionListener(new ActionListener() {// recuperer infos des autres champs pour trouver le bon dossier patient ?
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(phRechPat.getComboBoxPatients().getItemCount()>0){
                 String valpat = String.valueOf(phRechPat.getComboBoxPatients().getSelectedItem());
                 int id = req.getIntNomPrenomIdPatient(valpat);
                 System.out.println("id récupéré :"+id);
@@ -227,6 +246,11 @@ public class Controlleur {
                 phDossPat.SetAffichageDroits(pro.getProfession()); // on affiche ou pas des boutons selon la profession
                 changerMenu(phDossPat); // mettre un patient en argument ? ou avant creer meethode setpat dans phdosspat
             }
+                else{
+                 Component frame = null;
+                 JOptionPane.showMessageDialog(frame,"Il n'y a pas de patient selectionné","Inane warning",JOptionPane.WARNING_MESSAGE);
+                
+                }}
         });
         
         // si on se déconnecte
@@ -498,6 +522,7 @@ public class Controlleur {
             public void actionPerformed(ActionEvent e) {
                if(compteR.getTextCR().getText().equals("")){
                    SELECTEDEXAMEN.getCr().setEtat(EtatCr.nonecrit);
+                   SELECTEDEXAMEN.getCr().setTexte(compteR.getTextCR().getText());
                     phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
                     // actualiserle cr dans la BD
                     req.ModifierCR(SELECTEDEXAMEN);
@@ -553,6 +578,9 @@ public class Controlleur {
                 int max = PATIENTSELECTIONNE.getDMR().getIdMax();
                 SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(max);
                 phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
+                phDossPat.ActualiserInfosPatient(CHU, PATIENTSELECTIONNE);
+                //Rendre la fenetre dosspat invisible
+//phDossPat.setVisible(false);
                 vuePrin.changerWindow(phExam);
             }
         });
@@ -620,19 +648,19 @@ public class Controlleur {
             }
         });
         
-        crDMR.getButtonDeco().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changerMenu(co);
-            }
-        });
-        
-        crDMR.getButtonPara().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vuePrin.newWindow(para);
-            }
-        });
+//        crDMR.getButtonDeco().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                changerMenu(co);
+//            }
+//        });
+//        
+//        crDMR.getButtonPara().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                vuePrin.newWindow(para);
+//            }
+//        });
         
         
         

@@ -317,7 +317,7 @@ public class PH_DossierPatient extends javax.swing.JFrame {
         buttonCreerExam.setText("Créer Examen");
 
         buttonDMR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/valider.png"))); // NOI18N
-        buttonDMR.setText("Valider ");
+        buttonDMR.setText("Ouvrir");
         buttonDMR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDMRActionPerformed(evt);
