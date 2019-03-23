@@ -18,6 +18,8 @@ public class AccueilPH extends javax.swing.JFrame {
      */
     public AccueilPH() {
         initComponents();
+         this.setResizable(false);
+        this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
     }
 
     /**

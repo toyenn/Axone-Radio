@@ -506,7 +506,13 @@ public class Controlleur {
                     compteR.setVisible(false);/////////////////////// AUTRE MOYEN AVEC CNTROLEUR AYAYAYAY
                }
                else{
-                   SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
+                   if(pro.getProfession().toString().equals("interne")){
+                       SELECTEDEXAMEN.getCr().setEtat(EtatCr.attente);
+                   }
+                   else{ // si c'est le PH
+                       SELECTEDEXAMEN.getCr().setEtat(EtatCr.validé);
+                   }
+                   
                    SELECTEDEXAMEN.getCr().setTexte(compteR.getTextCR().getText());
                    SELECTEDEXAMEN.getCr().setCreateur(pro);// ajoute le pro connecté en redacteur de cr
                    phExam.actualiserInfos(CHU, SELECTEDEXAMEN);
