@@ -477,15 +477,6 @@ public class Controlleur {
            
         });
         
-        phExam.getButtonEnregistrer().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ajoutImg.actualiserInfosPage(CHU,PATIENTSELECTIONNE,SELECTEDEXAMEN);              
-                changerMenu(phDossPat);
-            }
-           
-        });
-        
         phExam.getButtonRetour().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

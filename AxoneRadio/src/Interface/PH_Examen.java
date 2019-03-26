@@ -83,14 +83,13 @@ public class PH_Examen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        buttonEnregistrer = new javax.swing.JButton();
+        buttonRetour = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         Imprim = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        buttonRetour = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -411,11 +410,11 @@ public class PH_Examen extends javax.swing.JFrame {
             }
         });
 
-        buttonEnregistrer.setBackground(new java.awt.Color(255, 255, 255));
-        buttonEnregistrer.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
-        buttonEnregistrer.setForeground(new java.awt.Color(0, 51, 204));
-        buttonEnregistrer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/enregistrer.jpg"))); // NOI18N
-        buttonEnregistrer.setText("Enregistrer");
+        buttonRetour.setBackground(new java.awt.Color(255, 255, 255));
+        buttonRetour.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        buttonRetour.setForeground(new java.awt.Color(0, 51, 204));
+        buttonRetour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png"))); // NOI18N
+        buttonRetour.setText("  Retour");
 
         jLabel34.setText("Etat du CR :");
 
@@ -455,7 +454,7 @@ public class PH_Examen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
@@ -480,7 +479,7 @@ public class PH_Examen extends javax.swing.JFrame {
                                 .addComponent(jLabel35))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton3)
-                                .addComponent(buttonEnregistrer))
+                                .addComponent(buttonRetour))
                             .addComponent(Imprim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -501,9 +500,6 @@ public class PH_Examen extends javax.swing.JFrame {
             .addGap(0, 22, Short.MAX_VALUE)
         );
 
-        buttonRetour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logoRetour.png"))); // NOI18N
-        buttonRetour.setText("  Retour");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -516,21 +512,14 @@ public class PH_Examen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonRetour)
-                .addGap(70, 70, 70))
+                .addGap(70, 1210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(184, 184, 184))
@@ -625,7 +614,6 @@ public class PH_Examen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Imprim;
-    private javax.swing.JButton buttonEnregistrer;
     private javax.swing.JButton buttonRetour;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -749,13 +737,6 @@ public void actualiserInfos(Services CHU,Examen Exam) {
         else{//si ph ou interne
             this.jButton3.setVisible(true);
         }
-    }
-
-    /**
-     * @return the buttonEnregistrer
-     */
-    public javax.swing.JButton getButtonEnregistrer() {
-        return buttonEnregistrer;
     }
 
     /**
