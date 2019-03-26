@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package axoneradio;
-
+import Interface.Controlleur;
+import java.sql.SQLException;
+import javax.swing.JTable;
 /**
  *
  * @author Nathan
@@ -14,17 +16,11 @@ public class AxoneRadio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         // TODO code application logic here
-        System.out.println("Hello worlds");
-        int a=0;
-        int b=2;
-        int c;
-        c= a+b;
-        String lo="";
-        
-        System.out.println("ceci est un test");
-        a++;
+        new Controlleur();
+        JTable table;
+        table = new JTable();
     }
     
 }

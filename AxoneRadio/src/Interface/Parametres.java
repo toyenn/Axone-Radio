@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interface;
+
 import FC.Professionnel;
 import FC.RequetesBD;
 import java.awt.Color;
@@ -16,20 +17,14 @@ import javax.xml.stream.XMLStreamException;
 
 public class Parametres extends javax.swing.JFrame {
 
-    
-    
-
     public Parametres() { // ajout des argument utilisateur et la fenetre de base
         initComponents();
-       
-        
+
         this.setLocationRelativeTo(null);// PERMET DE CENTRER LA FENETRE
-       
-        
-         this.setResizable(false);
+
+        this.setResizable(false);
 
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -180,47 +175,13 @@ public class Parametres extends javax.swing.JFrame {
     private void buttonValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValActionPerformed
 
         String s1, s2, s3;
-       
-        
-        
-       
-        
-        
-        
-//        s1 = new String(jPasswordField1.getPassword());
-//        s2 = new String(jPasswordField2.getPassword());
-//        s3 = new String(jPasswordField3.getPassword());
-//        if (!s1.isEmpty() && !s2.isEmpty() && !s3.isEmpty()) {
-//            if (s2.equals(s3) && s1.equals(this.user.getMdp())) {
-//
-//                
-//                if (BaseDonnee.modifierMdp(this.user.getLogin(), s2)) {
-//                    System.out.println("new mdp : " + s2);
-//                    this.user.setMdp(s2);
-//                   
-//                    
-//                    JOptionPane.showMessageDialog(this, "Mot de passe modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
-//                    this.dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Le nouveau mot de passe est trop simple, il doit contenir au moins 5 caractères,\n dont au minimum 1 minuscule, 1 manuscule, 1 lettre, 1 nombre", "Erreur", JOptionPane.WARNING_MESSAGE);
-//                }
-//
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Les mots de passe ne correspondent pas", "Erreur", JOptionPane.WARNING_MESSAGE);
-//            }
-//        }
-        // Reecriture du fichier xml avec la modification
-                   
-        
-        
-        
-        
+
 
     }//GEN-LAST:event_buttonValActionPerformed
 
     private void buttonAnnulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnnulActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_buttonAnnulActionPerformed
 
     /**
@@ -257,26 +218,24 @@ public class Parametres extends javax.swing.JFrame {
     public javax.swing.JButton getButtonVal() {
         return buttonVal;
     }
-    
-    public void ResetChamps(){
+
+    public void ResetChamps() {
         jPasswordField1.setText("");
         jPasswordField2.setText("");
         jPasswordField3.setText("");
     }
-    
-    public boolean ChangementMDP(Professionnel pro,RequetesBD req){
+
+    public boolean ChangementMDP(Professionnel pro, RequetesBD req) {
         String s1 = new String(jPasswordField1.getPassword());
         String s2 = new String(jPasswordField2.getPassword());
         String s3 = new String(jPasswordField3.getPassword());
         if (!s1.isEmpty() && !s2.isEmpty() && !s3.isEmpty()) {
+
             if (s2.equals(s3) && s1.equals(pro.getMotDePasse())) {
 
-                
                 if (pro.setMotDePasse(s3, req)) {
-                    System.out.println("new mdp : " + s2);
-                    
-                   
-                    
+                    // System.out.println("new mdp : " + s2);
+
                     JOptionPane.showMessageDialog(this, "Mot de passe modifié", "Information", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                     //this.dispose();
@@ -291,6 +250,6 @@ public class Parametres extends javax.swing.JFrame {
             }
         }
         return false;
-       
+
     }
 }

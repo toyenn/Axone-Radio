@@ -11,7 +11,7 @@ import java.util.Vector;
  *
  * @author Nathan
  */
-public class Patients {
+public class Patients { // Liste des patients d'une aile
     private Vector<Patient> ListePatients;
     
     public Patients(){
@@ -21,7 +21,7 @@ public class Patients {
     public Vector<Patient> getListePatients() {
         return ListePatients;
     }
-    
+    // ajoute un patient a laile
     public void AjouterPatient(Patient p){
         if(!this.getListePatients().contains(p)){
             this.getListePatients().add(p);

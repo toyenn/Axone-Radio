@@ -20,7 +20,7 @@ import java.io.InputStream;
  *
  * @author ndeyeawagaye
  */
-    public class PACS extends JFrame{
+    public class PACS extends JFrame{ // classe permettant de ire une image
     JButton button ;
     JButton button2;
     JLabel label;

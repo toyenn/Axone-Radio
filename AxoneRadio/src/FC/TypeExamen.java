@@ -9,7 +9,7 @@ package FC;
  *
  * @author Nathan
  */
-public enum TypeExamen {
+public enum TypeExamen { // peut se compléter suivant les examens disponibles dans le CHU
     Scanner("Scanner"),
     IRM("IRM");
     

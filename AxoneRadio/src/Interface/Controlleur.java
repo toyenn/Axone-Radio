@@ -170,7 +170,14 @@ public class Controlleur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                //vuePrin.newWindow(para);
+                vuePrin.newWindow(para);
+            }
+        });
+        menuP.getButtonHelp().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           JOptionPane.showMessageDialog(menuP, "Pour toute demande d'aide, contactez nous par mail à axoneradio@gmail.com", "Information", JOptionPane.INFORMATION_MESSAGE);
+                
             }
         });
         
@@ -657,19 +664,7 @@ public class Controlleur {
             }
         });
         
-//        crDMR.getButtonDeco().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                changerMenu(co);
-//            }
-//        });
-//        
-//        crDMR.getButtonPara().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                vuePrin.newWindow(para);
-//            }
-//        });
+
         
         
         

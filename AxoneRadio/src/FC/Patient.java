@@ -9,22 +9,22 @@ package FC;
  *
  * @author Nathan
  */
-public class Patient {
+public class Patient { // classe donnant les informations de base d'un patient
 
-    private int id;
-    private String nom;
-    private String prénom;
-    private DateN date;
-    private String genre;
-    boolean hospitalise;
-    private String adresse;
+    private int id; // id unique du patient
+    private String nom; // nom du patient
+    private String prénom; // prenom du patient
+    private DateN date; // date de naissance
+    private String genre; // genre = homme ou femme
+    boolean hospitalise; // hospitalise ou pas
+    private String adresse; // adresse du patient
 
-    public int Service;
-    //public String Aile;
+    private int Service; // service ou est le patient
 
-    public DossierMedicalRadiologique DMR;
+    public DossierMedicalRadiologique DMR; // DMR du patient
 
-    public Patient(int id, String nom, String prénom, DateN date, String genre, String adresse,boolean hospitalise, int Service) {
+    // initialise un patient
+    public Patient(int id, String nom, String prénom, DateN date, String genre, String adresse, boolean hospitalise, int Service) {
         this.id = id;
         this.nom = nom;
         this.prénom = prénom;
@@ -58,10 +58,9 @@ public class Patient {
     }
 
     public String isHospitalise() {
-        if(hospitalise){
+        if (hospitalise) {
             return "oui";
-        }
-        else{
+        } else {
             return "non";
         }
     }
@@ -117,15 +116,12 @@ public class Patient {
     public void setDMR(DossierMedicalRadiologique DMR) {
         this.DMR = DMR;
     }
-    
-    public String NomPrenomIdPatient(){
-        return this.nom+" "+this.prénom+" ,"+this.id;
-    }
-    
-   
-    
-   
 
+    public String NomPrenomIdPatient() {
+        return this.nom + " " + this.prénom + " ," + this.id;
+    }
+
+// affiche les informations de base d'un patient
     public void InformationsPatient() {
         System.out.println("--------------------------------------------");
         System.out.println("INFORMATIONS PATIENT :");
@@ -133,16 +129,14 @@ public class Patient {
         System.out.println("ID : " + this.id);
         System.out.println("NOM : " + this.nom);
         System.out.println("PRENOM : " + this.prénom);
-        System.out.println("DATEN : "+this.date.toString_DateNaissance());
+        System.out.println("DATEN : " + this.date.toString_DateNaissance());
         System.out.println("GENRE : " + this.genre);
         System.out.println("HOSPITALISE : " + this.hospitalise);
         System.out.println("SERVICE ID : " + this.Service);
         System.out.println("--------------------------------------------");
-        
-        
+
         DMR.AfficherInformationsExamens();
         System.out.println("--------------------------------------------");
-        
 
     }
 

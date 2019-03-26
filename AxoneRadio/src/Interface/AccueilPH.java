@@ -11,6 +11,8 @@ import FC.Professionnel;
  *
  * @author ndeyeawagaye
  */
+
+// accueil principal
 public class AccueilPH extends javax.swing.JFrame {
 
     /**

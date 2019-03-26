@@ -11,9 +11,10 @@ import java.util.Vector;
  *
  * @author Nathan
  */
+// classe principale : contient une liste de tous les services du CHU
 public class Services {
 
-    private Vector<Service> listeServices;
+    private Vector<Service> listeServices; // liste des services
 
     public Services() {
         this.listeServices = new Vector<Service>();
@@ -24,7 +25,7 @@ public class Services {
     }
     
    
-    
+    // ajoute un service a la liste si il n'y ait pas deja
     public void AjouterService(String s){
         
         int i = 0;
@@ -44,7 +45,7 @@ public class Services {
     public void AjouterAileDansService(Service S, Aile a) {
         S.AjouterAile(a);
     }
-    
+    // ajoute une aile dans un service precis
     public void AjouterAileDansService(String nomService, Aile a) {
         int i = 0;
         boolean trouve = false;
@@ -57,6 +58,7 @@ public class Services {
     }
        
     }
+    // return le service ayant le nom nom
     public Service getService(String nom){
         int i=0;
         //System.out.println("service a trouver : "+nom);
@@ -72,7 +74,7 @@ public class Services {
         }
         return null;
     }
-    
+    // return le nom d'un service a partir de son id
     public String getNomService(int id){
         String s="";
         int i=0;
@@ -86,7 +88,7 @@ public class Services {
                     
                     trouve = true;
                  
-                //System.out.println("ON A TROUVE LE SERVICE");
+           
                 
                 
             }
@@ -98,7 +100,7 @@ public class Services {
         return s;
     }
     
-    
+    // affiche les informations des services (liste des services)
     public void AfficherInformationServices(){
         System.out.println("**********************************************************************************************************");
         System.out.println("INFORMATIONS DES SERVICES DU CHU :");

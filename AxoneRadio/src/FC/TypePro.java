@@ -9,6 +9,6 @@ package FC;
  *
  * @author Nathan
  */
-public enum TypePro {
+public enum TypePro { // donne le type de professionnel et permet de donner +/- de droits
     PH,interne,Secretaire,manipulateur
 }

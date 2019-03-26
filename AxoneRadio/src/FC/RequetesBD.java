@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nathan
  */
-public class RequetesBD {
+public class RequetesBD { // classe donnant toutes le resuqtes de bd pour lire la BD
 
     String url;
     String user;
@@ -47,8 +47,8 @@ public class RequetesBD {
     public Connection getConn() {
         return conn;
     }
-    
-    public String Cryptage(String donnee){
+
+    public String Cryptage(String donnee) {// donne le caractere dau dessus
 //      String nouvelleedonnee="";
 //        for(int i=0;i<donnee.length();i++){
 //          char c = donnee.charAt(i);
@@ -57,9 +57,10 @@ public class RequetesBD {
 //           
 //      }
 //      return nouvelleedonnee;
-return donnee;
+       return donnee;
     }
-    public String deCryptage(String donnee){
+
+    public String deCryptage(String donnee) {// donne le caractere den dessous
 //        String nouvelleedonnee="";
 //        for(int i=0;i<donnee.length();i++){
 //          char c = donnee.charAt(i);
@@ -68,8 +69,30 @@ return donnee;
 //           
 //      }
 //      return nouvelleedonnee;
-    return donnee;
+       return donnee;
     }
+    
+    public String CryptageMDP(String donnee){
+              String nouvelleedonnee="";
+        for(int i=0;i<donnee.length();i++){
+          char c = donnee.charAt(i);
+          c++;
+          nouvelleedonnee+=c;
+           
+      }
+      return nouvelleedonnee;
+    }
+        public String DeCryptageMDP(String donnee){
+              String nouvelleedonnee="";
+        for(int i=0;i<donnee.length();i++){
+          char c = donnee.charAt(i);
+          c--;
+          nouvelleedonnee+=c;
+           
+      }
+      return nouvelleedonnee;
+    }
+
     /*
     CRYPTAGE DE :
     - mot de passe
@@ -80,10 +103,8 @@ return donnee;
     - nom patient
     - prenom patient
     
-    - texte d'un compte rendu
     
-    */
-
+     */
 
     // GESTION DE LUTILISATEUR
     public void ChangerMotDePasse(Professionnel pro, String newmdp) {
@@ -92,7 +113,7 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
 
-            String query = "UPDATE connexion\n" + "SET motdepasse='" + Cryptage(newmdp) + "'\nWHERE idpersonnel='" + pro.getId() + "'";
+            String query = "UPDATE connexion\n" + "SET motdepasse='" + CryptageMDP(newmdp) + "'\nWHERE idpersonnel='" + pro.getId() + "'";
             state.executeUpdate(query);
 
             state.close();
@@ -104,6 +125,7 @@ return donnee;
         }
 
     }
+// recupere un pro ayant un login login et un mdp mdp
 
     public Professionnel Identification(String login, String mdp) {
         int id = 0;
@@ -115,20 +137,12 @@ return donnee;
         TypePro profession = null;
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
             //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
-            ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login='" + Cryptage(login) + "' AND motdepasse='" + Cryptage(mdp) + "'");
+            ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login='" + Cryptage(login) + "' AND motdepasse='" + CryptageMDP(mdp) + "'");
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
 
@@ -139,7 +153,7 @@ return donnee;
 
             if (nb == 0) {
                 System.out.println("MDP incorrect");
-                Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service,profession);
+                Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service, profession);
                 return pro;
             } else {
 
@@ -149,10 +163,9 @@ return donnee;
                     prenom = deCryptage(result.getString("prenom"));
 
                     log = deCryptage(result.getString("login"));
-                    motdepasse = deCryptage(result.getString("motdepasse"));
+                    motdepasse = DeCryptageMDP(result.getString("motdepasse"));
                     service = result.getString("service");
                     profession = TypePro.valueOf((result.getString("profession")));
-                   
 
                     //System.out.print("\t" + result.getObject(i).toString() + "\t |");
                 }
@@ -164,27 +177,20 @@ return donnee;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Professionnel pro = new Professionnel(id, nom,prenom, log, motdepasse, service,profession);
+        Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service, profession);
         pro.InformationsProfessionnel();
         return pro;
 
     }
-    
+
+    // ajoute un patient a la BD
     public void ajouterPatient(Patient p) {
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
-            
+
             //Création d'un objet Statement
             Statement state = conn.createStatement();
-            String Querry = "INSERT INTO `patients` (`nom`, `prenom`, `dateN`, `genre`, `adresse`,`hospitalise`,`idService`) VALUES ('" + Cryptage(p.getNom()) + "', '" +Cryptage(p.getPrénom()) + "', '" + p.getDate().toString_DateNaissance() + "', '" + p.getGenre() + "', '" + Cryptage(p.getAdresse()) + "', '" + p.isHospitalise()+ "', '" + p.getService()+ "')";
+            String Querry = "INSERT INTO `patients` (`nom`, `prenom`, `dateN`, `genre`, `adresse`,`hospitalise`,`idService`) VALUES ('" + Cryptage(p.getNom()) + "', '" + Cryptage(p.getPrénom()) + "', '" + p.getDate().toString_DateNaissance() + "', '" + p.getGenre() + "', '" + Cryptage(p.getAdresse()) + "', '" + p.isHospitalise() + "', '" + p.getService() + "')";
             state.executeUpdate(Querry);
 
             System.out.println("Le patient a bien été ajouté à la BD");
@@ -196,6 +202,7 @@ return donnee;
 
     }
 
+    //recupere un pro ayant un id id
     public Professionnel getProfessionnel(int idP) {
         int id = 0;
         String nom = null;
@@ -206,19 +213,9 @@ return donnee;
         TypePro profession = null;
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
 
-            //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE idpersonnel=" + idP);
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
@@ -229,7 +226,7 @@ return donnee;
                 prenom = deCryptage(result.getString("prenom"));
 
                 log = deCryptage(result.getString("login"));
-                motdepasse = deCryptage(result.getString("motdepasse"));
+                motdepasse = DeCryptageMDP(result.getString("motdepasse"));
                 service = result.getString("service");
                 profession = TypePro.valueOf((result.getString("profession")));
 
@@ -241,13 +238,13 @@ return donnee;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service,profession);
+        Professionnel pro = new Professionnel(id, nom, prenom, log, motdepasse, service, profession);
         //pro.InformationsProfessionnel();
         return pro;
     }
 
-    // GESTION DES PATIENTS
-    public Patient RecherchePatient(int idPatient) { // ou chercher par nom et prenom ?
+    // GESTION DES PATIENTS selon lid
+    public Patient RecherchePatient(int idPatient) {
 
         int id = 0;
         String nom = null;
@@ -264,7 +261,6 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT * FROM patients WHERE idPatient=" + idPatient);
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
@@ -275,7 +271,7 @@ return donnee;
                 prenom = deCryptage(result.getString("prenom"));
                 date = new DateN(result.getString("dateN"));
                 genre = result.getString("genre");
-                adresse = deCryptage(result.getString("adresse"));
+                adresse = result.getString("adresse");
                 String h = result.getString("hospitalise");
                 if (h.equals("oui")) {
                     hospitalise = true;
@@ -293,7 +289,7 @@ return donnee;
             e.printStackTrace();
         }
 
-        Patient pat = new Patient(id, nom, prenom, date, genre,adresse, hospitalise, Service);
+        Patient pat = new Patient(id, nom, prenom, date, genre, adresse, hospitalise, Service);
         // pat.InformationsPatient();
         return pat;
     }
@@ -311,23 +307,8 @@ return donnee;
         boolean hospitalise = false;
 
         int Service = 0;
-//        
-//        int id = 0;
-//        String nom = null;
-//        String prenom = null;
-//        String log = null;
-//        String motdepasse = null;
-//        String service = null;
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
@@ -337,22 +318,20 @@ return donnee;
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
 
-//            System.out.println("AFFICHAGE DES PATIENTS DU SERVICE NUMERO : "+IDService);
-//            System.out.println("*********************************************************");
             while (result.next()) {
                 id = result.getInt("idPatient");
                 nom = deCryptage(result.getString("nom"));
                 prenom = deCryptage(result.getString("prenom"));
                 date = new DateN(result.getString("dateN"));
                 genre = result.getString("genre");
-                adresse = deCryptage(result.getString("adresse"));
+                adresse = result.getString("adresse");
                 String h = result.getString("hospitalise");
                 if (h.equals("oui")) {
                     hospitalise = true;
                 }
 
                 Service = result.getInt("idService");
-                Patient pat = new Patient(id, nom, prenom, date, genre,adresse, hospitalise, Service);
+                Patient pat = new Patient(id, nom, prenom, date, genre, adresse, hospitalise, Service);
                 //pat.InformationsPatient();
                 LISTEPATIENTS.AjouterPatient(pat);
 
@@ -375,14 +354,6 @@ return donnee;
     public void AjoutExamen(Examen exam) {
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
@@ -402,19 +373,11 @@ return donnee;
     public void ModifierCR(Examen exam) {
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
             CompteRendu CR = exam.getCr();
             //Création d'un objet Statement
             Statement state = conn.createStatement();
 
-            // erreur la :
             String Querry = "UPDATE compterendu SET etatcr = '" + exam.getCr().getEtat().toString() + "' , textecr = '" + exam.getCr().getTexte() + "' WHERE idexam = " + exam.getCr().getExam().getIdExamen();
             state.executeUpdate(Querry);
 
@@ -427,22 +390,15 @@ return donnee;
 
     }
 
-    // ajout d'un CR :
+    // ajout d'un CR  a un examen
     public void AjoutCR(Examen exam) {
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
+
             CompteRendu CR = exam.getCr();
             //Création d'un objet Statement
             Statement state = conn.createStatement();
-            String Querry = "INSERT INTO `compterendu` (`idcr`, `idexam`, `idcreateur`, `etatcr`, `textecr`) VALUES (" + CR.getExam().getIdExamen() + ", " + CR.getExam().getIdExamen() + ", '" + CR.getCreateur().getId() + "', '" + CR.getEtat().toString() + "', '" + Cryptage(CR.getTexte()) + "')";
+            String Querry = "INSERT INTO `compterendu` (`idcr`, `idexam`, `idcreateur`, `etatcr`, `textecr`) VALUES (" + CR.getExam().getIdExamen() + ", " + CR.getExam().getIdExamen() + ", '" + CR.getCreateur().getId() + "', '" + CR.getEtat().toString() + "', '" + CR.getTexte() + "')";
             state.executeUpdate(Querry);
 
             System.out.println("Le CR a bien été ajouté à la BD");
@@ -454,6 +410,7 @@ return donnee;
 
     }
 
+    // recupere un compte rendu dans la BD
     public CompteRendu getCrExamen(Examen exam) {
 
         CompteRendu cr = new CompteRendu(exam);
@@ -470,7 +427,6 @@ return donnee;
 
             //Création d'un objet Statement
             Statement state = conn.createStatement();
-            //L'objet ResultSet contient le résultat de la requête SQL
             //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT * FROM compterendu WHERE idexam=" + exam.getIdExamen());
             //On récupère les MetaData
@@ -480,7 +436,7 @@ return donnee;
                 idCR = result.getInt("idcr");
                 Createur = this.getProfessionnel(result.getInt("idcreateur"));
                 etat = EtatCr.valueOf((result.getString("etatcr")));
-                texte = deCryptage(result.getString("textecr"));
+                texte = result.getString("textecr");
 
                 cr = new CompteRendu(idCR, exam, Createur, etat, texte);
 
@@ -495,6 +451,7 @@ return donnee;
         return cr;
     }
 
+    // recupere le dmr d'un patient pat
     public DossierMedicalRadiologique GetDMRPatient(Patient pat) {
         DossierMedicalRadiologique DMR = new DossierMedicalRadiologique();
         int id = pat.getid();
@@ -513,7 +470,6 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT * FROM examens WHERE idPatient=" + id);
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
@@ -534,11 +490,6 @@ return donnee;
                 //cr = new CompteRendu(pat,PHresponsable);
                 //azeexam.getCr().AjouterTexte(result.getString("CR"));
                 exam.setCr(this.getCrExamen(exam));
-//                System.out.println("lkndksnlksdnclknfkcnldvwnv");
-//                exam.getCr().afficherInfoCR();
-                //exam.getCr().setCreateur(PHresponsable);
-                //exam.ajouterCr(cr);
-                //exam.AfficherInformationsExamen();
                 DMR.AjouterExamen(exam);
 
             }
@@ -554,7 +505,8 @@ return donnee;
     } // ou selon idPatient ? 
     // GESTION DES IMAGES
 
-    public Images getImagesExamen(int idexam) {// affiche la liste des images d'un examen
+    // recupere la liste d'images dun exam
+    public Images getImagesExamen(int idexam) {
         Images LISTEIMAGES = new Images();
         int idImage;
         int idPatient;
@@ -567,7 +519,6 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT * FROM pacs WHERE idExam=" + idexam);
             //On récupère les MetaData
             ResultSetMetaData resultMeta = result.getMetaData();
@@ -606,15 +557,7 @@ return donnee;
         int nbPersonnes;
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            String url = "jdbc:mysql://localhost:3306/connexion";
-//            url+= "?serverTimezone=UTC";
-//            String user = "root";
-//            String passwd = "";
-//
-//        Connection conn = DriverManager.getConnection(url, user, passwd);
-
+//           
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
@@ -633,7 +576,6 @@ return donnee;
                 LISTESERVICES.AjouterService(NomService);
                 LISTESERVICES.AjouterAileDansService(NomService, NouvelleAile);
 
-                //System.out.print("\t" + result.getObject(i).toString() + "\t |");
             }
 
             result.close();
@@ -642,16 +584,13 @@ return donnee;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println("FIN DE LA RECHERCHE");
-        //LISTESERVICES.AfficherInformationServices();
+
         return LISTESERVICES;
 
     }
 
-//    void ChargerListeImages(Patient p) {
-//        
-//    }
-    public int getIntNomPrenomIdPatient(String s) { // return un id correspondant à un patient dans une chaine "nom prenom ,id"
+// return un id correspondant à un patient dans une chaine "nom prenom ,id"
+    public int getIntNomPrenomIdPatient(String s) {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == ',') {
@@ -674,6 +613,7 @@ return donnee;
         }
         return p;
     }
+// return l'id max d'un examen
 
     public int getMaxIdExam() {
         int id = 0;
@@ -683,7 +623,6 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT MAX(idExamen) FROM examens");
             //On récupère les MetaData
 
@@ -702,6 +641,7 @@ return donnee;
         return id;
     }
 
+    // return l'id max d'une image
     public int getMaxIdImg() {
         int id = 0;
         try {
@@ -710,7 +650,6 @@ return donnee;
             //Création d'un objet Statement
             Statement state = conn.createStatement();
             //L'objet ResultSet contient le résultat de la requête SQL
-            //ResultSet result = state.executeQuery("SELECT * FROM connexion WHERE login="+login+" AND motdepasse="+mdp);
             ResultSet result = state.executeQuery("SELECT MAX(idImage) FROM pacs");
             //On récupère les MetaData
 
@@ -733,8 +672,6 @@ return donnee;
     // ajoute l'image selectionné au préalable dans le pacs
     public void ecrirePACS(Imagepacs img, String Cheminimg) {
         try {
-            // enregistrement en local :
-            //this.getIm().createFile(this.getIm().getImage(),"C:\\Users\\Nathan\\Pictures\\SIR\\resultatBD.pgm");
 
             RequetesBD req = new RequetesBD();
 

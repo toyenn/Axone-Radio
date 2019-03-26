@@ -10,12 +10,13 @@ package FC;
  * @author Nathan
  */
 public class Imagepacs {
-    private int idImage;
-    private int idPatient;
-    private int idExamen;
-    private String nom;
-    
 
+    private int idImage; // id unique de limage
+    private int idPatient; // id du patient correspondant peut se recuperer avec exam
+    private int idExamen;// id de l'examen correspondant
+    private String nom; // nom de l'image a sauvegarder
+
+    // initialisation de l'image
     public Imagepacs(int idImage, int idPatient, int idExamen, String nom) {
         this.idImage = idImage;
         this.idPatient = idPatient;
@@ -23,8 +24,7 @@ public class Imagepacs {
         this.nom = nom;
     }
 
-    
-    
+    // Getteurs et setteurs
     public int getIdImage() {
         return idImage;
     }
@@ -56,16 +56,17 @@ public class Imagepacs {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public void InformationsImage(){
+
+    // donne les informations de l'image
+    public void InformationsImage() {
         System.out.println("~~~~~~~~");
         System.out.println("INFORMATIONS IMAGE :");
         System.out.println("~~~~~~~~");
         System.out.println("ID : " + this.idImage);
         System.out.println("NOM : " + this.getNom());
-        System.out.println("ID EXAMEN : " +this.idExamen);
-        System.out.println("ID PATIENT : "+this.idPatient);
+        System.out.println("ID EXAMEN : " + this.idExamen);
+        System.out.println("ID PATIENT : " + this.idPatient);
         System.out.println("~~~~~~~~");
     }
-    
-    
+
 }

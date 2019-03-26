@@ -10,19 +10,19 @@ package FC;
  * @author Nathan
  */
 public class Aile {
-    
-   private int idAile;
-   private String nomAile;
-   private  int nbPersonnes;
 
+    private int idAile; // numero unique de l'aile
+    private String nomAile; // nom de l'aile (A,B,C,D,...)
+    private int nbPersonnes; // nb de personnes dans l'aile (interopérabilité
+
+    // initialise les valeurs d'une aile
     public Aile(int idAile, String nomAile, int nbPersonnes) {
         this.idAile = idAile;
         this.nomAile = nomAile;
         this.nbPersonnes = nbPersonnes;
     }
 
-   
-   
+    // Getteurs et setteurs d'une aile
     public int getIdAile() {
         return idAile;
     }
@@ -46,15 +46,15 @@ public class Aile {
     public void setNbPersonnes(int nbPersonnes) {
         this.nbPersonnes = nbPersonnes;
     }
-    
-    public void AfficherInformationsAile(){
+
+    // affichage de l'information d'une aile
+    public void AfficherInformationsAile() {
         System.out.println("--------------------------------------------------------------------------------");
         System.out.println("AILE :");
-        System.out.println("Numero : "+this.idAile);
-        System.out.println("Nom : "+this.getNomAile());
-        System.out.println("Nb personnes : "+this.nbPersonnes);
+        System.out.println("Numero : " + this.idAile);
+        System.out.println("Nom : " + this.getNomAile());
+        System.out.println("Nb personnes : " + this.nbPersonnes);
         System.out.println("--------------------------------------------------------------------------------");
     }
-    
-    
+
 }

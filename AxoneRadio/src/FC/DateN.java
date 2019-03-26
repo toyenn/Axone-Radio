@@ -11,19 +11,22 @@ import java.util.Calendar;
  *
  * @author Nathan
  */
-public class DateN {
-     private int jour;
+public class DateN { // classe donnant des dates de naissance ou des dates d'examen
+
+    private int jour;
     private int mois;
     private int annee;
     private int heure;
     private int minute;
 
-    public DateN(int jour, int mois, int annee) { 
+    // initialise la date de naissance
+    public DateN(int jour, int mois, int annee) {
         this.jour = jour;
         this.mois = mois;
         this.annee = annee;
     }
 
+    // initialise la date d'un examen
     public DateN(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
         this.mois = mois;
@@ -31,21 +34,19 @@ public class DateN {
         this.heure = heure;
         this.minute = minute;
     }
-    
 
-    
-    public DateN(String DateBD){ // récupère la date au format de la base de données pour un patient
-      
+// récupère la date au format de la base de données pour un patient    
+    public DateN(String DateBD) {
         this.annee = Integer.parseInt(DateBD.substring(0, 4));
-       
+
         this.mois = Integer.parseInt(DateBD.substring(5, 7));
-        
+
         this.jour = Integer.parseInt(DateBD.substring(8, 10));
-      
+
     }
+// recupere la date actuelle
 
-    public DateN() {// recupere la date actuelle
-
+    public DateN() {
 
         java.util.Date date = new java.util.Date();
         Calendar calendar = Calendar.getInstance();
@@ -57,8 +58,9 @@ public class DateN {
         this.minute = calendar.get(Calendar.MINUTE);
 
     }
+// format AAAA-MM-JJ HH:MN:00
 
-    public String toString() { // format AAAA-MM-JJ HH:MN:00
+    public String toString() {
         String s = "";
         s += getAnnee() + "-";
         if (getMois() < 10) {
@@ -77,12 +79,13 @@ public class DateN {
             s += heure + ":";
         }
         if (minute < 10) {
-            s += "0" + minute+":00";
+            s += "0" + minute + ":00";
         } else {
-            s += minute+":00";
+            s += minute + ":00";
         }
         return s;
     }
+// donne le format dune date de naissance pour pouvoir lafficher et la stocker correctement
 
     public String toString_DateNaissance() {
         String s = "";
@@ -100,6 +103,7 @@ public class DateN {
         return s;
     }
 
+    // getteurs et setteurs
     public int getJour() {
         return jour;
     }
@@ -108,6 +112,7 @@ public class DateN {
         return mois;
     }
 
+    // convertit un int (mois) en String
     public String getMoisEnint(int m) {
         switch (m) {
             case 1:
@@ -151,6 +156,7 @@ public class DateN {
     public int getMinute() {
         return minute;
     }
+// return true si les dates sont egales
 
     public boolean equals(Object o) {
         if (o instanceof DateN) {
@@ -173,18 +179,18 @@ public class DateN {
         this.annee = annee;
     }
 
-   
+    // compare deux dates
     public int compareTo(Object o) {
         DateN d = (DateN) o;
         if (annee != d.annee) {
             return annee - d.annee;
         }
-    
+
         if (mois != d.mois) {
             return mois - d.mois;
         }
-        
+
         return this.jour - d.jour;
-        
+
     }
 }

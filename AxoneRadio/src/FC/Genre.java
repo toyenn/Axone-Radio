@@ -11,4 +11,6 @@ package FC;
  */
 public enum Genre {
     F,H
+    // F : Femme
+    // H : homme
 }

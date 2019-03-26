@@ -11,11 +11,10 @@ import java.util.Vector;
  *
  * @author Nathan
  */
-public class Service { 
-    
-    
-    private String nomService;
-    private Vector<Aile> ListeAiles;
+public class Service { // contient une liste des ailes d'un service
+
+    private String nomService; // nom du service (cardio,...)
+    private Vector<Aile> ListeAiles; // BLOC A ? BLOC B?...
 
     public Service(String nomService) {
         this.nomService = nomService;
@@ -37,48 +36,49 @@ public class Service {
     public void setListeAiles(Vector<Aile> ListeAiles) {
         this.ListeAiles = ListeAiles;
     }
-    
-    public void AjouterAile(Aile a){
+
+    // ajoute une aile au service si elle n'y ait pas deja
+    public void AjouterAile(Aile a) {
         String nom = a.getNomAile();
         int i = 0;
         boolean trouve = false;
         while (!trouve && i < this.getListeAiles().size()) {
-            if(this.getListeAiles().get(i).getNomAile().equals(nom)){
-                trouve=true;
-        }
-            i++;
-    }
-    if(!trouve){
-        this.getListeAiles().add(a);
-    }
-    }
-    
-    public Aile getAile(String nom){
-        int i=0;
-        //System.out.println("Aile a trouver : "+nom);
-        boolean trouve = false;
-        while(!trouve && i<this.ListeAiles.size()){
-            if(this.ListeAiles.get(i).getNomAile().equals(nom)){
+            if (this.getListeAiles().get(i).getNomAile().equals(nom)) {
                 trouve = true;
-                System.out.println("ON A TROUVE LAILE");
-                return this.ListeAiles.get(i);
-                
             }
             i++;
         }
-        System.out.println("Aile introuvable");
+        if (!trouve) {
+            this.getListeAiles().add(a);
+        }
+    }
+
+    // recupere l'aile d'un service ayant le nom "nom"
+    public Aile getAile(String nom) {
+        int i = 0;
+
+        boolean trouve = false;
+        while (!trouve && i < this.ListeAiles.size()) {
+            if (this.ListeAiles.get(i).getNomAile().equals(nom)) {
+                trouve = true;
+
+                return this.ListeAiles.get(i);
+
+            }
+            i++;
+        }
+
         return null;
     }
-    
-    
-    public void AfficherInformationsService(){
+
+    // donne les informations du service
+    public void AfficherInformationsService() {
         System.out.println("--------------------------------");
-        System.out.println("SERVICE de : "+this.nomService);
-        for(int i=0;i<this.ListeAiles.size();i++){
+        System.out.println("SERVICE de : " + this.nomService);
+        for (int i = 0; i < this.ListeAiles.size(); i++) {
             this.ListeAiles.get(i).AfficherInformationsAile();
         }
         System.out.println("--------------------------------");
     }
-    
-    
+
 }

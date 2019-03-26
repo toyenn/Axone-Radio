@@ -9,18 +9,19 @@ package FC;
  *
  * @author Nathan
  */
-public class Professionnel { // classe abstraite ou interface ?
-    private String nom;
-    private String prénom;
-    private int id;
-    private String service;
-    private String login;
-    private String motDePasse;
-    
-    private TypePro profession;
-    
+public class Professionnel { // classe donnant les informations d'un pro qui se connecte
 
-    public Professionnel(int id,String nom, String prénom, String login, String motDePasse, String service,TypePro profession) {
+    private String nom; // nom du pro
+    private String prénom; // prenom
+    private int id;// id
+    private String service;// service dans lequel est le pro (et non pas aile)
+    private String login; // login du pro
+    private String motDePasse;//mdp du pro
+
+    private TypePro profession;
+
+// initialise un pro
+    public Professionnel(int id, String nom, String prénom, String login, String motDePasse, String service, TypePro profession) {
         this.nom = nom;
         this.prénom = prénom;
         this.id = id;
@@ -29,20 +30,22 @@ public class Professionnel { // classe abstraite ou interface ?
         this.motDePasse = motDePasse;
         this.profession = profession;
     }
-    
-    public void InformationsProfessionnel(){
+
+    // donne les informations du pro
+    public void InformationsProfessionnel() {
         System.out.println("INFORMATIONS DE LA PERSONNE :\n");
         System.out.println("*************************");
-        System.out.println("ID : "+this.id);
-        System.out.println("NOM : "+this.nom);
-        System.out.println("PRENOM : "+this.prénom);
-        System.out.println("LOGIN : "+this.login);
-        System.out.println("MOT DE PASSE : "+this.motDePasse);
-        System.out.println("SERVICE : "+this.service);
+        System.out.println("ID : " + this.id);
+        System.out.println("NOM : " + this.nom);
+        System.out.println("PRENOM : " + this.prénom);
+        System.out.println("LOGIN : " + this.login);
+        System.out.println("MOT DE PASSE : " + this.motDePasse);
+        System.out.println("SERVICE : " + this.service);
 //        System.out.println("PROFESSION : "+this.profession.toString());
         System.out.println("*************************");
     }
 
+    // Setteurs et getteurs
     public int getId() {
         return id;
     }
@@ -50,19 +53,18 @@ public class Professionnel { // classe abstraite ou interface ?
     public String getLogin() {
         return login;
     }
-    
-    public String getNom(){
+
+    public String getNom() {
         return nom;
     }
-    public String getPrenom(){
+
+    public String getPrenom() {
         return prénom;
     }
-    
+
     public String getService() {
         return service;
     }
-
-  
 
     public String getMotDePasse() {
         return motDePasse;
@@ -88,65 +90,61 @@ public class Professionnel { // classe abstraite ou interface ?
         this.login = login;
     }
 
-    
     // change le mdp en local et sur la BD
-    public boolean setMotDePasse(String mdp,RequetesBD req) {
-        if(MdpValide(mdp)){
-        this.motDePasse = mdp;
-        req.ChangerMotDePasse(this, mdp);
-        return true;
-        }
-        else{
-           return false;
+    public boolean setMotDePasse(String mdp, RequetesBD req) {
+        if (MdpValide(mdp)) {
+            this.motDePasse = mdp;
+            req.ChangerMotDePasse(this, mdp);
+            return true;
+        } else {
+            return false;
         }
     }
-    public String toString(){
-        return this.prénom+" "+this.nom;
+
+    public String toString() {
+        return this.prénom + " " + this.nom;
     }
-    
-    public boolean MdpValide(String mdp){
+
+    public boolean MdpValide(String mdp) {
         // 5 caractères minimum
         // 1 majuscule minimum
         // 1 minuscule minimum
         // 1 chiffre minimum
         //1 lettre minimum
         char c;
-        int i=0;
+        int i = 0;
         boolean majuscule = false;
         boolean minuscule = false;
         boolean lettre = false;
-        boolean nombre=false;
-        
-        if(mdp.length()<5){
+        boolean nombre = false;
+
+        if (mdp.length() < 5) {
             System.out.println("Mot de Passe invalide : trop petit");
             return false;
         }
-        
-            while(i<mdp.length() && (majuscule==false || minuscule==false || lettre==false || nombre==false)){
+
+        while (i < mdp.length() && (majuscule == false || minuscule == false || lettre == false || nombre == false)) {
             c = mdp.charAt(i);
-            if((c>='0')&&(c<='9')){
-  
+            if ((c >= '0') && (c <= '9')) {
+
                 nombre = true;
-              }
-            else{
+            } else {
 
                 lettre = true;
             }
-            if((c>='a')&&(c<='z')){
+            if ((c >= 'a') && (c <= 'z')) {
 
                 minuscule = true;
-            }
-            else if((c>='A')&&(c<='Z')){
-               
+            } else if ((c >= 'A') && (c <= 'Z')) {
+
                 majuscule = true;
             }
             i++;
-            
+
         }
-        if(lettre && majuscule && minuscule && nombre){
+        if (lettre && majuscule && minuscule && nombre) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -154,8 +152,5 @@ public class Professionnel { // classe abstraite ou interface ?
     public TypePro getProfession() {
         return profession;
     }
-    
-    
-    
-    
+
 }

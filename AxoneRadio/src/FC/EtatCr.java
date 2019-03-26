@@ -10,7 +10,9 @@ package FC;
  * @author Nathan
  */
 public enum EtatCr {
-    validé,attente,nonecrit;
-    
+    validé, attente, nonecrit;
+    // validé si le PH a modifié le CR
+    // attente si c'est l'interne qui a modifié le cr
+    // nonecrit si le cr est vide
 
 }

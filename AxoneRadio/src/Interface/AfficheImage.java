@@ -354,31 +354,30 @@ public class AfficheImage extends JFrame implements ActionListener, MouseListene
     public void mousePressed(MouseEvent e) {
         
         if(this.ActiveSouris.isSelected()){
-             //System.out.println("on a clic et le bouton est appuyé woow");
+
              
              P = e.getLocationOnScreen();
-            //System.out.println("Valeur du point de départ en x: "+P.getX());
-            //System.out.println("Valeur du point de départ en y: "+P.getY());
+        
          }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         if(this.ActiveSouris.isSelected()){
-       //System.out.println("Bouton relache");
+       
         }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
        if(e.getSource().equals(BoutonInverserColors)){
-           //System.out.println("DANS LE MILE EMILE");
+         
            BoutonInverserColors.setToolTipText("Inverser les couleurs");
            this.validate();
            this.repaint();
        }
        else if(e.getSource().equals(ActiveSouris)){
-           //System.out.println("DANS LE MILE EMILE");
+       
            ActiveSouris.setToolTipText("Modifier contraste et la lminosité avec la souris");
            this.validate();
            this.repaint();
