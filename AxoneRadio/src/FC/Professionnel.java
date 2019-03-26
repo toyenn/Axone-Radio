@@ -39,8 +39,8 @@ public class Professionnel { // classe abstraite ou interface ?
         System.out.println("LOGIN : "+this.login);
         System.out.println("MOT DE PASSE : "+this.motDePasse);
         System.out.println("SERVICE : "+this.service);
-        System.out.println("PROFESSION : "+this.profession.toString());
-         System.out.println("*************************");
+//        System.out.println("PROFESSION : "+this.profession.toString());
+        System.out.println("*************************");
     }
 
     public int getId() {

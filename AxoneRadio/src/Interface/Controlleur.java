@@ -65,6 +65,7 @@ public class Controlleur {
         para = new Parametres(); 
         ajoutImg = new AjouterImage();
         Aperçu = new AperçuAvantImpression();
+        
         vuePrin.newFrame(co);
 
         //////// BOUTONS PAGE DE CONNEXION /////////
@@ -168,7 +169,8 @@ public class Controlleur {
         menuP.getButtonPara().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                vuePrin.newWindow(para);
+                
+                //vuePrin.newWindow(para);
             }
         });
         
@@ -290,8 +292,8 @@ public class Controlleur {
                     //System.out.println("\n\n\n\n\n\n\nID :"+a);
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
                     phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
-                     phExam.setAffichageDroits(pro.getProfession());
-                    vuePrin.changerWindow(phExam);
+                    phExam.setAffichageDroits(pro.getProfession());
+                    changerMenu(phExam);
                 }
                 else{
                     JOptionPane.showMessageDialog(frame,"Vous devez selectionner un examen","Inane warning",JOptionPane.WARNING_MESSAGE);
@@ -328,7 +330,7 @@ public class Controlleur {
                     SELECTEDEXAMEN = PATIENTSELECTIONNE.getDMR().GetExamenDMR(a);
                     phExam.actualiserInfos(CHU,SELECTEDEXAMEN);
                     phExam.setAffichageDroits(pro.getProfession());
-                    vuePrin.changerWindow(phExam);
+                    changerMenu(phExam);
                 }
             }
             }
@@ -475,6 +477,22 @@ public class Controlleur {
            
         });
         
+        phExam.getButtonEnregistrer().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ajoutImg.actualiserInfosPage(CHU,PATIENTSELECTIONNE,SELECTEDEXAMEN);              
+                changerMenu(phDossPat);
+            }
+           
+        });
+        
+        phExam.getButtonRetour().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changerMenu(phDossPat);
+            }
+        });
+        
         //////////////// BOUTON AJOUTER IMAGE ///////////////////
         // charge limage a partir du repertoire
         ajoutImg.getButtonCharger().addActionListener(new ActionListener(){
@@ -615,7 +633,7 @@ public class Controlleur {
             public void actionPerformed(ActionEvent e) {
                 if(para.ChangementMDP(pro, req)){
                     para.ResetChamps();
-                    vuePrin.changerWindow(phRechPat);
+                    vuePrin.closeWindow();
                 } 
             }
         });
