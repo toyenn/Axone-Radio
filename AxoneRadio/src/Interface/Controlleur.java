@@ -169,8 +169,7 @@ public class Controlleur {
         menuP.getButtonPara().addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                //vuePrin.newWindow(para);
+                vuePrin.newWindow(para);
             }
         });
         
